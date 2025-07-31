@@ -1,5 +1,7 @@
 import tkinter as tk
 from Gui.GUI import Gui
+import os
+
 
 
 #funzione main che conterrà il main loop
@@ -10,5 +12,3 @@ if __name__ == '__main__':
 
     app = Gui(root)
     root.mainloop()
-
-

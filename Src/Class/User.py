@@ -1,22 +1,24 @@
 from typing import List
-from Vehicle import Vehicle
+from Src.Class.Vehicle import Vehicle
 
 
 class User:
     def __init__(
         self,
+        user_id: int,
         email: str,
         first_name: str,
-        user_id: int,
+        username: str,
         is_admin: bool,
         last_name: str,
         password:str,
         searched_vehicles: List[Vehicle],
     ):
 
+        self.user_id: int = user_id
         self.email = email
         self.firstName = first_name
-        self.ID = user_id
+        self.username = username
         self.isAdmin = is_admin
         self.LastName = last_name
         self.Password = password
