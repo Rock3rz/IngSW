@@ -1,6 +1,8 @@
 from Src.Class.User import User
 import pandas as pd
 import os
+import Src.GlobalVariables.GlobalVariables as gv
+from tkinter import messagebox
 
 class AccountController():
     def __init__(self):
@@ -16,6 +18,28 @@ class AccountController():
         self.name = name
         self.password = password
 
+        if os.path.exists(self.User_file_path):
+            df = pd.read_csv(self.User_file_path)
+
+
+            utente = df[(df["UserName"] == name) & (df["Password"] == password)]
+
+            if utente.empty:
+                messagebox.showwarning("Utente inesistente", "Non esiste nessun utente con queste credenziali")
+                return
+            else:
+                gv.canEnter = True
+
+            gv.CurrentUser = utente
+            print(gv.CurrentUser)
+            if utente.iloc[0]["IsAdmin"] == True:
+                gv.isAdminUser = True
+            else:
+                gv.isAdminUser = False
+
+
+
+
 
     def save_infos(self, name, password):
         df = pd.DataFrame({
@@ -23,26 +47,13 @@ class AccountController():
             "Password": [password]
         })
 
-        #if os.path.exists(self.Psw_file_path):
-            #df.to_csv(self.Psw_file_path, mode='a', header = False, index = False)
-        #else:
-            #df.to_csv(self.Psw_file_path, index = False)
 
     def create_user(self, name, last_name, email, username, password, is_admin:bool):
 
         if not all([name, last_name, email, username, password]):
             print("Errore!")
             return
-        '''
-        df = pd.DataFrame({
-            "Name": [name],
-            "LastName": [last_name],
-            "Email": [email],
-            "UserName": [username],
-            "Password": [password],
-            "IsAdmin": [is_admin]
-        })
-        '''
+
 
         if os.path.exists(self.User_file_path):
             df_exists = pd.read_csv(self.User_file_path)
@@ -78,6 +89,21 @@ class AccountController():
             df_new.to_csv(self.User_file_path, mode="a", header=False, index=False)
         else:
             df_new.to_csv(self.User_file_path, index= False)
+
+    def LogOut(self):
+        gv.isAdminUser = False
+        gv.CanEnter = False
+        gv.CurrentUser = ()
+
+    def edit_personal_info(self, name, last_name, email, username, password):
+        oldData = gv.CurrentUser.iloc[0]
+        oldData["Name"] = name
+        oldData["LastName"] = last_name
+        oldData["Email"] = email
+        oldData["UserName"] = username
+        oldData["Password"] = password
+
+
 
 
 
