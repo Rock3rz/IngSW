@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Ambiente virtuale
+.venv/
+venv/
+ENV/
+env/
+
+# IDE (PyCharm)
+.idea/
+
+# File di log o cache
+*.log
+*.sqlite3
+*.db
+*.tmp
+
+# File di sistema
+.DS_Store
+Thumbs.db
