@@ -5,10 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1118944d-3b5b-4ea7-86a7-ff9081fc44cc" name="Changes" comment="Aggiunto funzione per creare utenti con controlli">
-      <change afterPath="$PROJECT_DIR$/Src/GlobalVariables/GlobalVariables.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/Controllers/AccountController.py" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Controllers/AccountController.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/DB/user.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Src/Gui/GUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Gui/GUI.py" afterDir="false" />
     </list>
     <list id="f7017bf1-dc22-4b79-8de7-f0ccc10ba729" name="Changes by franc" comment="" />
@@ -37,7 +34,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/Rock3rz/IngSW&quot;,
-    &quot;accountId&quot;: &quot;ae65a9ad-982c-4fb6-923a-f2facd4ba109&quot;
+    &quot;accountId&quot;: &quot;3a09277a-db72-4397-a456-d7e08a7ae7db&quot;
   }
 }</component>
   <component name="ProblemsViewState">
@@ -51,28 +48,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Python.AccountController.executor": "Run",
-    "Python.Appointment.executor": "Run",
-    "Python.GUI.executor": "Run",
-    "Python.main.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/Nicola/Desktop/ProgettoIngSW",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "tasks",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python.AccountController.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Appointment.executor&quot;: &quot;Run&quot;,
+    &quot;Python.GUI.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/lerco/OneDrive/Desktop/IngegneriaSw&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;tasks&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Nicola\Desktop\ProgettoIngSW\Src" />
@@ -99,6 +98,9 @@
       <workItem from="1753958340676" duration="40000" />
       <workItem from="1753958403856" duration="349000" />
       <workItem from="1754032699976" duration="12336000" />
+      <workItem from="1754050749757" duration="433000" />
+      <workItem from="1754065773542" duration="663000" />
+      <workItem from="1754066449544" duration="1862000" />
     </task>
     <task id="LOCAL-00001" summary="FirstCommit">
       <option name="closed" value="true" />
@@ -156,9 +158,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="Aggiunto funzione per creare utenti con controlli" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/ProgettoIngSW$Appointment.coverage" NAME="Appointment Coverage Results" MODIFIED="1753955274248" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Src/Class" />
     <SUITE FILE_PATH="coverage/ProgettoIngSW$AccountController.coverage" NAME="AccountController Coverage Results" MODIFIED="1754040386124" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Src/Controllers" />
-    <SUITE FILE_PATH="coverage/ProgettoIngSW$GUI.coverage" NAME="GUI Coverage Results" MODIFIED="1754041356833" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Src/Gui" />
+    <SUITE FILE_PATH="coverage/IngegneriaSw$main.coverage" NAME="main Coverage Results" MODIFIED="1754066461371" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Src" />
+    <SUITE FILE_PATH="coverage/ProgettoIngSW$Appointment.coverage" NAME="Appointment Coverage Results" MODIFIED="1753955274248" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Src/Class" />
     <SUITE FILE_PATH="coverage/ProgettoIngSW$main.coverage" NAME="main Coverage Results" MODIFIED="1754045207649" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Src" />
+    <SUITE FILE_PATH="coverage/ProgettoIngSW$GUI.coverage" NAME="GUI Coverage Results" MODIFIED="1754041356833" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Src/Gui" />
   </component>
 </project>
