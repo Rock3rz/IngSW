@@ -8,8 +8,6 @@ import Src.GlobalVariables.GlobalVariables as gv
 
 class Gui:
 
-
-
     def __init__(self, root):
         self.root = root
 
@@ -107,7 +105,7 @@ class UserSection(tk.Frame):
 
         tk.Button(self, text = "Modifica", command = lambda: self.enable_field() ).grid(row = 7, column = 2)
 
-        #tk.Button(self, text = "Salva", command = lambda:self.edit_data()).grid(row = 8, column = 2)
+        tk.Button(self, text = "Salva", command = lambda:self.edit_data()).grid(row = 8, column = 2)
 
     def load_data(self):
         if not gv.CurrentUser.empty:

@@ -95,14 +95,27 @@ class AccountController():
         gv.CanEnter = False
         gv.CurrentUser = ()
 
+    #Funzione che prende in ingresso i nuovi valori da modificare e li salva all'indice corretto nel "Database" .csv
     def edit_personal_info(self, name, last_name, email, username, password):
-        oldData = gv.CurrentUser.iloc[0]
-        oldData["Name"] = name
-        oldData["LastName"] = last_name
-        oldData["Email"] = email
-        oldData["UserName"] = username
-        oldData["Password"] = password
+        df = pd.read_csv(self.User_file_path)
 
+
+        user_id = gv.CurrentUser.iloc[0]["ID"]  #genero la stringa con l'id corrispondente al current user
+        index = df[df["ID"] == user_id].index[0] # la cerco all'interno del "DB" e ne recupero l'indice
+
+
+        # Aggiorna i valori
+        df.at[index, "Name"] = name
+        df.at[index, "LastName"] = last_name
+        df.at[index, "Email"] = email
+        df.at[index, "UserName"] = username
+        df.at[index, "Password"] = password
+
+        # Salva di nuovo il CSV
+        df.to_csv(self.User_file_path, index=False)
+
+        # Aggiorna il CurrentUser globale con i nuovi dati
+        gv.CurrentUser = df[df["ID"] == user_id]
 
 
 
