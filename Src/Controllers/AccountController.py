@@ -9,8 +9,8 @@ class AccountController():
         #self.Psw_file_path = "DB/password.csv"
         #os.makedirs(os.path.dirname(self.Psw_file_path), exist_ok=True)
 
-        self.User_file_path = "DB/user.csv"
-        os.makedirs(os.path.dirname(self.User_file_path), exist_ok=True)
+
+        os.makedirs(os.path.dirname(gv.User_file_path), exist_ok=True)
 
 
     def login(self, name, password):
@@ -18,8 +18,8 @@ class AccountController():
         self.name = name
         self.password = password
 
-        if os.path.exists(self.User_file_path):
-            df = pd.read_csv(self.User_file_path)
+        if os.path.exists(gv.User_file_path):
+            df = pd.read_csv(gv.User_file_path)
 
 
             utente = df[(df["UserName"] == name) & (df["Password"] == password)]
@@ -55,8 +55,8 @@ class AccountController():
             return
 
 
-        if os.path.exists(self.User_file_path):
-            df_exists = pd.read_csv(self.User_file_path)
+        if os.path.exists(gv.User_file_path):
+            df_exists = pd.read_csv(gv.User_file_path)
 
             is_duplicate = ((df_exists["Name"] == name) & (df_exists["LastName"] == last_name) &
                             (df_exists["Email"]== email) & (df_exists["UserName"] == username) & (df_exists["Password"] == password)).any()
@@ -85,10 +85,10 @@ class AccountController():
 
         df_new = pd.DataFrame([new_row])
 
-        if os.path.exists(self.User_file_path):
-            df_new.to_csv(self.User_file_path, mode="a", header=False, index=False)
+        if os.path.exists(gv.User_file_path):
+            df_new.to_csv(gv.User_file_path, mode="a", header=False, index=False)
         else:
-            df_new.to_csv(self.User_file_path, index= False)
+            df_new.to_csv(gv.User_file_path, index= False)
 
     def LogOut(self):
         gv.isAdminUser = False
@@ -97,7 +97,7 @@ class AccountController():
 
     #Funzione che prende in ingresso i nuovi valori da modificare e li salva all'indice corretto nel "Database" .csv
     def edit_personal_info(self, name, last_name, email, username, password):
-        df = pd.read_csv(self.User_file_path)
+        df = pd.read_csv(gv.User_file_path)
 
 
         user_id = gv.CurrentUser.iloc[0]["ID"]  #genero la stringa con l'id corrispondente al current user
@@ -112,7 +112,7 @@ class AccountController():
         df.at[index, "Password"] = password
 
         # Salva di nuovo il CSV
-        df.to_csv(self.User_file_path, index=False)
+        df.to_csv(gv.User_file_path, index=False)
 
         # Aggiorna il CurrentUser globale con i nuovi dati
         gv.CurrentUser = df[df["ID"] == user_id]
