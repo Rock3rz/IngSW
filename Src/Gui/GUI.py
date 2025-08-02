@@ -45,7 +45,7 @@ class Gui:
 class MainMenu(tk.Frame):
     def __init__(self, parent, controller):
         super().__init__(parent)
-        lc = AccountController()
+        self.lc = AccountController()
 
         tk.Label(self, text = "Menu Principale").grid(row = 1, column = 1)
 
@@ -61,8 +61,9 @@ class MainMenu(tk.Frame):
 
         tk.Button(self, text="CreateUserSection", command=lambda: isAdminCheckButton()).grid(row=2, column=6)
 
-        tk.Button(self, text="LogOut", command=lambda: (controller.mostra_frame("LoginFrame"),lc.LogOut())).grid(row=3, column=7)
+        tk.Button(self, text="LogOut", command=lambda: (controller.mostra_frame("LoginFrame"),self.lc.LogOut())).grid(row=3, column=7)
 
+        #funzione interna per la verifica e il caricamento delle funzioni da admin
         def isAdminCheckButton():
             if gv.isAdminUser:
                 controller.mostra_frame("CreateUserSection")
@@ -224,25 +225,25 @@ class CreateUserSection(tk.Frame):
         Password = tk.Entry(self)
         Password.grid(row=6, column=2)
 
-        isAdmin = tk.BooleanVar()
-        isAdminButton = tk.Checkbutton(self, text = "isAdmin", variable = isAdmin)
-        isAdminButton.grid(row=7, column=1)
+        is_admin = tk.BooleanVar()
+        is_admin_button = tk.Checkbutton(self, text = "is_admin", variable = is_admin)
+        is_admin_button.grid(row=7, column=1)
 
 
         #Buttons
-        confirm = tk.Button(self, text = "Crea", command = lambda:(lc.create_user(FirstName.get(),LastName.get(),Email.get(),Username.get(),Password.get(), isAdmin.get()), clearFields(self)))
+        confirm = tk.Button(self, text = "Crea", command = lambda:(lc.create_user(FirstName.get(),LastName.get(),Email.get(),Username.get(),Password.get(), is_admin.get()), clear_fields(self)))
         confirm.grid(row=8, column=2)
 
         #BackButton
         tk.Button(self, text="Back", command=lambda: controller.mostra_frame("MainMenu")).grid(row=8, column=1)
 
-        def clearFields(self):
+        def clear_fields():
             FirstName.delete(0, tk.END)
             LastName.delete(0, tk.END)
             Email.delete(0, tk.END)
             Username.delete(0, tk.END)
             Password.delete(0, tk.END)
-            isAdmin.set(False)
+            is_admin.set(False)
 
 
 
