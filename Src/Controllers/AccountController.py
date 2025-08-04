@@ -5,6 +5,7 @@ import Src.GlobalVariables.GlobalVariables as gv
 from tkinter import messagebox
 import smtplib
 from email.message import EmailMessage
+import random
 
 class AccountController():
     def __init__(self):
@@ -119,13 +120,40 @@ class AccountController():
         gv.CurrentUser = df[df["ID"] == user_id]
 
     def reset_password(self):
-        #yg.SMTP("S1109395@studenti.univpm.it").send("S1111729@studenti.univpm.it", "Recupero Passowrd", "Utilizza questa password per accedere al tuo account: 123456")
-        self.invia_email("S1111729@studenti.univpm.it",
+        nuova_pw = self.random_password(6)
+
+
+        self.df = pd.read_csv(gv.User_file_path)
+
+
+        email_Destinatario = simpledialog.askstring("Recupero Password", "Inserisci la tua E-mail registrata : ")
+        if not email_Destinatario:
+            return
+
+        mask = self.df['Email'] == email_Destinatario
+        if not mask.any():
+            messagebox.showwarning(
+                "Attenzione",
+                f"Nessun account trovato con l'indirizzo {email_Destinatario}"
+            )
+            return
+        self.df.loc[mask, 'Password'] = nuova_pw
+
+        self.df.to_csv(gv.User_file_path, index=False)
+
+
+        self.invia_email(email_Destinatario,
                          "Recupero PW",
-                         "Questa è la tua nuova password :",
+                         f"Questa è la tua nuova password : {nuova_pw} ",
                          "ingegneriadelsw2025@libero.it",
                          "IngSW2025!",
                          )
+
+        messagebox.showinfo(
+            "Fatto",
+            f"Se l'account esiste, una mail con la nuova password è stata inviata a {email_Destinatario}."
+        )
+
 
     @staticmethod
     def invia_email(destinatario, oggetto, corpo, mittente, password):
@@ -139,10 +167,15 @@ class AccountController():
             smtp.login(mittente, password)
             smtp.send_message(msg)
 
+    @staticmethod
+    def random_password(length: int = 6):
+        password_temporanea = random.choices(range(1, 9), k = length )
+        print(password_temporanea)
+        return ''.join(str(digit) for digit in password_temporanea)
 
 
-
-
-
-
-
+    ''' def forgot_password(self):
+        email = simpledialog.askstring("Recupero Password", "Inserisci la tua E-mail registrata : ")
+        if not email:
+            return
+        success = self.acc '''

@@ -20,7 +20,7 @@ class LoginFrame(tk.Frame):
 
         tk.Button(self, text="Submit", command=lambda:submit_logic()).grid(row=3, column=1)
 
-        tk.Button(self, text = "Paswword Dimenticata", command = lambda:lc.reset_password()).grid(row = 4, column=1)
+        tk.Button(self, text = "Pasword Dimenticata", command = lambda: lc.reset_password()).grid(row = 4, column=1)
 
 
 
@@ -32,3 +32,4 @@ class LoginFrame(tk.Frame):
                 controller.mostra_frame("MainMenu")
                 name.delete(0, tk.END)
                 password.delete(0, tk.END)
+

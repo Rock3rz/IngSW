@@ -9,13 +9,12 @@
       <change beforePath="$PROJECT_DIR$/Src/Controllers/AccountController.py" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Controllers/AccountController.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Src/DB/user.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Src/DB/user.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Src/Gui/LoginFrameClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Gui/LoginFrameClass.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/Gui/ManageUserSectionClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Gui/ManageUserSectionClass.py" afterDir="false" />
     </list>
-    <list id="e41f5e58-3798-40b7-a8e2-0626923a6c2c" name="Changes by franc" comment="" />
-    <list id="6df671c0-ad78-447b-a577-89c1b4196197" name="Changes by pavon" comment="">
+    <list id="e41f5e58-3798-40b7-a8e2-0626923a6c2c" name="Changes by franc" comment="">
       <change beforePath="$PROJECT_DIR$/Src/Controllers/AccountController.py" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Controllers/AccountController.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/Gui/ManageUserSectionClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Gui/ManageUserSectionClass.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Src/Gui/LoginFrameClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Gui/LoginFrameClass.py" afterDir="false" />
     </list>
+    <list id="6df671c0-ad78-447b-a577-89c1b4196197" name="Changes by pavon" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -46,25 +45,20 @@
   <component name="LineStatusTrackerManager">
     <file path="$PROJECT_DIR$/Src/Controllers/AccountController.py">
       <ranges>
-        <range start1="5" end1="5" start2="5" end2="7" changelist="6df671c0-ad78-447b-a577-89c1b4196197" />
-        <range start1="73" end1="74" start2="75" end2="75" changelist="6df671c0-ad78-447b-a577-89c1b4196197" />
-        <range start1="119" end1="119" start2="120" end2="140" changelist="1118944d-3b5b-4ea7-86a7-ff9081fc44cc" />
+        <range start1="4" end1="5" start2="4" end2="5" changelist="e41f5e58-3798-40b7-a8e2-0626923a6c2c" />
+        <range start1="7" end1="7" start2="7" end2="8" changelist="1118944d-3b5b-4ea7-86a7-ff9081fc44cc" />
+        <range start1="121" end1="123" start2="122" end2="145" changelist="1118944d-3b5b-4ea7-86a7-ff9081fc44cc" />
+        <range start1="124" end1="125" start2="146" end2="147" changelist="1118944d-3b5b-4ea7-86a7-ff9081fc44cc" />
+        <range start1="128" end1="128" start2="150" end2="156" changelist="1118944d-3b5b-4ea7-86a7-ff9081fc44cc" />
+        <range start1="141" end1="142" start2="169" end2="174" changelist="1118944d-3b5b-4ea7-86a7-ff9081fc44cc" />
+        <range start1="144" end1="148" start2="176" end2="181" changelist="1118944d-3b5b-4ea7-86a7-ff9081fc44cc" />
       </ranges>
     </file>
-    <file path="$PROJECT_DIR$/Src/Gui/ManageUserSectionClass.py">
+    <file path="$PROJECT_DIR$/Src/Gui/LoginFrameClass.py">
       <ranges>
-        <range start1="76" end1="77" start2="76" end2="81" changelist="1118944d-3b5b-4ea7-86a7-ff9081fc44cc" />
-        <range start1="80" end1="82" start2="84" end2="84" changelist="6df671c0-ad78-447b-a577-89c1b4196197" />
-        <range start1="83" end1="85" start2="85" end2="85" changelist="1118944d-3b5b-4ea7-86a7-ff9081fc44cc" />
-        <range start1="86" end1="88" start2="86" end2="88" changelist="1118944d-3b5b-4ea7-86a7-ff9081fc44cc" />
-        <range start1="90" end1="91" start2="90" end2="91" changelist="1118944d-3b5b-4ea7-86a7-ff9081fc44cc" />
-        <range start1="92" end1="92" start2="92" end2="93" changelist="1118944d-3b5b-4ea7-86a7-ff9081fc44cc" />
-        <range start1="101" end1="104" start2="102" end2="103" changelist="1118944d-3b5b-4ea7-86a7-ff9081fc44cc" />
-        <range start1="105" end1="107" start2="104" end2="107" changelist="1118944d-3b5b-4ea7-86a7-ff9081fc44cc" />
-        <range start1="108" end1="109" start2="108" end2="110" changelist="1118944d-3b5b-4ea7-86a7-ff9081fc44cc" />
-        <range start1="112" end1="113" start2="113" end2="115" changelist="1118944d-3b5b-4ea7-86a7-ff9081fc44cc" />
-        <range start1="115" end1="115" start2="117" end2="118" changelist="1118944d-3b5b-4ea7-86a7-ff9081fc44cc" />
-        <range start1="116" end1="117" start2="119" end2="119" changelist="1118944d-3b5b-4ea7-86a7-ff9081fc44cc" />
+        <range start1="22" end1="23" start2="22" end2="23" changelist="1118944d-3b5b-4ea7-86a7-ff9081fc44cc" />
+        <range start1="29" end1="29" start2="29" end2="30" changelist="e41f5e58-3798-40b7-a8e2-0626923a6c2c" />
+        <range start1="34" end1="34" start2="35" end2="37" changelist="1118944d-3b5b-4ea7-86a7-ff9081fc44cc" />
       </ranges>
     </file>
   </component>
