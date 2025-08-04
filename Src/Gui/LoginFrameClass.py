@@ -27,6 +27,7 @@ class LoginFrame(tk.Frame):
         #Logica di submit per entrare
         def submit_logic():
             lc.login(name.get(), password.get())
+            #self.current_email = gv.CurrentUser.iloc[0]['Email']
             if gv.canEnter:
                 controller.frames["UserSection"].load_data()
                 controller.mostra_frame("MainMenu")

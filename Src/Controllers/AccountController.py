@@ -2,7 +2,7 @@ from Src.Class.User import User
 import pandas as pd
 import os
 import Src.GlobalVariables.GlobalVariables as gv
-from tkinter import messagebox
+from tkinter import messagebox, simpledialog
 import smtplib
 from email.message import EmailMessage
 import random
