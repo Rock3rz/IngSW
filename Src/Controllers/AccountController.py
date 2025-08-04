@@ -3,6 +3,8 @@ import pandas as pd
 import os
 import Src.GlobalVariables.GlobalVariables as gv
 from tkinter import messagebox
+import smtplib
+from email.message import EmailMessage
 
 class AccountController():
     def __init__(self):
@@ -71,7 +73,6 @@ class AccountController():
                 next_id = 1
         else:
             next_id = 1
-
             # Nuova riga con campo ID
         new_row = {
             "ID": next_id,
@@ -116,6 +117,27 @@ class AccountController():
 
         # Aggiorna il CurrentUser globale con i nuovi dati
         gv.CurrentUser = df[df["ID"] == user_id]
+
+    def reset_password(self):
+        #yg.SMTP("S1109395@studenti.univpm.it").send("S1111729@studenti.univpm.it", "Recupero Passowrd", "Utilizza questa password per accedere al tuo account: 123456")
+        self.invia_email("S1111729@studenti.univpm.it",
+                         "Recupero PW",
+                         "Questa è la tua nuova password :",
+                         "ingegneriadelsw2025@libero.it",
+                         "IngSW2025!",
+                         )
+
+    @staticmethod
+    def invia_email(destinatario, oggetto, corpo, mittente, password):
+        msg = EmailMessage()
+        msg['Subject'] = oggetto
+        msg['From'] = mittente
+        msg['To'] = destinatario
+        msg.set_content(corpo)
+
+        with smtplib.SMTP_SSL("smtp.libero.it", 465) as smtp:
+            smtp.login(mittente, password)
+            smtp.send_message(msg)
 
 
 

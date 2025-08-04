@@ -1,6 +1,4 @@
 ID,Name,LastName,Email,UserName,Password,IsAdmin
 1,Francesco,Trapano,TP@abruzzolandia.coma,admin,admin,True
-2,Paola,Pavone,pp@avone.uffa,ppavone,ppavone,False
-3,Nicola,Lerco,LN@pd.dc,LN,pp,True
-4,Nic,Ola,ola@ola,pd,dc,True
-5,pinco,pallo,pp,pp,pp,False
+2,ppavone,ppavone,ppavone@ihihih.com,ppavone,ppavone,True
+3,Nicola,Nicola ,aaaa,N,N,False

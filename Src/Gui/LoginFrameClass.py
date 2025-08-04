@@ -18,7 +18,11 @@ class LoginFrame(tk.Frame):
         password.grid(row = 2, column = 2)
 
 
-        (tk.Button(self, text="Submit", command=lambda:submit_logic()).grid(row=3, column=1))
+        tk.Button(self, text="Submit", command=lambda:submit_logic()).grid(row=3, column=1)
+
+        tk.Button(self, text = "Paswword Dimenticata", command = lambda:lc.reset_password()).grid(row = 4, column=1)
+
+
 
         #Logica di submit per entrare
         def submit_logic():

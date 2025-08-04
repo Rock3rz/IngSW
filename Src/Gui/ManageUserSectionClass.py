@@ -74,22 +74,23 @@ class CreateUserSection(tk.Frame):
 
     def fill_listbox(self):
         self.useListBox.delete(0, tk.END)
-        self.df = pd.read_csv(gv.User_file_path, usecols=["Name", "LastName", "Email"])
+        self.df = pd.read_csv(gv.User_file_path, usecols=["ID","Name", "LastName", "Email","UserName","Password","IsAdmin"])
+        #self.df = pd.read_csv(gv.User_file_path)
+        print(self.df)
+
+        #self.df.columns = self.df.columns.str.strip()
 
         for _, row in self.df.iterrows():
             self.useListBox.insert(tk.END, f"{row['Name']} {row['LastName']} - {row['Email']}")
 
 
-
-        #for user in self.df:
-            #self.useListBox.insert(tk.END, user)
-
-    '''def elimina_utente(self):
-
+    #Questa funzione serve per eliminare l'utente desiderato ed aggiornare di conseguenza il file usato come DB e la listbox
+    def elimina_utente(self):
 
         if self.selected_index is None:
-            messagebox.showwarning("Attenzione","Seleziona un utente prima di premere 'Elimina'")
+            messagebox.showwarning("Attenzione", "Seleziona un utente prima di premere 'Elimina'")
             return
+
         utente = self.df.iloc[self.selected_index]
 
         conferma = messagebox.askyesno(
@@ -99,22 +100,23 @@ class CreateUserSection(tk.Frame):
         if not conferma:
             return
 
-        # Elimina l'utente dal DataFrame
-        indice_df = self.df.index[self.selected_index]  # ottieni il vero valore dell’indice
-        self.df = self.df.drop(indice_df)
+        userIndex = utente["ID"]
 
-        # Salva su CSV
-        self.df.to_csv(gv.User_file_path, index=False)
+        self.newRead = pd.read_csv(gv.User_file_path) #creo una lista provvisioria
+        self.newRead = self.df.drop(self.newRead[self.newRead["ID"] == userIndex].index) #elimino dalla riga
+        print(self.newRead)
 
-        # Aggiorna Listbox e resetta selezione
+        self.newRead.to_csv(gv.User_file_path, index=False)
+
         self.fill_listbox()
         self.selected_index = None
 
-        messagebox.showinfo("Fatto", "Utente eliminato con successo.")'''
+        #ID, Name, LastName, Email, UserName, Password, IsAdmin
+        #1, Francesco, Trapano, TP @ abruzzolandia.coma, admin, admin, True
 
 
+    #evento per permettere la selezione di un nome dalla lista
     def on_select(self, event = None):
-        #selected_index = event.useListBox.curselection()
         if event:
             widget = event.widget
             self.selected_index = widget.curselection()
