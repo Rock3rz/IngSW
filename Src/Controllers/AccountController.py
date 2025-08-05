@@ -154,11 +154,11 @@ class AccountController:
 
         self.df = pd.read_csv(gv.User_file_path)
 
-
+        # 3. Chiedi la mail all’utente
         email_Destinatario = simpledialog.askstring("Recupero Password", "Inserisci la tua E-mail registrata : ")
         if not email_Destinatario:
             return
-
+        # 4. Verifica che l’email esista nel DataFrame
         mask = self.df['Email'] == email_Destinatario
         if not mask.any():
             messagebox.showwarning(
@@ -166,11 +166,12 @@ class AccountController:
                 f"Nessun account trovato con l'indirizzo {email_Destinatario}"
             )
             return
+        # 5. Aggiorna la password nel DataFrame
         self.df.loc[mask, 'Password'] = nuova_pw
-
+        # 6. Salva sul CSV
         self.df.to_csv(gv.User_file_path, index=False)
 
-
+        # 7. Invia l’email con la nuova password
         self.invia_email(email_Destinatario,
                          "Recupero PW",
                          f"Questa è la tua nuova password : {nuova_pw} ",
