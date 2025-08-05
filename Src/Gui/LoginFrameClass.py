@@ -26,7 +26,6 @@ class LoginFrame(tk.Frame):
 
 
 
-
         def submit_logic():
             lc.login(name.get(), password.get())
             #self.current_email = gv.CurrentUser.iloc[0]['Email']
