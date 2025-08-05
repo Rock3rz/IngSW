@@ -13,6 +13,9 @@ class APIController:
             self.df = pd.DataFrame()
 
     def refresh_user_list(self):
+        #svuoto la lista prima di ricaricarla sennò ottengo delle copie
+        gv.user_list.clear()
+
         for _, row in self.df.iterrows():
             gv.user_list.append(User(
                 user_id=int(row["ID"]),
@@ -23,6 +26,7 @@ class APIController:
                 last_name=str(row["LastName"]),
                 password=str(row["Password"]),
             ))
+
     @staticmethod
     def write_user_on_csv():
         data = []

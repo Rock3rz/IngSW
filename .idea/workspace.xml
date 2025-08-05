@@ -5,24 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1118944d-3b5b-4ea7-86a7-ff9081fc44cc" name="Changes" comment="Aggiunto sistema di Log IN (work in progress)">
-      <change afterPath="$PROJECT_DIR$/Src/Controllers/APIController.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Src/Controllers/ClientController.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Src/Gui/CreateClientSectionClass.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/ProgettoIngSW.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ProgettoIngSW.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/Class/User.py" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Class/User.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Src/Controllers/APIController.py" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Controllers/APIController.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Src/Controllers/AccountController.py" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Controllers/AccountController.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Src/DB/user.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Src/DB/user.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/GlobalVariables/GlobalVariables.py" beforeDir="false" afterPath="$PROJECT_DIR$/Src/GlobalVariables/GlobalVariables.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/Gui/ClientSectionClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Gui/ClientSectionClass.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/Gui/GUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Gui/GUI.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/Gui/LoginFrameClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Gui/LoginFrameClass.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Src/Gui/ManageUserSectionClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Gui/ManageUserSectionClass.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/Gui/PersonalUserSectionClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Gui/PersonalUserSectionClass.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Src/main.py" afterDir="false" />
     </list>
-    <list id="6df671c0-ad78-447b-a577-89c1b4196197" name="Changes by pavon" comment="">
-      <change beforePath="$PROJECT_DIR$/Src/Gui/LoginFrameClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Gui/LoginFrameClass.py" afterDir="false" />
-    </list>
+    <list id="6df671c0-ad78-447b-a577-89c1b4196197" name="Changes by pavon" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -50,15 +41,6 @@
     &quot;accountId&quot;: &quot;ae65a9ad-982c-4fb6-923a-f2facd4ba109&quot;
   }
 }</component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/Src/Gui/LoginFrameClass.py">
-      <ranges>
-        <range start1="20" end1="21" start2="20" end2="23" changelist="1118944d-3b5b-4ea7-86a7-ff9081fc44cc" />
-        <range start1="23" end1="24" start2="25" end2="25" changelist="6df671c0-ad78-447b-a577-89c1b4196197" />
-        <range start1="26" end1="27" start2="27" end2="28" changelist="1118944d-3b5b-4ea7-86a7-ff9081fc44cc" />
-      </ranges>
-    </file>
-  </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>

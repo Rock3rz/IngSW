@@ -7,6 +7,9 @@ import smtplib
 from email.message import EmailMessage
 import random
 
+from Src.Controllers.APIController import APIController
+
+
 class AccountController:
     def __init__(self):
         #self.Psw_file_path = "DB/password.csv"
@@ -110,6 +113,8 @@ class AccountController:
         ##df_new = pd.DataFrame([new_row])
 
         gv.user_list.append(new_user)
+
+        APIController.write_user_on_csv()
 
 
 

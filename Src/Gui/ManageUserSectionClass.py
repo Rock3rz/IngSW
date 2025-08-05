@@ -111,6 +111,8 @@ class CreateUserSection(tk.Frame):
 
         APIController.write_user_on_csv()
         self.selected_index = None
+
+        self.fill_listbox()
         #self.Api.refresh_user_list()
 
         '''
