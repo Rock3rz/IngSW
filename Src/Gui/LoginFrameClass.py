@@ -18,13 +18,15 @@ class LoginFrame(tk.Frame):
         password.grid(row = 2, column = 2)
 
 
-        tk.Button(self, text="Submit", command=lambda:submit_logic()).grid(row=3, column=1)
+        ##tk.Button(self, text="Submit", command=lambda:submit_logic()).grid(row=3, column=1)
+        self.submit = tk.Button(self, text = "Submit", command=lambda:submit_logic())
+        self.submit.grid(row = 3, column = 2)
 
         tk.Button(self, text = "Pasword Dimenticata", command = lambda: lc.reset_password()).grid(row = 4, column=1)
 
 
 
-        #Logica di submit per entrare
+
         def submit_logic():
             lc.login(name.get(), password.get())
             #self.current_email = gv.CurrentUser.iloc[0]['Email']

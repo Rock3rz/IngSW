@@ -12,6 +12,7 @@ from Src.Gui.ManageUserSectionClass import CreateUserSection
 from Src.Gui.PersonalUserSectionClass import UserSection
 from Src.Gui.LoginFrameClass import LoginFrame
 from Src.Gui.MainMenuClass import MainMenu
+from Src.Gui.CreateClientSectionClass import CreateClientSectionClass
 
 class Gui:
 
@@ -32,7 +33,8 @@ class Gui:
             QuoteSection,
             AppointmentSection,
             LoginFrame,
-            CreateUserSection
+            CreateUserSection,
+            CreateClientSectionClass
             ):
             frame = F(self.container, self)
             self.frames[F.__name__] = frame

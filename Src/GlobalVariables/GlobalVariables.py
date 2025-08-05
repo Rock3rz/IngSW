@@ -3,5 +3,7 @@ import pandas as pd
 isAdminUser = False
 canEnter = False
 
-CurrentUser = pd.Series(dtype = object)
+CurrentUser = None
 User_file_path = "DB/user.csv"
+Clients_file_path = "DB/clients.csv"
+user_list = []

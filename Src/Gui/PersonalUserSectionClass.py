@@ -39,26 +39,27 @@ class UserSection(tk.Frame):
         tk.Button(self, text = "Salva", command = lambda:self.edit_data()).grid(row = 8, column = 2)
 
     def load_data(self):
-        if not gv.CurrentUser.empty:
-            user = gv.CurrentUser.iloc[0]
+        print(gv.CurrentUser)
+        if gv.CurrentUser:
+            user = gv.CurrentUser
             self.FirstName.delete(0, tk.END)
-            self.FirstName.insert(0, user["Name"])
+            self.FirstName.insert(0, user.firstName)
             self.FirstName.config(state = "readonly")
 
             self.LastName.delete(0, tk.END)
-            self.LastName.insert(0, user["LastName"])
+            self.LastName.insert(0, user.LastName)
             self.LastName.config(state="readonly")
 
             self.Email.delete(0, tk.END)
-            self.Email.insert(0, user["Email"])
+            self.Email.insert(0, user.email)
             self.Email.config(state="readonly")
 
             self.Username.delete(0, tk.END)
-            self.Username.insert(0, user["UserName"])
+            self.Username.insert(0, user.username)
             self.Username.config(state="readonly")
 
             self.Password.delete(0, tk.END)
-            self.Password.insert(0, user["Password"])
+            self.Password.insert(0, user.Password)
             self.Password.config(state="readonly")
 
     def enable_field(self):

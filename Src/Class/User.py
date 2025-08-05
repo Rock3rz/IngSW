@@ -12,7 +12,7 @@ class User:
         is_admin: bool,
         last_name: str,
         password:str,
-        searched_vehicles: List[Vehicle],
+        searched_vehicles: List[Vehicle] = None,
     ):
 
         self.user_id: int = user_id

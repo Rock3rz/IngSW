@@ -3,10 +3,12 @@ from Src.Controllers.AccountController import AccountController
 import pandas as pd
 import Src.GlobalVariables.GlobalVariables as gv
 from tkinter import messagebox
+from Src.Controllers.APIController import APIController
 
 
 class CreateUserSection(tk.Frame):
     def __init__(self, parent, controller):
+        self.Api = APIController()
         super().__init__(parent)
         self.lc = AccountController()  # istanzia ogni volta che apro il frame
         self.selected_index = None
@@ -74,6 +76,7 @@ class CreateUserSection(tk.Frame):
 
     def fill_listbox(self):
         self.useListBox.delete(0, tk.END)
+        '''
         self.df = pd.read_csv(gv.User_file_path, usecols=["ID","Name", "LastName", "Email","UserName","Password","IsAdmin"])
         #self.df = pd.read_csv(gv.User_file_path)
         print(self.df)
@@ -82,6 +85,10 @@ class CreateUserSection(tk.Frame):
 
         for _, row in self.df.iterrows():
             self.useListBox.insert(tk.END, f"{row['Name']} {row['LastName']} - {row['Email']}")
+        '''
+        for user in gv.user_list:
+            self.useListBox.insert(tk.END, f"{user.firstName} {user.LastName} - {user.email}")
+
 
 
     #Questa funzione serve per eliminare l'utente desiderato ed aggiornare di conseguenza il file usato come DB e la listbox
@@ -91,8 +98,22 @@ class CreateUserSection(tk.Frame):
             messagebox.showwarning("Attenzione", "Seleziona un utente prima di premere 'Elimina'")
             return
 
-        utente = self.df.iloc[self.selected_index]
+        utente = gv.user_list[self.selected_index]
 
+        conferma = messagebox.askyesno(
+            "Conferma eliminazione",
+            f"Eliminare {utente.firstName} {utente.LastName}?"
+        )
+        if not conferma:
+            return
+
+        gv.user_list.pop(self.selected_index)
+
+        APIController.write_user_on_csv()
+        self.selected_index = None
+        #self.Api.refresh_user_list()
+
+        '''
         conferma = messagebox.askyesno(
             "Conferma eliminazione",
             f"Eliminare {utente['Name']} {utente['LastName']}?"
@@ -109,7 +130,9 @@ class CreateUserSection(tk.Frame):
         self.newRead.to_csv(gv.User_file_path, index=False)
 
         self.fill_listbox()
-        self.selected_index = None
+        
+        '''
+
 
         #ID, Name, LastName, Email, UserName, Password, IsAdmin
         #1, Francesco, Trapano, TP @ abruzzolandia.coma, admin, admin, True
@@ -124,6 +147,6 @@ class CreateUserSection(tk.Frame):
             self.selected_index = self.useListBox.curselection()
 
         if self.selected_index:
-            index = self.selected_index[0]
-            value = self.useListBox.get(index)  # Testo della riga selezionata
-            print(f"Indice selezionato: {index}, Valore: {value}")
+            self.selected_index = self.selected_index[0]
+            value = self.useListBox.get( self.selected_index)  # Testo della riga selezionata
+            print(f"Indice selezionato: { self.selected_index}, Valore: {value}")

@@ -5,16 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1118944d-3b5b-4ea7-86a7-ff9081fc44cc" name="Changes" comment="Aggiunto sistema di Log IN (work in progress)">
+      <change afterPath="$PROJECT_DIR$/Src/Controllers/APIController.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Src/Controllers/ClientController.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Src/Gui/CreateClientSectionClass.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Src/Class/User.py" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Class/User.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Src/Controllers/AccountController.py" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Controllers/AccountController.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Src/DB/user.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Src/DB/user.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Src/GlobalVariables/GlobalVariables.py" beforeDir="false" afterPath="$PROJECT_DIR$/Src/GlobalVariables/GlobalVariables.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Src/Gui/ClientSectionClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Gui/ClientSectionClass.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Src/Gui/GUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Gui/GUI.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Src/Gui/LoginFrameClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Gui/LoginFrameClass.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Src/Gui/ManageUserSectionClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Gui/ManageUserSectionClass.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Src/Gui/PersonalUserSectionClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Gui/PersonalUserSectionClass.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Src/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Src/main.py" afterDir="false" />
+    </list>
+    <list id="6df671c0-ad78-447b-a577-89c1b4196197" name="Changes by pavon" comment="">
       <change beforePath="$PROJECT_DIR$/Src/Gui/LoginFrameClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Gui/LoginFrameClass.py" afterDir="false" />
     </list>
-    <list id="e41f5e58-3798-40b7-a8e2-0626923a6c2c" name="Changes by franc" comment="">
-      <change beforePath="$PROJECT_DIR$/Src/Controllers/AccountController.py" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Controllers/AccountController.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/Gui/LoginFrameClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Gui/LoginFrameClass.py" afterDir="false" />
-    </list>
-    <list id="6df671c0-ad78-447b-a577-89c1b4196197" name="Changes by pavon" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -43,22 +51,11 @@
   }
 }</component>
   <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/Src/Controllers/AccountController.py">
-      <ranges>
-        <range start1="4" end1="5" start2="4" end2="5" changelist="e41f5e58-3798-40b7-a8e2-0626923a6c2c" />
-        <range start1="7" end1="7" start2="7" end2="8" changelist="1118944d-3b5b-4ea7-86a7-ff9081fc44cc" />
-        <range start1="121" end1="123" start2="122" end2="145" changelist="1118944d-3b5b-4ea7-86a7-ff9081fc44cc" />
-        <range start1="124" end1="125" start2="146" end2="147" changelist="1118944d-3b5b-4ea7-86a7-ff9081fc44cc" />
-        <range start1="128" end1="128" start2="150" end2="156" changelist="1118944d-3b5b-4ea7-86a7-ff9081fc44cc" />
-        <range start1="141" end1="142" start2="169" end2="174" changelist="1118944d-3b5b-4ea7-86a7-ff9081fc44cc" />
-        <range start1="144" end1="148" start2="176" end2="181" changelist="1118944d-3b5b-4ea7-86a7-ff9081fc44cc" />
-      </ranges>
-    </file>
     <file path="$PROJECT_DIR$/Src/Gui/LoginFrameClass.py">
       <ranges>
-        <range start1="22" end1="23" start2="22" end2="23" changelist="1118944d-3b5b-4ea7-86a7-ff9081fc44cc" />
-        <range start1="29" end1="29" start2="29" end2="30" changelist="e41f5e58-3798-40b7-a8e2-0626923a6c2c" />
-        <range start1="34" end1="34" start2="35" end2="37" changelist="1118944d-3b5b-4ea7-86a7-ff9081fc44cc" />
+        <range start1="20" end1="21" start2="20" end2="23" changelist="1118944d-3b5b-4ea7-86a7-ff9081fc44cc" />
+        <range start1="23" end1="24" start2="25" end2="25" changelist="6df671c0-ad78-447b-a577-89c1b4196197" />
+        <range start1="26" end1="27" start2="27" end2="28" changelist="1118944d-3b5b-4ea7-86a7-ff9081fc44cc" />
       </ranges>
     </file>
   </component>
@@ -76,10 +73,12 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python.APIController.executor&quot;: &quot;Run&quot;,
     &quot;Python.AccountController.executor&quot;: &quot;Run&quot;,
     &quot;Python.Appointment.executor&quot;: &quot;Run&quot;,
     &quot;Python.GUI.executor&quot;: &quot;Run&quot;,
     &quot;Python.ManageUserSectionClass.executor&quot;: &quot;Run&quot;,
+    &quot;Python.PersonalUserSectionClass.executor&quot;: &quot;Run&quot;,
     &quot;Python.main.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
@@ -126,6 +125,8 @@
       <workItem from="1754125575114" duration="6645000" />
       <workItem from="1754132369324" duration="23000" />
       <workItem from="1754294928796" duration="5553000" />
+      <workItem from="1754379480548" duration="11641000" />
+      <workItem from="1754397095738" duration="6149000" />
     </task>
     <task id="LOCAL-00001" summary="FirstCommit">
       <option name="closed" value="true" />
@@ -199,11 +200,22 @@
     <MESSAGE value="Aggiunto sistema di Log IN (work in progress)" />
     <option name="LAST_COMMIT_MESSAGE" value="Aggiunto sistema di Log IN (work in progress)" />
   </component>
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="PythonConfigurationType">
+        <watch expression="gv.CurrentUser" language="Python" />
+        <watch expression="gv.isAdminUser" language="Python" />
+        <watch expression="gv.canEnter" language="Python" />
+      </configuration>
+    </watches-manager>
+  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/ProgettoIngSW$APIController.coverage" NAME="APIController Coverage Results" MODIFIED="1754402827686" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Src/Controllers" />
     <SUITE FILE_PATH="coverage/ProgettoIngSW$Appointment.coverage" NAME="Appointment Coverage Results" MODIFIED="1753955274248" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Src/Class" />
-    <SUITE FILE_PATH="coverage/ProgettoIngSW$ManageUserSectionClass.coverage" NAME="ManageUserSectionClass Coverage Results" MODIFIED="1754298520295" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Src/Gui" />
-    <SUITE FILE_PATH="coverage/ProgettoIngSW$AccountController.coverage" NAME="AccountController Coverage Results" MODIFIED="1754040386124" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Src/Controllers" />
+    <SUITE FILE_PATH="coverage/ProgettoIngSW$ManageUserSectionClass.coverage" NAME="ManageUserSectionClass Coverage Results" MODIFIED="1754402115773" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Src/Gui" />
+    <SUITE FILE_PATH="coverage/ProgettoIngSW$AccountController.coverage" NAME="AccountController Coverage Results" MODIFIED="1754391026109" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Src/Controllers" />
+    <SUITE FILE_PATH="coverage/ProgettoIngSW$PersonalUserSectionClass.coverage" NAME="PersonalUserSectionClass Coverage Results" MODIFIED="1754380042488" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Src/Gui" />
     <SUITE FILE_PATH="coverage/ProgettoIngSW$GUI.coverage" NAME="GUI Coverage Results" MODIFIED="1754041356833" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Src/Gui" />
-    <SUITE FILE_PATH="coverage/ProgettoIngSW$main.coverage" NAME="main Coverage Results" MODIFIED="1754299510415" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Src" />
+    <SUITE FILE_PATH="coverage/ProgettoIngSW$main.coverage" NAME="main Coverage Results" MODIFIED="1754403312776" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Src" />
   </component>
 </project>

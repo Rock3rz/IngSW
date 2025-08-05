@@ -7,7 +7,7 @@ import smtplib
 from email.message import EmailMessage
 import random
 
-class AccountController():
+class AccountController:
     def __init__(self):
         #self.Psw_file_path = "DB/password.csv"
         #os.makedirs(os.path.dirname(self.Psw_file_path), exist_ok=True)
@@ -21,13 +21,15 @@ class AccountController():
         self.name = name
         self.password = password
 
-        if os.path.exists(gv.User_file_path):
-            df = pd.read_csv(gv.User_file_path)
+        if gv.user_list:
 
+            utente = next((u for u in gv.user_list if u.username == name and u.Password == password), None)
+            #(valore_da_restituire for variabile in collezione if condizione)
 
-            utente = df[(df["UserName"] == name) & (df["Password"] == password)]
+            print("l'utente selezionato è ")
+            print(utente)
 
-            if utente.empty:
+            if not utente:
                 messagebox.showwarning("Utente inesistente", "Non esiste nessun utente con queste credenziali")
                 return
             else:
@@ -35,37 +37,32 @@ class AccountController():
 
             gv.CurrentUser = utente
             print(gv.CurrentUser)
-            if utente.iloc[0]["IsAdmin"] == True:
+            if utente.isAdmin:
                 gv.isAdminUser = True
             else:
                 gv.isAdminUser = False
 
 
 
-
-
-    def save_infos(self, name, password):
-        df = pd.DataFrame({
-            "Name": [name],
-            "Password": [password]
-        })
-
-
     def create_user(self, name, last_name, email, username, password, is_admin:bool):
 
         if not all([name, last_name, email, username, password]):
-            print("Errore!")
+            messagebox.showwarning(
+                "Campi vuoti",
+                "Riempi tutti i campi!")
             return
 
-
-        if os.path.exists(gv.User_file_path):
+        '''
+         if os.path.exists(gv.User_file_path):
             df_exists = pd.read_csv(gv.User_file_path)
 
             is_duplicate = ((df_exists["Name"] == name) & (df_exists["LastName"] == last_name) &
                             (df_exists["Email"]== email) & (df_exists["UserName"] == username) & (df_exists["Password"] == password)).any()
 
             if is_duplicate:
-                print("Duplicate!")
+                messagebox.showwarning(
+                    "Utente già esistente",
+                    "L'account che stai cercando di creare è già presente nel software, se non ricordi le credenziali, effettua il recupero password!")
                 return
 
             if "ID" in df_exists.columns and not df_exists.empty:
@@ -74,7 +71,28 @@ class AccountController():
                 next_id = 1
         else:
             next_id = 1
-            # Nuova riga con campo ID
+        '''
+        if gv.user_list:
+            is_duplicate = any(
+                u.firstName == name and
+                u.LastName == last_name and
+                u.email == email and
+                u.username == username and
+                u.Password == password
+                for u in gv.user_list
+            )
+            if is_duplicate:
+                messagebox.showwarning(
+                    "Utente già esistente",
+                    "L'account che stai cercando di creare è già presente nel software, se non ricordi le credenziali, effettua il recupero password!")
+                return
+
+            next_id = max(u.user_id for u in gv.user_list) +1
+        else:
+            next_id = 1
+
+        '''
+        # Nuova riga con campo ID
         new_row = {
             "ID": next_id,
             "Name": name,
@@ -82,20 +100,31 @@ class AccountController():
             "Email": email,
             "UserName": username,
             "Password": password,
+
+
             "IsAdmin": is_admin
         }
+        '''
+        new_user = User(next_id, email, name, username, is_admin, last_name, password)
 
-        df_new = pd.DataFrame([new_row])
+        ##df_new = pd.DataFrame([new_row])
 
-        if os.path.exists(gv.User_file_path):
-            df_new.to_csv(gv.User_file_path, mode="a", header=False, index=False)
-        else:
-            df_new.to_csv(gv.User_file_path, index= False)
+        gv.user_list.append(new_user)
+
+
+
+        ##if os.path.exists(gv.User_file_path):
+         ##   df_new.to_csv(gv.User_file_path, mode="a", header=False, index=False)
+        ##else:
+        ##    df_new.to_csv(gv.User_file_path, index= False)
+        print("Tutti gli utenti")
+        for u in gv.user_list:
+            print(f"{u.user_id} {u.firstName}{u.LastName}{u.username}{u.isAdmin}{u.Password}{u.email}")
 
     def LogOut(self):
         gv.isAdminUser = False
-        gv.CanEnter = False
-        gv.CurrentUser = ()
+        gv.canEnter = False
+        gv.CurrentUser = pd.DataFrame()
 
     #Funzione che prende in ingresso i nuovi valori da modificare e li salva all'indice corretto nel "Database" .csv
     def edit_personal_info(self, name, last_name, email, username, password):
@@ -170,12 +199,6 @@ class AccountController():
     @staticmethod
     def random_password(length: int = 6):
         password_temporanea = random.choices(range(1, 9), k = length )
-        print(password_temporanea)
         return ''.join(str(digit) for digit in password_temporanea)
 
 
-    ''' def forgot_password(self):
-        email = simpledialog.askstring("Recupero Password", "Inserisci la tua E-mail registrata : ")
-        if not email:
-            return
-        success = self.acc '''
