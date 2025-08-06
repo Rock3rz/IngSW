@@ -42,6 +42,7 @@ class UserSection(tk.Frame):
         print(gv.CurrentUser)
         if gv.CurrentUser:
             user = gv.CurrentUser
+            self.enable_field()
             self.FirstName.delete(0, tk.END)
             self.FirstName.insert(0, user.firstName)
             self.FirstName.config(state = "readonly")

@@ -3,7 +3,7 @@ import Src.GlobalVariables.GlobalVariables as gv
 import os
 from tkinter import messagebox, simpledialog
 from Src.Controllers.APIController import APIController
-
+from Src.Class.Client import  Client
 
 class ClientController:
     def __init__(self):
@@ -17,45 +17,31 @@ class ClientController:
                 "Riempi tutti i campi!")
             return
 
-        if os.path.exists(gv.Clients_file_path):
-            df_exists = pd.read_csv(gv.Clients_file_path)
 
-            is_duplicate = ((df_exists["Name"] == name) & (df_exists["LastName"] == last_name) &
-                            (df_exists["Email"]== email) & (df_exists["PhoneNumber"] == phone_number)).any()
-
+        if gv.client_list:
+            is_duplicate = any(
+                c.FirstName == name and
+                c.LastName == last_name and
+                c.ID == next_id and
+                c.city == address and
+                c.PhoneNumber == phone_number and
+                c.email == email and
+                c.PostalCode == cap
+                for c in gv.client_list
+            )
             if is_duplicate:
                 messagebox.showwarning(
                     "Cliente già esistente",
-                    "L'account cliente che stai cercando di creare è già presente nel software!")
+                    "L'account che stai cercando di creare è già presente nel software!")
                 return
 
-            #APIController.write_user_on_csv()
-            '''
-             if "ClientID" in df_exists.columns and not df_exists.empty:
-                next_id = df_exists["ClientID"].max() + 1
-            else:
-                next_id = 1
-        else:
-            next_id = 1
-            # Nuova riga con campo ID
-            
-             new_row = {
-            "ClientID": next_id,
-            "Name": name,
-            "LastName": last_name,
-            "Email": email,
-            "Address": address,
-            "CAP": cap,
-            "PhoneNumber": phone_number
-        }
 
-        df_new = pd.DataFrame([new_row])
 
-        if os.path.exists(gv.Clients_file_path):
-            df_new.to_csv(gv.Clients_file_path, mode="a", header=False, index=False)
-        else:
-            df_new.to_csv(gv.Clients_file_path, index= False)
-            '''
+        new_client = Client(address, email, name, last_name, next_id, phone_number, cap)
+
+        gv.client_list.append(new_client)
+
+        APIController.write_client_on_csv()
 
 
 

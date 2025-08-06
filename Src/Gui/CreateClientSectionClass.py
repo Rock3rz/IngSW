@@ -40,30 +40,30 @@ class CreateClientSectionClass(tk.Frame):
         self.id = tk.Entry(self)
         self.id.grid(row=8, column=2)
 
-        if os.path.exists(gv.Clients_file_path):
-            df_exists = pd.read_csv(gv.Clients_file_path)
-
-            if "ClientID" in df_exists.columns and not df_exists.empty:
-                next_id = df_exists["ClientID"].max() + 1
-            else:
-                next_id = 1
-            self.id.insert(0, next_id)
+        next_id = self.calcola_prossimo_numero()
+        self.id.insert(0, next_id)
         self.id.config(state="readonly")
 
 
 
 
 
-
-
-        tk.Button(self, text="Crea Utente", command=lambda: self.cc.create_client(self.id.get(),
+        create_client = tk .Button(self, text="Crea Utente", command=lambda: (self.cc.create_client(self.id.get(),
                                                                                   self.name.get(),
                                                                                   self.surname.get(),
                                                                                   self.email.get(),
                                                                                   self.address.get(),
                                                                                   self.phone.get(),
-                                                                                  self.cap.get())).grid(row=10, column=1)
-        tk.Button(self, text="Back", command=lambda: controller.mostra_frame("ClientSection")).grid(row=9, column=1)
+                                                                                  self.cap.get()), self.clear_fields()))
+        create_client.grid(row=10, column=1)
+        tk.Button(
+            self,
+            text="Back",
+            command=lambda: (
+                controller.frames["ClientSection"].fill_listbox(),  # aggiorna la listbox
+                controller.mostra_frame("ClientSection")  # poi mostra il frame
+            )
+        ).grid(row=9, column=1)
 
     def clear_fields(self):
         self.name.delete(0, tk.END)
@@ -72,11 +72,18 @@ class CreateClientSectionClass(tk.Frame):
         self.address.delete(0, tk.END)
         self.phone.delete(0, tk.END)
         self.cap.delete(0, tk.END)
+        self.id.config(state="normal")
+        self.id.delete(0, tk.END)
+        self.id.insert(0, self.calcola_prossimo_numero())
+        self.id.config(state = "readonly")
 
-    def fill_listbox(self):
-        self.useListBox.delete(0, tk.END)
-        self.df = pd.read_csv(gv.Clients_file_path, usecols=["ID","Name", "LastName", "Email","Address","CAP", "PhoneNumber"])
-        print(self.df)
 
-        for _, row in self.df.iterrows():
-            self.useListBox.insert(tk.END, f"{row['ClientID']} {row['Name']} {row['LastName']}")
+
+
+    def calcola_prossimo_numero(self) -> str:
+        if not gv.client_list:
+            return str(1)
+        else:
+            return  str(max(c.ID for c in gv.client_list) + 1)
+
+

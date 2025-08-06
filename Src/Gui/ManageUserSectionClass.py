@@ -76,16 +76,7 @@ class CreateUserSection(tk.Frame):
 
     def fill_listbox(self):
         self.useListBox.delete(0, tk.END)
-        '''
-        self.df = pd.read_csv(gv.User_file_path, usecols=["ID","Name", "LastName", "Email","UserName","Password","IsAdmin"])
-        #self.df = pd.read_csv(gv.User_file_path)
-        print(self.df)
 
-        #self.df.columns = self.df.columns.str.strip()
-
-        for _, row in self.df.iterrows():
-            self.useListBox.insert(tk.END, f"{row['Name']} {row['LastName']} - {row['Email']}")
-        '''
         for user in gv.user_list:
             self.useListBox.insert(tk.END, f"{user.firstName} {user.LastName} - {user.email}")
 
@@ -115,25 +106,6 @@ class CreateUserSection(tk.Frame):
         self.fill_listbox()
         #self.Api.refresh_user_list()
 
-        '''
-        conferma = messagebox.askyesno(
-            "Conferma eliminazione",
-            f"Eliminare {utente['Name']} {utente['LastName']}?"
-        )
-        if not conferma:
-            return
-
-        userIndex = utente["ID"]
-
-        self.newRead = pd.read_csv(gv.User_file_path) #creo una lista provvisioria
-        self.newRead = self.df.drop(self.newRead[self.newRead["ID"] == userIndex].index) #elimino dalla riga
-        print(self.newRead)
-
-        self.newRead.to_csv(gv.User_file_path, index=False)
-
-        self.fill_listbox()
-        
-        '''
 
 
         #ID, Name, LastName, Email, UserName, Password, IsAdmin
