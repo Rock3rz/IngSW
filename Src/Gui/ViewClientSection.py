@@ -6,7 +6,8 @@ from Src.Controllers.ClientController import ClientController
 class ViewClient(tk.Frame):
     def __init__(self, parent, controller):
         super().__init__(parent)
-        self.cc = ClientController
+        self.cc = ClientController()
+        self.controller = controller
         tk.Label(self, text="Nome").grid(row=2, column=1)
         self.name = tk.Entry(self)
         self.name.grid(row=2, column=2)
@@ -108,6 +109,8 @@ class ViewClient(tk.Frame):
                                   )
         self.load_client_infos()
         self.disable_fields()
+        self.controller.frames["ClientSection"].fill_listbox()
+
 
 
 

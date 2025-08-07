@@ -5,13 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1118944d-3b5b-4ea7-86a7-ff9081fc44cc" name="Changes" comment="Aggiunto sistema di Log IN (work in progress)">
-      <change beforePath="$PROJECT_DIR$/.idea/ProgettoIngSW.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ProgettoIngSW.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/Controllers/APIController.py" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Controllers/APIController.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/Controllers/AccountController.py" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Controllers/AccountController.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/DB/user.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Src/DB/user.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/Gui/ManageUserSectionClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Gui/ManageUserSectionClass.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Src/DB/clients.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Src/DB/clients.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Src/Gui/ViewClientSection.py" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Gui/ViewClientSection.py" afterDir="false" />
     </list>
     <list id="6df671c0-ad78-447b-a577-89c1b4196197" name="Changes by pavon" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -35,12 +31,12 @@
     &quot;assignee&quot;: &quot;Rock3rz&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/Rock3rz/IngSW&quot;,
-    &quot;accountId&quot;: &quot;ae65a9ad-982c-4fb6-923a-f2facd4ba109&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/Rock3rz/IngSW.git",
+    "accountId": "94c1ff33-c585-441f-9e14-f33d92c81706"
   }
-}</component>
+}]]></component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -85,7 +81,6 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-09060db00ec0-JavaScript-PY-251.26927.90" />
         <option value="bundled-python-sdk-41e8cd69c857-64d779b69b7a-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-251.26927.90" />
       </set>
     </attachedChunks>
