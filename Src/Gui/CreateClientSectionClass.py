@@ -78,8 +78,6 @@ class CreateClientSectionClass(tk.Frame):
         self.id.config(state = "readonly")
 
 
-
-
     def calcola_prossimo_numero(self) -> str:
         if not gv.client_list:
             return str(1)

@@ -76,18 +76,10 @@ class AccountController:
 
         new_user = User(next_id, email, name, username, is_admin, last_name, password)
 
-        ##df_new = pd.DataFrame([new_row])
-
         gv.user_list.append(new_user)
 
         APIController.write_user_on_csv()
 
-
-
-        ##if os.path.exists(gv.User_file_path):
-         ##   df_new.to_csv(gv.User_file_path, mode="a", header=False, index=False)
-        ##else:
-        ##    df_new.to_csv(gv.User_file_path, index= False)
         print("Tutti gli utenti")
         for u in gv.user_list:
             print(f"{u.user_id} {u.firstName}{u.LastName}{u.username}{u.isAdmin}{u.Password}{u.email}")
