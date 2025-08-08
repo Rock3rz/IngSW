@@ -42,7 +42,7 @@ class Model:
 class Vehicle:
     def __init__(
         self,
-        brand: Brand,
+        #brand: Brand,
         model: Model,
         registration_year: int,
         color: str,
@@ -55,7 +55,7 @@ class Vehicle:
         price: float
     ):
         self.number_plate = number_plate
-        self.brand = brand
+        #self.brand = brand
         self.registration_year = registration_year
         self.color = color
         self.fuel_type = fuel_type

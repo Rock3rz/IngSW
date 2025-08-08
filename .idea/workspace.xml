@@ -4,11 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1118944d-3b5b-4ea7-86a7-ff9081fc44cc" name="Changes" comment="Completato edit">
+    <list default="true" id="1118944d-3b5b-4ea7-86a7-ff9081fc44cc" name="Changes" comment="GUI">
+      <change afterPath="$PROJECT_DIR$/Src/Images/Icone/Auto.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Src/Images/Icone/Calendario.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Src/Images/Icone/Clienti.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Src/Images/Icone/CreaUtente.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Src/Images/Icone/Logout.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Src/Images/Icone/Preventivi.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Src/Images/Icone/Utente.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/Gui/GUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Gui/GUI.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/Gui/LoginFrameClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Gui/LoginFrameClass.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Src/Class/Vehicle.py" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Class/Vehicle.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Src/DB/user.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Src/DB/user.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Src/GlobalVariables/GlobalVariables.py" beforeDir="false" afterPath="$PROJECT_DIR$/Src/GlobalVariables/GlobalVariables.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Src/Gui/MainMenuClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Gui/MainMenuClass.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Src/Gui/PersonalUserSectionClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Gui/PersonalUserSectionClass.py" afterDir="false" />
     </list>
     <list id="6df671c0-ad78-447b-a577-89c1b4196197" name="Changes by pavon" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -49,35 +58,36 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Python.APIController.executor": "Run",
-    "Python.AccountController.executor": "Run",
-    "Python.Appointment.executor": "Run",
-    "Python.GUI.executor": "Run",
-    "Python.LoginFrameClass.executor": "Run",
-    "Python.MainMenuClass.executor": "Run",
-    "Python.ManageUserSectionClass.executor": "Run",
-    "Python.PersonalUserSectionClass.executor": "Run",
-    "Python.main.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/Nicola/Desktop/ProgettoIngSW",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "tasks",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python.APIController.executor&quot;: &quot;Run&quot;,
+    &quot;Python.AccountController.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Appointment.executor&quot;: &quot;Run&quot;,
+    &quot;Python.GUI.executor&quot;: &quot;Run&quot;,
+    &quot;Python.LoginFrameClass.executor&quot;: &quot;Run&quot;,
+    &quot;Python.MainMenuClass.executor&quot;: &quot;Run&quot;,
+    &quot;Python.ManageUserSectionClass.executor&quot;: &quot;Run&quot;,
+    &quot;Python.PersonalUserSectionClass.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Nicola/Desktop/ProgettoIngSW&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;tasks&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\pavon\PycharmProjects\IngSW\Src\Images\Icone" />
       <recent name="C:\Users\Nicola\Desktop\ProgettoIngSW\Src" />
     </key>
   </component>
@@ -164,7 +174,15 @@
       <option name="project" value="LOCAL" />
       <updated>1754562884661</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="GUI">
+      <option name="closed" value="true" />
+      <created>1754638391591</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1754638391591</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -187,7 +205,8 @@
     <MESSAGE value="Aggiunto funzione per creare utenti con controlli" />
     <MESSAGE value="Aggiunto sistema di Log IN (work in progress)" />
     <MESSAGE value="Completato edit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Completato edit" />
+    <MESSAGE value="GUI" />
+    <option name="LAST_COMMIT_MESSAGE" value="GUI" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
