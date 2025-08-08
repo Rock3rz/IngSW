@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1118944d-3b5b-4ea7-86a7-ff9081fc44cc" name="Changes" comment="Aggiunto sistema di Log IN (work in progress)">
+    <list default="true" id="1118944d-3b5b-4ea7-86a7-ff9081fc44cc" name="Changes" comment="Completato edit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/DB/clients.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Src/DB/clients.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/Gui/ViewClientSection.py" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Gui/ViewClientSection.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Src/Gui/GUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Gui/GUI.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Src/Gui/LoginFrameClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Gui/LoginFrameClass.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Src/Gui/MainMenuClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Gui/MainMenuClass.py" afterDir="false" />
     </list>
     <list id="6df671c0-ad78-447b-a577-89c1b4196197" name="Changes by pavon" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -31,12 +32,12 @@
     &quot;assignee&quot;: &quot;Rock3rz&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/Rock3rz/IngSW.git",
-    "accountId": "94c1ff33-c585-441f-9e14-f33d92c81706"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Rock3rz/IngSW.git&quot;,
+    &quot;accountId&quot;: &quot;94c1ff33-c585-441f-9e14-f33d92c81706&quot;
   }
-}]]></component>
+}</component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -48,31 +49,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;Python.APIController.executor&quot;: &quot;Run&quot;,
-    &quot;Python.AccountController.executor&quot;: &quot;Run&quot;,
-    &quot;Python.Appointment.executor&quot;: &quot;Run&quot;,
-    &quot;Python.GUI.executor&quot;: &quot;Run&quot;,
-    &quot;Python.ManageUserSectionClass.executor&quot;: &quot;Run&quot;,
-    &quot;Python.PersonalUserSectionClass.executor&quot;: &quot;Run&quot;,
-    &quot;Python.main.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Nicola/Desktop/ProgettoIngSW&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;tasks&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Python.APIController.executor": "Run",
+    "Python.AccountController.executor": "Run",
+    "Python.Appointment.executor": "Run",
+    "Python.GUI.executor": "Run",
+    "Python.LoginFrameClass.executor": "Run",
+    "Python.MainMenuClass.executor": "Run",
+    "Python.ManageUserSectionClass.executor": "Run",
+    "Python.PersonalUserSectionClass.executor": "Run",
+    "Python.main.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/Nicola/Desktop/ProgettoIngSW",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "tasks",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Nicola\Desktop\ProgettoIngSW\Src" />
@@ -153,7 +156,15 @@
       <option name="project" value="LOCAL" />
       <updated>1754045310151</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Completato edit">
+      <option name="closed" value="true" />
+      <created>1754562884661</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1754562884661</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -175,7 +186,8 @@
     <MESSAGE value="Creazione menu e Parte della GUI" />
     <MESSAGE value="Aggiunto funzione per creare utenti con controlli" />
     <MESSAGE value="Aggiunto sistema di Log IN (work in progress)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Aggiunto sistema di Log IN (work in progress)" />
+    <MESSAGE value="Completato edit" />
+    <option name="LAST_COMMIT_MESSAGE" value="Completato edit" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

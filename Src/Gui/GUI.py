@@ -23,6 +23,11 @@ class Gui:
         self.container = tk.Frame(root)
         self.container.grid(row = 0, column = 0, sticky="nsew")
 
+        root.grid_rowconfigure(0, weight=1)
+        root.grid_columnconfigure(0, weight=1)
+        self.container.grid_rowconfigure(0, weight=1)
+        self.container.grid_columnconfigure(0, weight=1)
+
         self.frames = {}
 
         #Ciclo che carica in memoria i vari frame
