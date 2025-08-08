@@ -62,6 +62,18 @@ class ClientController:
         gv.client_list.insert(index, gv.CurrentClient)
         APIController.write_client_on_csv()
 
+    def search_client(self, name, last_name, email, phone):
+        risultati = []
+        for client in gv.client_list:
+            if (
+                    (name == "" or client.FirstName.lower() == name.lower()) and
+                    (last_name == "" or client.LastName.lower() == last_name.lower()) and
+                    (email == "" or client.email.lower() == email.lower()) and
+                    (phone == "" or client.PhoneNumber == phone)
+            ):
+                risultati.append(client)
+        return risultati
+
 
 
 

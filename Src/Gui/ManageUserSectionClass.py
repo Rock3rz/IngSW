@@ -123,4 +123,4 @@ class CreateUserSection(tk.Frame):
         if self.selected_index:
             self.selected_index = self.selected_index[0]
             value = self.useListBox.get( self.selected_index)  # Testo della riga selezionata
-            print(f"Indice selezionato: { self.selected_index}, Valore: {value}")
+

@@ -11,14 +11,29 @@ class FuelType(Enum):
     HYBRID = 6
 
 
-class Brand:
-    def __init__(self, brand_id: int, name: str):
-        self.brand_id = brand_id
-        self.name = name
-
+'''class Brand(Enum):
+    TOYOTA = "Toyota"
+    MERCEDES_BENZ = "Mercedes-Benz"
+    BMW = "BMW"
+    TESLA = "Tesla"
+    HONDA = "Honda"
+    HYUNDAI = "Hyundai"
+    AUDI = "Audi"
+    PORSCHE = "Porsche"
+    VOLKSWAGEN = "Volkswagen"
+    FORD = "Ford"
+    NISSAN = "Nissan"
+    KIA = "Kia"
+    FIAT = "Fiat"
+    SEAT = "Seat"
+    CUPRA = "Cupra"
+    OPEL = "Opel"
+'''
 
 class Model:
-    def __init__(self, displacement: float, hp: int, model_id: int):
+    def __init__(self, brand:str ,name:str,  displacement: float, hp: int, model_id: int):
+        self.brand = brand
+        self.name = name
         self.displacement = displacement
         self.hp = hp
         self.model_id = model_id
@@ -28,6 +43,7 @@ class Vehicle:
     def __init__(
         self,
         brand: Brand,
+        model: Model,
         registration_year: int,
         color: str,
         fuel_type: FuelType,
@@ -35,9 +51,10 @@ class Vehicle:
         image: Optional[str],  # URL o path locale?
         is_available: bool,
         km: float,
-        model: Model,
+        number_plate : str,
         price: float
     ):
+        self.number_plate = number_plate
         self.brand = brand
         self.registration_year = registration_year
         self.color = color

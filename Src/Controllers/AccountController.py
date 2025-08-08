@@ -29,8 +29,6 @@ class AccountController:
             utente = next((u for u in gv.user_list if u.username == self.name and u.Password == self.password), None)
             #(valore_da_restituire for variabile in collezione if condizione)
 
-            print("l'utente selezionato è ")
-            print(utente)
 
             if not utente:
                 messagebox.showwarning("Utente inesistente", "Non esiste nessun utente con queste credenziali")
@@ -79,10 +77,6 @@ class AccountController:
         gv.user_list.append(new_user)
 
         APIController.write_user_on_csv()
-
-        print("Tutti gli utenti")
-        for u in gv.user_list:
-            print(f"{u.user_id} {u.firstName}{u.LastName}{u.username}{u.isAdmin}{u.Password}{u.email}")
 
     def LogOut(self):
         gv.isAdminUser = False
