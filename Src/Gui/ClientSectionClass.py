@@ -52,6 +52,7 @@ class ClientSection(tk.Frame):
         tk.Button(self, text= "Visualizza Cliente", command= lambda: self.open_view_conditional()).grid(row=2, column=5)
         tk.Button(self, text="Back", command=lambda: controller.mostra_frame("MainMenu")).grid(row=2, column=1)
 
+
         self.list_client.bind("<<ListboxSelect>>", self.on_select)
 
     def fill_listbox(self):
@@ -102,7 +103,7 @@ class ClientSection(tk.Frame):
             return
 
         self.list_client.delete(0, tk.END)
-        self.support_list = []  # 🔹 aggiorno anche la lista di supporto
+        self.support_list = []
         for client in tmplist:
             self.list_client.insert(tk.END, f"{client.ID} {client.FirstName} {client.LastName}")
             self.support_list.append(client)

@@ -3,6 +3,7 @@ from tkinter import messagebox
 import pandas as pd
 from Src.Controllers.AccountController import AccountController
 import Src.GlobalVariables.GlobalVariables as gv
+from Src.Gui.CreateVehicle import CreateVehicle
 
 from Src.Gui.VehicleSectionClass import VehicleSection
 from Src.Gui.AppointmentSectionClass import AppointmentSection
@@ -14,6 +15,7 @@ from Src.Gui.LoginFrameClass import LoginFrame
 from Src.Gui.MainMenuClass import MainMenu
 from Src.Gui.CreateClientSectionClass import CreateClientSectionClass
 from Src.Gui.ViewClientSection import ViewClient
+from Src.Gui.CreateModelClass import CreateModel
 
 class Gui:
 
@@ -41,7 +43,9 @@ class Gui:
             LoginFrame,
             CreateUserSection,
             CreateClientSectionClass,
-            ViewClient
+            ViewClient,
+            CreateModel,
+            CreateVehicle
             ):
             frame = F(self.container, self)
             self.frames[F.__name__] = frame

@@ -19,6 +19,12 @@ class APIController:
         else:
             self.df = pd.DataFrame()
 
+        if os.path.exists(gv.Brand_file_path):
+            self.df = pd.read_csv(gv.Brand_file_path)
+            self.refresh_brand_list()
+        else:
+            self.df = pd.DataFrame()
+
     @staticmethod
     def refresh_user_list():
         if os.path.exists(gv.User_file_path):
@@ -91,3 +97,25 @@ class APIController:
         df = pd.DataFrame(data)
         df.to_csv(gv.Clients_file_path, index=False)
         APIController.refresh_client_list()
+
+
+    @staticmethod
+    def refresh_brand_list():
+        if os.path.exists(gv.Brand_file_path):
+            df = pd.read_csv(gv.Brand_file_path)
+
+            #svuoto la lista
+            gv.brand_list.clear()
+            for _, row in df.iterrows():
+                gv.brand_list.append(str(row["Brand"]))
+
+    @staticmethod
+    def write_brand_on_csv():
+        data = []
+        for brand in gv.brand_list:
+            data.append({
+                "Brand": brand
+            })
+        df = pd.DataFrame(data)
+        df.to_csv(gv.Brand_file_path, index = False)
+        APIController.refresh_brand_list()
