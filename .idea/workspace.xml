@@ -4,33 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1118944d-3b5b-4ea7-86a7-ff9081fc44cc" name="Changes" comment="GUI">
-      <change afterPath="$PROJECT_DIR$/Src/Images/Icone/Auto.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Src/Images/Icone/Calendario.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Src/Images/Icone/Clienti.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Src/Images/Icone/CreaUtente.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Src/Images/Icone/Logout.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Src/Images/Icone/Preventivi.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Src/Images/Icone/Utente.png" afterDir="false" />
+    <list default="true" id="8c6066e7-792f-4f44-8452-8c851e4d9b39" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/Class/Vehicle.py" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Class/Vehicle.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/DB/user.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Src/DB/user.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/GlobalVariables/GlobalVariables.py" beforeDir="false" afterPath="$PROJECT_DIR$/Src/GlobalVariables/GlobalVariables.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/Gui/MainMenuClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Gui/MainMenuClass.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Src/Gui/ManageUserSectionClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Gui/ManageUserSectionClass.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Src/Gui/PersonalUserSectionClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Gui/PersonalUserSectionClass.py" afterDir="false" />
     </list>
-    <list id="6df671c0-ad78-447b-a577-89c1b4196197" name="Changes by pavon" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Python Script" />
-      </list>
-    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -38,7 +20,7 @@
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
     &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;Rock3rz&quot;
+    &quot;assignee&quot;: &quot;PaolaPa1&quot;
   }
 }</component>
   <component name="GithubPullRequestsUISettings">{
@@ -47,50 +29,25 @@
     &quot;accountId&quot;: &quot;94c1ff33-c585-441f-9e14-f33d92c81706&quot;
   }
 }</component>
-  <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
-  </component>
   <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 8
+  &quot;associatedIndex&quot;: 0
 }</component>
-  <component name="ProjectId" id="30MPByVIoaZpa8E9Z99hIL095pP" />
+  <component name="ProjectId" id="313AixzKXdZiiCsTG2oJOeDwdRV" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;Python.APIController.executor&quot;: &quot;Run&quot;,
-    &quot;Python.AccountController.executor&quot;: &quot;Run&quot;,
-    &quot;Python.Appointment.executor&quot;: &quot;Run&quot;,
-    &quot;Python.GUI.executor&quot;: &quot;Run&quot;,
-    &quot;Python.LoginFrameClass.executor&quot;: &quot;Run&quot;,
-    &quot;Python.MainMenuClass.executor&quot;: &quot;Run&quot;,
-    &quot;Python.ManageUserSectionClass.executor&quot;: &quot;Run&quot;,
-    &quot;Python.PersonalUserSectionClass.executor&quot;: &quot;Run&quot;,
-    &quot;Python.main.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Nicola/Desktop/ProgettoIngSW&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;tasks&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.ManageUserSectionClass.executor": "Run",
+    "Python.PersonalUserSectionClass.executor": "Run",
+    "Python.VehicleController.executor": "Run",
+    "Python.main.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "master"
   }
-}</component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\pavon\PycharmProjects\IngSW\Src\Images\Icone" />
-      <recent name="C:\Users\Nicola\Desktop\ProgettoIngSW\Src" />
-    </key>
-  </component>
+}]]></component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -100,130 +57,12 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="1118944d-3b5b-4ea7-86a7-ff9081fc44cc" name="Changes" comment="" />
-      <created>1753434336441</created>
+      <changelist id="8c6066e7-792f-4f44-8452-8c851e4d9b39" name="Changes" comment="" />
+      <created>1754742515122</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1753434336441</updated>
-      <workItem from="1753434337484" duration="758000" />
-      <workItem from="1753858886103" duration="14659000" />
-      <workItem from="1753947015962" duration="11033000" />
-      <workItem from="1753958340676" duration="40000" />
-      <workItem from="1753958403856" duration="349000" />
-      <workItem from="1754032699976" duration="12484000" />
-      <workItem from="1754122692004" duration="2338000" />
-      <workItem from="1754125575114" duration="6645000" />
-      <workItem from="1754132369324" duration="23000" />
-      <workItem from="1754294928796" duration="5553000" />
-      <workItem from="1754379480548" duration="11641000" />
-      <workItem from="1754397095738" duration="6149000" />
+      <updated>1754742515122</updated>
     </task>
-    <task id="LOCAL-00001" summary="FirstCommit">
-      <option name="closed" value="true" />
-      <created>1753434424271</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1753434424271</updated>
-    </task>
-    <task id="LOCAL-00002" summary="FirstCommit">
-      <option name="closed" value="true" />
-      <created>1753434570774</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1753434570774</updated>
-    </task>
-    <task id="LOCAL-00003" summary="Creazione menu e Parte della GUI">
-      <option name="closed" value="true" />
-      <created>1753870169645</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1753870169646</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Aggiunto funzione per creare utenti con controlli">
-      <option name="closed" value="true" />
-      <created>1753958580402</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1753958580402</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Aggiunto sistema di Log IN (work in progress)">
-      <option name="closed" value="true" />
-      <created>1754045291010</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1754045291010</updated>
-    </task>
-    <task id="LOCAL-00006" summary="Aggiunto sistema di Log IN (work in progress)">
-      <option name="closed" value="true" />
-      <created>1754045310151</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1754045310151</updated>
-    </task>
-    <task id="LOCAL-00007" summary="Completato edit">
-      <option name="closed" value="true" />
-      <created>1754562884661</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1754562884661</updated>
-    </task>
-    <task id="LOCAL-00008" summary="GUI">
-      <option name="closed" value="true" />
-      <created>1754638391591</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1754638391591</updated>
-    </task>
-    <option name="localTasksCounter" value="9" />
     <servers />
-  </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="FirstCommit" />
-    <MESSAGE value="Creazione menu e Parte della GUI" />
-    <MESSAGE value="Aggiunto funzione per creare utenti con controlli" />
-    <MESSAGE value="Aggiunto sistema di Log IN (work in progress)" />
-    <MESSAGE value="Completato edit" />
-    <MESSAGE value="GUI" />
-    <option name="LAST_COMMIT_MESSAGE" value="GUI" />
-  </component>
-  <component name="XDebuggerManager">
-    <watches-manager>
-      <configuration name="PythonConfigurationType">
-        <watch expression="gv.CurrentUser" language="Python" />
-        <watch expression="gv.isAdminUser" language="Python" />
-        <watch expression="gv.canEnter" language="Python" />
-      </configuration>
-    </watches-manager>
-  </component>
-  <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/ProgettoIngSW$APIController.coverage" NAME="APIController Coverage Results" MODIFIED="1754402827686" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Src/Controllers" />
-    <SUITE FILE_PATH="coverage/ProgettoIngSW$Appointment.coverage" NAME="Appointment Coverage Results" MODIFIED="1753955274248" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Src/Class" />
-    <SUITE FILE_PATH="coverage/ProgettoIngSW$ManageUserSectionClass.coverage" NAME="ManageUserSectionClass Coverage Results" MODIFIED="1754402115773" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Src/Gui" />
-    <SUITE FILE_PATH="coverage/ProgettoIngSW$AccountController.coverage" NAME="AccountController Coverage Results" MODIFIED="1754391026109" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Src/Controllers" />
-    <SUITE FILE_PATH="coverage/ProgettoIngSW$PersonalUserSectionClass.coverage" NAME="PersonalUserSectionClass Coverage Results" MODIFIED="1754380042488" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Src/Gui" />
-    <SUITE FILE_PATH="coverage/ProgettoIngSW$GUI.coverage" NAME="GUI Coverage Results" MODIFIED="1754041356833" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Src/Gui" />
-    <SUITE FILE_PATH="coverage/ProgettoIngSW$main.coverage" NAME="main Coverage Results" MODIFIED="1754403312776" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Src" />
   </component>
 </project>

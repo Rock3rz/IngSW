@@ -46,16 +46,17 @@ class UserSection(tk.Frame):
         label_title.pack(side="left", padx=(10,0))
         label_title.pack_propagate(False)
 
-        header_border = tk.Frame(self, bg="#bfc9cf", height=2)  # colore e spessore del bordo
+        header_border = tk.Frame(self, bg="#bfc9cf", height=2)
         header_border.pack(side="top", fill="x")
         header_border.pack_propagate(False)
 
-        content = tk.Frame(self, bg="#dee4e9")
-        content.pack(side = "bottom")
+        #content = tk.Frame(self, bg="#dee4e9")
+        #content.pack(side = "bottom")
 
-        btw_border = tk.Frame(self, bg="#dee4e9", height=30)  # colore e spessore del bordo
+        btw_border = tk.Frame(self, bg="#dee4e9", height=30)
         btw_border.pack(side="top", fill="x")
         btw_border.pack_propagate(False)
+
 
         info_frame = tk.Frame(self, bg="#cfd7dc", height=670, width=1000)
         info_frame.pack(anchor="center")
@@ -73,6 +74,9 @@ class UserSection(tk.Frame):
         border_frame.pack(anchor="center")
         border_frame.pack_propagate(False)
 
+        final_border = tk.Frame(self, bg="#dee4e9", height=30)
+        final_border.pack(side="top", fill="x")
+        final_border.pack_propagate(False)
 
         # EntryFields
         form_section = tk.Frame(info_frame, bg="#cfd7dc")
@@ -166,9 +170,7 @@ class UserSection(tk.Frame):
 
         save_btn.grid(row=0, column=3, padx=(10, 0), pady=(0, 170))
 
-        final_border = tk.Frame(self, bg="#dee4e9", height=30)  # colore e spessore del bordo
-        final_border.pack(side="top", fill="x")
-        final_border.pack_propagate(False)
+
 
 
     def load_data(self):
