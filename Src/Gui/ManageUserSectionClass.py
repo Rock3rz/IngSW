@@ -67,11 +67,11 @@ class CreateUserSection(tk.Frame):
         spazio_sinistro.grid(row=0, column=0, sticky="ns")
 
         info_frame = tk.Frame(main_frame, bg="#cfd7dc", height=970, width=650)
-        info_frame.grid(row=0, column=3, sticky="n")
+        info_frame.grid(row=0, column=3, sticky="n", pady=(55, 0))
         info_frame.grid_propagate(False)
 
         data_label = tk.Label(info_frame,
-                              text="Clienti  Registrati",
+                              text="Utenti  Registrati",
                               font=("Calisto MT", 18, "bold"),
                               bg="#cfd7dc",
                               fg="#000534")
@@ -111,7 +111,7 @@ class CreateUserSection(tk.Frame):
         entryinfo_frame.grid_propagate(False)
 
         right_data_label = tk.Label(entryinfo_frame,
-                                    text="Dati Nuovo Cliente",
+                                    text="Dati Nuovo Utente",
                                     font=("Calisto MT", 18, "bold"),
                                     bg="#cfd7dc",
                                     fg="#000534")
@@ -121,39 +121,103 @@ class CreateUserSection(tk.Frame):
         right_border_frame.grid(row=1, column=0, columnspan=2, pady=(0, 20))
         right_border_frame.grid_propagate(False)
 
-        tk.Label(entryinfo_frame, text="First Name").grid(row=2, column=0, sticky="e", padx=5, pady=5)
-        self.FirstName = tk.Entry(entryinfo_frame)
-        self.FirstName.grid(row=2, column=1, sticky="w", padx=5, pady=5)
+        FirstNameLabel = tk.Label(entryinfo_frame,
+                                  text="Nome",
+                                  font=("Calisto MT", 15, "bold"),
+                                  bg="#cfd7dc",
+                                  fg="#000534")
+        FirstNameLabel.grid(row=2, column=0, sticky="e", padx=(130,30) , pady=(40, 30))
+        self.FirstName = ctk.CTkEntry(entryinfo_frame, font=("Calisto MT", 15), width=200, corner_radius=10,
+                                      fg_color="white", text_color="#000534", border_color="#000534", border_width=2)
+        self.FirstName.grid(row=2, column=1, padx=(0, 150), pady=(20, 30))
 
-        tk.Label(entryinfo_frame, text="Last Name").grid(row=3, column=0, sticky="e", padx=5, pady=5)
-        self.LastName = tk.Entry(entryinfo_frame)
-        self.LastName.grid(row=3, column=1, sticky="w", padx=5, pady=5)
+        LastNameLabel = tk.Label(entryinfo_frame,
+                                  text="Cognome",
+                                  font=("Calisto MT", 15, "bold"),
+                                  bg="#cfd7dc",
+                                  fg="#000534")
+        LastNameLabel.grid(row=3, column=0, sticky="e", padx=(130, 30), pady=(0, 30))
+        self.LastName = ctk.CTkEntry(entryinfo_frame, font=("Calisto MT", 15), width=200, corner_radius=10,
+                                      fg_color="white", text_color="#000534", border_color="#000534", border_width=2)
+        self.LastName.grid(row=3, column=1, padx=(0, 150), pady=(0, 30))
 
-        tk.Label(entryinfo_frame, text="Email").grid(row=4, column=0, sticky="e", padx=5, pady=5)
-        self.Email = tk.Entry(entryinfo_frame)
-        self.Email.grid(row=4, column=1, sticky="w", padx=5, pady=5)
+        EmailLabel = tk.Label(entryinfo_frame,
+                                 text="Email",
+                                 font=("Calisto MT", 15, "bold"),
+                                 bg="#cfd7dc",
+                                 fg="#000534")
+        EmailLabel.grid(row=4, column=0, sticky="e", padx=(130, 30), pady=(0, 30))
+        self.Email = ctk.CTkEntry(entryinfo_frame, font=("Calisto MT", 15), width=200, corner_radius=10,
+                                     fg_color="white", text_color="#000534", border_color="#000534", border_width=2)
+        self.Email.grid(row=4, column=1, padx=(0, 150), pady=(0, 30))
 
-        tk.Label(entryinfo_frame, text="Username").grid(row=5, column=0, sticky="e", padx=5, pady=5)
-        self.Username = tk.Entry(entryinfo_frame)
-        self.Username.grid(row=5, column=1, sticky="w", padx=5, pady=5)
+        UsernameLabel = tk.Label(entryinfo_frame,
+                                 text="Username",
+                                 font=("Calisto MT", 15, "bold"),
+                                 bg="#cfd7dc",
+                                 fg="#000534")
+        UsernameLabel.grid(row=5, column=0, sticky="e", padx=(130, 30), pady=(0, 30))
+        self.Username = ctk.CTkEntry(entryinfo_frame, font=("Calisto MT", 15), width=200, corner_radius=10,
+                                     fg_color="white", text_color="#000534", border_color="#000534", border_width=2)
+        self.Username.grid(row=5, column=1, padx=(0, 150), pady=(0, 30))
 
-        tk.Label(entryinfo_frame, text="Password").grid(row=6, column=0, sticky="e", padx=5, pady=5)
-        self.Password = tk.Entry(entryinfo_frame, show="*")
-        self.Password.grid(row=6, column=1, sticky="w", padx=5, pady=5)
+
+        PasswordLabel = tk.Label(entryinfo_frame,
+                                 text="Password",
+                                 font=("Calisto MT", 15, "bold"),
+                                 bg="#cfd7dc",
+                                 fg="#000534")
+        PasswordLabel.grid(row=6, column=0, sticky="e", padx=(130, 30), pady=(0, 30))
+        self.Password = ctk.CTkEntry(entryinfo_frame, show="*", font=("Calisto MT", 15), width=200, corner_radius=10,
+                                     fg_color="white", text_color="#000534", border_color="#000534", border_width=2)
+        self.Password.grid(row=6, column=1, padx=(0, 150), pady=(0, 30))
 
         self.is_admin = tk.BooleanVar()
-        is_admin_button = tk.Checkbutton(entryinfo_frame, text="is_admin", variable=self.is_admin)
-        is_admin_button.grid(row=7, column=0, columnspan=2, pady=(10, 15))
+        is_admin_button = ctk.CTkCheckBox(entryinfo_frame,
+                                          text="is_admin",
+                                          font=("Calisto MT", 18, "bold"),
+                                          width=150,
+                                          corner_radius=10,
+                                          fg_color="#000534",
+                                          border_color="#000534",
+                                          border_width=2,
+                                          text_color="#000534",
+                                          variable=self.is_admin)
+        is_admin_button.grid(row=7, column=0, columnspan=2, padx=(110, 30), pady=(0, 20))
 
-        confirm = tk.Button(entryinfo_frame, text="Crea", command=self.create_user_and_clear)
-        confirm.grid(row=8, column=0, sticky="e", padx=5, pady=5)
 
-        delete_btn = tk.Button(entryinfo_frame, text="Elimina", command=lambda: self.elimina_utente())
-        delete_btn.grid(row=8, column=1, sticky="w", padx=5, pady=5)
+        confirm_btn = ctk.CTkButton(entryinfo_frame,
+                                 text = "Conferma",
+                                 font=("Calisto MT", 18, "bold"),
+                                 width= 150,
+                                 corner_radius=10,
+                                 fg_color="white",
+                                 border_color="#000534",
+                                 border_width=2,
+                                 text_color="#000534",
+                                 command=self.create_user_and_clear)
+
+        confirm_btn.grid(row=9, column=0, padx=(120, 10), pady=(90, 50))
+
+        delete_btn = ctk.CTkButton(entryinfo_frame,
+                                 text = "Elimina",
+                                 font=("Calisto MT", 18, "bold"),
+                                 width= 150,
+                                 corner_radius=10,
+                                 fg_color="white",
+                                 border_color="#000534",
+                                 border_width=2,
+                                 text_color="#000534",
+                                 command=lambda: self.elimina_utente())
+
+        delete_btn.grid(row=9, column=1, padx=(10, 0), pady=(90, 50))
+       
 
         entryinfo_frame.grid_columnconfigure(0, weight=0)
         entryinfo_frame.grid_columnconfigure(1, weight=1)
 
+
+        #spazio destro
         spazio_destro = tk.Frame(main_frame, bg="#dee4e9", width=30)
         spazio_destro.grid(row=0, column=4, sticky="ns")
 
@@ -218,12 +282,6 @@ class CreateUserSection(tk.Frame):
 
         self.fill_listbox()
         #self.Api.refresh_user_list()
-
-
-
-        #ID, Name, LastName, Email, UserName, Password, IsAdmin
-        #1, Francesco, Trapano, TP @ abruzzolandia.coma, admin, admin, True
-
 
     #evento per permettere la selezione di un nome dalla lista
     def on_select(self, event = None):
