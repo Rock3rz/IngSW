@@ -119,8 +119,8 @@ Client_ID,First_Name,Last_Name,Email,PhoneNumber,Address,PostalCode
 118,Emma,Campanella,emma.campanella@yahoo.com,1361187024,Rotonda Lando 449,63106
 119,Luigina,Guidone,luigina.guidone@live.com,1049932643,Contrada Gelli 157 Appartamento 38,79446
 120,Antonia,Matteotti,antonia.matteotti@libero.it,4494529782,Rotonda Amato 312 Appartamento 58,67553
-121,Licia,Federico,licia.federico@alice.it,5935052288,Vicolo Azeglio 181,02774
-122,Laura,Serao,laura.serao@libero.it,1655112085,Piazza Travaglio 926 Piano 1,01556
+121,Licia,Federico,licia.federico@alice.it,5935052288,Vicolo Azeglio 181,2774
+122,Laura,Serao,laura.serao@libero.it,1655112085,Piazza Travaglio 926 Piano 1,1556
 123,Ettore,Pennetta,ettore.pennetta@poste.it,6020969224,Viale Alessia 455 Piano 0,41581
 124,Etta,Crispi,etta.crispi@gmail.com,1677837417,Rotonda Amadeo 2 Appartamento 60,58291
 125,Romina,Pucci,romina.pucci@outlook.com,3594635210,Contrada Guido 8 Appartamento 77,14642
@@ -153,17 +153,17 @@ Client_ID,First_Name,Last_Name,Email,PhoneNumber,Address,PostalCode
 152,Achille,Tosto,achille.tosto@hotmail.it,7582087331,Viale Bianca 2,73544
 153,Manuel,Norbiato,manuel.norbiato@hotmail.it,8485496859,Borgo Pertini 72 Appartamento 45,27528
 154,Ermanno,Luxardo,ermanno.luxardo@libero.it,8067846448,Canale Pier 6,22255
-155,Mirco,Pizziol,mirco.pizziol@poste.it,9014454691,Via Greca 541,06363
+155,Mirco,Pizziol,mirco.pizziol@poste.it,9014454691,Via Greca 541,6363
 156,Umberto,Brichese,umberto.brichese@gmail.com,8421961391,Incrocio Giuliana 1 Piano 3,66247
 157,Danilo,Peranda,danilo.peranda@poste.it,3246861135,Canale Casale 431 Piano 9,11015
 158,Morena,Faranda,morena.faranda@outlook.com,6353283165,Incrocio Lamberto 732,34272
 159,Barbara,Roero,barbara.roero@libero.it,9087811570,Canale Pacomio 5,44733
 160,Alberto,Vercelloni,alberto.vercelloni@libero.it,7469960302,Piazza Montalti 97,32467
-161,Gianluigi,Vergassola,gianluigi.vergassola@libero.it,7922476032,Rotonda Mariana 3 Appartamento 25,05503
+161,Gianluigi,Vergassola,gianluigi.vergassola@libero.it,7922476032,Rotonda Mariana 3 Appartamento 25,5503
 162,Durante,Trevisan,durante.trevisan@tiscali.it,3556079357,Via Lombardo 74 Piano 6,11186
 163,Gaetano,Valguarnera,gaetano.valguarnera@tele2.it,9922327699,Vicolo Moretti 65,18841
 164,Cipriano,Molesini,cipriano.molesini@tiscali.it,3107104963,Incrocio Callegaro 834,87056
-165,Ivan,Guglielmi,ivan.guglielmi@tiscali.it,107171120,Canale Giovanna 2 Appartamento 32,01632
+165,Ivan,Guglielmi,ivan.guglielmi@tiscali.it,107171120,Canale Giovanna 2 Appartamento 32,1632
 166,Ignazio,Rizzo,ignazio.rizzo@vodafone.it,998981862,Via Tonino 19 Piano 5,98233
 167,Rolando,Cantimori,rolando.cantimori@live.com,4416083103,Vicolo Alina 4 Appartamento 23,61149
 168,Dante,Carullo,dante.carullo@tele2.it,6203291730,Contrada Filippo 92,64189
@@ -180,7 +180,7 @@ Client_ID,First_Name,Last_Name,Email,PhoneNumber,Address,PostalCode
 179,Gioacchino,Sinisi,gioacchino.sinisi@tim.it,7690277020,Incrocio Paltrinieri 20,99623
 180,Laureano,Combi,laureano.combi@gmail.com,3132897188,Strada Lidia 466 Piano 4,37821
 181,Piergiorgio,Rismondo,piergiorgio.rismondo@libero.it,7242038358,Incrocio Galuppi 713,11851
-182,Lucia,Callegari,lucia.callegari@tiscali.it,6562627274,Piazza Sylvia 72 Appartamento 58,02591
+182,Lucia,Callegari,lucia.callegari@tiscali.it,6562627274,Piazza Sylvia 72 Appartamento 58,2591
 183,Adele,Zito,adele.zito@poste.it,9743399873,Strada Magnani 61 Piano 8,91281
 184,Rita,Mercati,rita.mercati@virgilio.it,677144256,Strada Caterina 69,28390
 185,Leopoldo,Pucci,leopoldo.pucci@libero.it,5295472316,Canale Germano 84,91905
@@ -299,4 +299,4 @@ Client_ID,First_Name,Last_Name,Email,PhoneNumber,Address,PostalCode
 298,Gabriele,DeLuca,gabriele.deluca80@example.it,3776767292,Via Brescia 141,53357
 299,Antonio,Vitale,antonio.vitale44@example.it,3495217853,Via Ancona 31,35242
 300,Alessandro,Marino,alessandro.marino78@example.it,3984106298,Via Trento 56,73464
-
+301,Crescenzo,Pepino,approcci@sistemi.com,60257,Via dell'Automazione,3214498543

@@ -50,8 +50,6 @@ class UserSection(tk.Frame):
         header_border.pack(side="top", fill="x")
         header_border.pack_propagate(False)
 
-        #content = tk.Frame(self, bg="#dee4e9")
-        #content.pack(side = "bottom")
 
         btw_border = tk.Frame(self, bg="#dee4e9", height=30)
         btw_border.pack(side="top", fill="x")

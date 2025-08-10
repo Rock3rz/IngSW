@@ -1,55 +1,203 @@
 import tkinter as tk
 import Src.GlobalVariables.GlobalVariables as gv
 from Src.Controllers.ClientController import ClientController
+import os
+import customtkinter as ctk
+from tkinter import PhotoImage
 
 #Classe di gestione e visione clienti
 class ViewClient(tk.Frame):
     def __init__(self, parent, controller):
-        super().__init__(parent)
+        super().__init__(parent, bg="#dee4e9")
         self.cc = ClientController()
         self.controller = controller
-        tk.Label(self, text="Nome").grid(row=2, column=1)
-        self.name = tk.Entry(self)
-        self.name.grid(row=2, column=2)
 
-        tk.Label(self, text="Cognome").grid(row=3, column=1)
-        self.surname = tk.Entry(self)
-        self.surname.grid(row=3, column=2)
+        base_path = os.path.dirname(__file__)
+        icon_dir = os.path.join(base_path, "..", "Images", "Icone")
+        logout_icon = PhotoImage(file=os.path.join(icon_dir, "Logout.png"))
 
-        tk.Label(self, text="Email").grid(row=4, column=1)
-        self.email = tk.Entry(self)
-        self.email.grid(row=4, column=2)
+        header_frame = tk.Frame(self, bg="#000534", height=50)
+        header_frame.pack(side="top", fill="x")
+        header_frame.pack_propagate(False)
 
-        tk.Label(self, text="Indrizzo").grid(row=5, column=1)
-        self.address = tk.Entry(self)
-        self.address.grid(row=5, column=2)
+        back_btn = ctk.CTkButton(header_frame,
+                                 text="Back",
+                                 font=("Calisto MT", 18, "bold"),
+                                 image=logout_icon,
+                                 compound="left",
+                                 width=150,
+                                 corner_radius=10,
+                                 fg_color="white",
+                                 border_color="#000534",
+                                 border_width=2,
+                                 text_color="#000534",
+                                 command=lambda: controller.mostra_frame("ClientSection"))
+        back_btn.pack(side="left", padx=(20, 0))
 
-        tk.Label(self, text="CAP").grid(row=6, column=1)
-        self.cap = tk.Entry(self)
-        self.cap.grid(row=6, column=2)
+        title_frame = tk.Frame(self, bg="#cfd7dc", height=40)
+        title_frame.pack(side="top", fill="x")
+        title_frame.pack_propagate(False)
 
-        tk.Label(self, text="Telefono").grid(row=7, column=1)
-        self.phone = tk.Entry(self)
-        self.phone.grid(row=7, column=2)
+        label_title = tk.Label(title_frame,
+                               text="Profilo Cliente",
+                               font=("Calisto MT", 20, "bold"),
+                               bg="#cfd7dc",
+                               fg="#000534")
 
-        tk.Label(self, text="ID").grid(row=8, column=1)
-        self.id = tk.Entry(self)
-        self.id.grid(row=8, column=2)
+        label_title.pack(side="left", padx=(10, 0))
+        label_title.pack_propagate(False)
 
+        header_border = tk.Frame(self, bg="#bfc9cf", height=2)
+        header_border.pack(side="top", fill="x")
+        header_border.pack_propagate(False)
 
-        tk.Label(self, text="Info Cliente").grid(row=1, column=1)
-        tk.Button(self, text= "Modifica informazioni", command= lambda: self.enable_fields()).grid(row = 9, column=2)
-        tk.Button(self, text= "Salva", command= lambda: self.edit_info()).grid(row = 9, column=3)
-        tk.Button(self, text="Back", command=lambda: controller.mostra_frame("ClientSection")).grid(row=9, column=1)
+        btw_border = tk.Frame(self, bg="#dee4e9", height=30)
+        btw_border.pack(side="top", fill="x")
+        btw_border.pack_propagate(False)
+
+        info_frame = tk.Frame(self, bg="#cfd7dc", height=670, width=1000)
+        info_frame.pack(anchor="center")
+        info_frame.pack_propagate(False)
+
+        data_label = tk.Label(info_frame,
+                              text="Dati Profilo Cliente",
+                              font=("Calisto MT", 18, "bold"),
+                              bg="#cfd7dc",
+                              fg="#000534")
+        data_label.pack(anchor="center")
+        data_label.pack_propagate(False)
+
+        border_frame = tk.Frame(info_frame, bg="#bfc9cf", height=2, width=940)
+        border_frame.pack(anchor="center")
+        border_frame.pack_propagate(False)
+
+        final_border = tk.Frame(self, bg="#dee4e9", height=30)
+        final_border.pack(side="top", fill="x")
+        final_border.pack_propagate(False)
+
+        # EntryFields
+        form_section = tk.Frame(info_frame, bg="#cfd7dc")
+        form_section.pack(fill="both", expand=True)
+
+        FirstNameLabel = tk.Label(form_section,
+                                  text="Nome",
+                                  font=("Calisto MT", 15, "bold"),
+                                  bg="#cfd7dc",
+                                  fg="#000534")
+        FirstNameLabel.grid(row=0, column=0, padx=(220, 50), pady=(50, 0))
+        self.name = ctk.CTkEntry(form_section, font=("Calisto MT", 15), width=200, corner_radius=10,
+                                 fg_color="white", text_color="#000534", border_color="#000534", border_width=2)
+        self.name.grid(row=1, column=0, padx=(170, 5), pady=5)
+
+        LastNameLabel = tk.Label(form_section,
+                                 text="Cognome",
+                                 font=("Calisto MT", 15, "bold"),
+                                 bg="#cfd7dc",
+                                 fg="#000534")
+        LastNameLabel.grid(row=0, column=3, padx=(150, 50), pady=(50, 0))
+        self.surname = ctk.CTkEntry(form_section, font=("Calisto MT", 15), width=200, corner_radius=10,
+                                    fg_color="white", text_color="#000534", border_color="#000534", border_width=2)
+        self.surname.grid(row=1, column=3, padx=(150, 50), pady=5)
+
+        EmailLabel = tk.Label(form_section,
+                              text="Email",
+                              font=("Calisto MT", 15, "bold"),
+                              bg="#cfd7dc",
+                              fg="#000534")
+
+        EmailLabel.grid(row=2, column=0, padx=(220, 50), pady=(50, 0))
+
+        self.email = ctk.CTkEntry(form_section, font=("Calisto MT", 15), width=200, corner_radius=10, fg_color="white",
+                                  text_color="#000534", border_color="#000534", border_width=2)
+        self.email.grid(row=3, column=0, padx=(170, 5), pady=5)
+
+        AddressLabel = tk.Label(form_section,
+                                text="Indirizzo",
+                                font=("Calisto MT", 15, "bold"),
+                                bg="#cfd7dc",
+                                fg="#000534")
+        AddressLabel.grid(row=4, column=0, padx=(220, 50), pady=(50, 0))
+        self.address = ctk.CTkEntry(form_section, font=("Calisto MT", 15), width=200, corner_radius=10,
+                                    fg_color="white",
+                                    text_color="#000534", border_color="#000534", border_width=2)
+        self.address.grid(row=5, column=0, padx=(170, 5), pady=5)
+
+        CAPLabel = tk.Label(form_section,
+                            text="CAP",
+                            font=("Calisto MT", 15, "bold"),
+                            bg="#cfd7dc",
+                            fg="#000534")
+
+        CAPLabel.grid(row=4, column=3, padx=(150, 50), pady=(50, 0))
+        self.cap = ctk.CTkEntry(form_section, font=("Calisto MT", 15), width=200, corner_radius=10,
+                                fg_color="white", text_color="#000534", border_color="#000534", border_width=2)
+        self.cap.grid(row=5, column=3, padx=(150, 50), pady=5)
+
+        PhoneLabel = (tk.Label(form_section,
+                               text="Numero di Telefono",
+                               font=("Calisto MT", 15, "bold"),
+                               bg="#cfd7dc",
+                               fg="#000534"
+                               ))
+        PhoneLabel.grid(row=2, column=3, padx=(150, 50), pady=(50, 0))
+        self.phone = ctk.CTkEntry(form_section, font=("Calisto MT", 15), width=200, corner_radius=10,
+                                  fg_color="white", text_color="#000534", border_color="#000534", border_width=2)
+        self.phone.grid(row=3, column=3, padx=(150, 50), pady=5)
+
+        IDLabel = (tk.Label(form_section,
+                            text="ID Cliente",
+                            font=("Calisto MT", 15, "bold"),
+                            bg="#cfd7dc",
+                            fg="#000534"
+                            ))
+        IDLabel.grid(row=6, column=0, padx=(220, 50), pady=(50, 0))
+        self.id = ctk.CTkEntry(form_section, font=("Calisto MT", 15), width=200, corner_radius=10,
+                               fg_color="white", text_color="#000534", border_color="#000534", border_width=2)
+        self.id.grid(row=7, column=0, padx=(170, 5), pady=5)
+
+        btn_section = tk.Frame(info_frame, bg="#cfd7dc")
+        btn_section.pack(fill="x", expand=True, side="top")
+        # btn_section.pack_propagate(False)
+
+        btn_section.grid_columnconfigure(0, minsize=300)
+        btn_section.grid_columnconfigure(2, minsize=50)
+        btn_section.grid_columnconfigure(4, minsize=300)
+
+        edit_btn = ctk.CTkButton(btn_section,
+                                 text="Modifica",
+                                 font=("Calisto MT", 18, "bold"),
+                                 width=150,
+                                 corner_radius=10,
+                                 fg_color="white",
+                                 border_color="#000534",
+                                 border_width=2,
+                                 text_color="#000534",
+                                 command=lambda: self.enable_fields())
+
+        edit_btn.grid(row=0, column=1, padx=(0, 10), pady=(50, 170))
+
+        save_btn = ctk.CTkButton(btn_section,
+                                 text="Salva",
+                                 font=("Calisto MT", 18, "bold"),
+                                 width=150,
+                                 corner_radius=10,
+                                 fg_color="white",
+                                 border_color="#000534",
+                                 border_width=2,
+                                 text_color="#000534",
+                                 command=lambda: self.edit_info())
+
+        save_btn.grid(row=0, column=3, padx=(10, 0), pady=(50, 170))
+
 
     def enable_fields(self):
-        self.name.config(state="normal")
-        self.surname.config(state="normal")
-        self.email.config(state="normal")
-        self.address.config(state="normal")
-        self.phone.config(state="normal")
-        self.cap.config(state="normal")
-        self.id.config(state="normal")
+        self.name.configure(state="normal")
+        self.surname.configure(state="normal")
+        self.email.configure(state="normal")
+        self.address.configure(state="normal")
+        self.phone.configure(state="normal")
+        self.cap.configure(state="normal")
+        self.id.configure(state="normal")
 
 
     def clear_fields(self):
@@ -62,13 +210,13 @@ class ViewClient(tk.Frame):
         self.id.delete(0, tk.END)
 
     def disable_fields(self):
-        self.name.config(state="readonly")
-        self.surname.config(state="readonly")
-        self.email.config(state="readonly")
-        self.address.config(state="readonly")
-        self.phone.config(state="readonly")
-        self.cap.config(state="readonly")
-        self.id.config(state="readonly")
+        self.name.configure(state="readonly")
+        self.surname.configure(state="readonly")
+        self.email.configure(state="readonly")
+        self.address.configure(state="readonly")
+        self.phone.configure(state="readonly")
+        self.cap.configure(state="readonly")
+        self.id.configure(state="readonly")
 
 
     def load_client_infos(self):

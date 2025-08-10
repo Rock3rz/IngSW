@@ -20,6 +20,7 @@ class CreateUserSection(tk.Frame):
         base_path = os.path.dirname(__file__)
         icon_dir = os.path.join(base_path, "..", "Images", "Icone")
         logout_icon = PhotoImage(file=os.path.join(icon_dir, "Logout.png"))
+        add_user_icon = PhotoImage(file=os.path.join(icon_dir, "CreaUtente.png"))
 
         header_frame = tk.Frame(self, bg="#000534", height=50)
         header_frame.pack(side="top", fill="x")
@@ -126,10 +127,10 @@ class CreateUserSection(tk.Frame):
                                   font=("Calisto MT", 15, "bold"),
                                   bg="#cfd7dc",
                                   fg="#000534")
-        FirstNameLabel.grid(row=2, column=0, sticky="e", padx=(130,30) , pady=(40, 30))
+        FirstNameLabel.grid(row=2, column=0, sticky="e", padx=(130,30) , pady=30)
         self.FirstName = ctk.CTkEntry(entryinfo_frame, font=("Calisto MT", 15), width=200, corner_radius=10,
                                       fg_color="white", text_color="#000534", border_color="#000534", border_width=2)
-        self.FirstName.grid(row=2, column=1, padx=(0, 150), pady=(20, 30))
+        self.FirstName.grid(row=2, column=1, padx=(0, 150), pady=30)
 
         LastNameLabel = tk.Label(entryinfo_frame,
                                   text="Cognome",

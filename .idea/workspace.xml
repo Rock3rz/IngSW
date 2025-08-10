@@ -4,10 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8c6066e7-792f-4f44-8452-8c851e4d9b39" name="Changes" comment="Inizio GUI Crea Utente">
+    <list default="true" id="8c6066e7-792f-4f44-8452-8c851e4d9b39" name="Changes" comment="Finita GUI Crea Utente">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/DB/user.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Src/DB/user.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Src/DB/clients.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Src/DB/clients.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Src/Gui/ClientSectionClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Gui/ClientSectionClass.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Src/Gui/CreateClientSectionClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Gui/CreateClientSectionClass.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Src/Gui/ManageUserSectionClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Gui/ManageUserSectionClass.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Src/Gui/PersonalUserSectionClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Gui/PersonalUserSectionClass.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Src/Gui/ViewClientSection.py" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Gui/ViewClientSection.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,17 +41,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python.ManageUserSectionClass.executor&quot;: &quot;Run&quot;,
-    &quot;Python.PersonalUserSectionClass.executor&quot;: &quot;Run&quot;,
-    &quot;Python.VehicleController.executor&quot;: &quot;Run&quot;,
-    &quot;Python.main.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.CreateClientSectionClass.executor": "Run",
+    "Python.ManageUserSectionClass.executor": "Run",
+    "Python.PersonalUserSectionClass.executor": "Run",
+    "Python.VehicleController.executor": "Run",
+    "Python.main.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "master"
   }
-}</component>
+}]]></component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -71,11 +76,20 @@
       <option name="project" value="LOCAL" />
       <updated>1754771694876</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Finita GUI Crea Utente">
+      <option name="closed" value="true" />
+      <created>1754820979517</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1754820979517</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Inizio GUI Crea Utente" />
-    <option name="LAST_COMMIT_MESSAGE" value="Inizio GUI Crea Utente" />
+    <MESSAGE value="Finita GUI Crea Utente" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finita GUI Crea Utente" />
   </component>
 </project>
