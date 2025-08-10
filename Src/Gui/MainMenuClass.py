@@ -10,7 +10,7 @@ import os
 class MainMenu(tk.Frame):
     def __init__(self, parent, controller):
         super().__init__(parent, bg="#dee4e9")
-        self.lc = AccountController()
+        self.lc = gv.account_controller
 
         base_path = os.path.dirname(__file__)
         icon_dir = os.path.join(base_path, "..", "Images", "Icone")

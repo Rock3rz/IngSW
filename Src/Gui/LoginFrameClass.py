@@ -6,7 +6,7 @@ import customtkinter as ctk
 class LoginFrame(tk.Frame):
     def __init__(self, parent, controller):
         super().__init__(parent, bg="#dee4e9")
-        self.lc = AccountController()
+        self.lc = gv.account_controller
 
         # Titolo in alto centrato
         label_title = tk.Label(self, text="Benvenuti!", font=("Calisto MT", 28, "bold"), fg="#000534", bg="#dee4e9")

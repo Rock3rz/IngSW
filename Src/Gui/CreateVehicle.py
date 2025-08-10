@@ -6,7 +6,7 @@ import Src.GlobalVariables.GlobalVariables as gv
 class CreateVehicle(tk.Frame):
     def __init__(self, parent, controller):
         super().__init__(parent)
-        self.vc = VehicleController()
+        self.vc = gv.vehicle_controller
         self.controller = controller
 
         self.brand_listBox = tk.Listbox(self)

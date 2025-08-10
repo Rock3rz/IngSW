@@ -10,7 +10,7 @@ import customtkinter as ctk
 class ClientSection(tk.Frame):
     def __init__(self, parent, controller):
         super().__init__(parent, bg="#dee4e9")
-        self.cc = ClientController()
+        self.cc = gv.client_controller
 
         self.controller = controller
 

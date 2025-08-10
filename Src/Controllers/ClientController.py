@@ -7,7 +7,6 @@ from Src.Class.Client import  Client
 
 class ClientController:
     def __init__(self):
-        self.Api = APIController()
         os.makedirs(os.path.dirname(gv.Clients_file_path), exist_ok=True)
 
     def create_client(self,next_id, name, last_name, email, address, cap, phone_number) :

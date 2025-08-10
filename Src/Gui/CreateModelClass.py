@@ -11,7 +11,7 @@ class CreateModel(tk.Frame):
     def __init__(self, parent, controller):
         super().__init__(parent)
         self.controller = controller
-        self.vc = VehicleController()
+        self.vc = gv.vehicle_controller
         tk.Label(self, text="Create Model").grid(column=0, row=0)
 
         tk.Label(self, text="Brand").grid(column=0, row=1)
