@@ -63,7 +63,7 @@ class CreateClientSectionClass(tk.Frame):
         info_frame.pack_propagate(False)
 
         data_label = tk.Label(info_frame,
-                              text="Dati Nuovo Cliente",
+                              text="Dati Cliente Nuovo",
                               font=("Calisto MT", 18, "bold"),
                               bg="#cfd7dc",
                               fg="#000534")
