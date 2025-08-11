@@ -171,11 +171,11 @@ class CreateVehicle(tk.Frame):
 
     def save_vehicle(self):
         self.vc.create_vehicle(
+            self.Vehicle_ID.get(),
             gv.CurrentModel,
             self.Year.get(),
             self.Color.get(),
             self.current_fuel_type,
-            self.Vehicle_ID.get(),
             self.isAvailableTick.get(),
             self.Kilometers.get(),
             self.NumberPlate.get(),

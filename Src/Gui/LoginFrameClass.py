@@ -46,6 +46,11 @@ class LoginFrame(tk.Frame):
         btn_forgot = tk.Button(content, text="Password Dimenticata?", command=self.lc.reset_password, bg="#dee4e9", relief="flat", fg="blue", cursor="hand2")
         btn_forgot.grid(row=3, column=1, sticky="")
 
+        #Se premo il tasto invio, logga direttamente
+        self.name.focus_set()
+        self.name.bind("<Return>", lambda e: submit_logic())
+        self.password.bind("<Return>", lambda e: submit_logic())
+
         def submit_logic():
             self.lc.login(self.name.get(), self.password.get())
             self.name.delete(0, tk.END)

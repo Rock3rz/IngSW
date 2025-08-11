@@ -52,17 +52,18 @@ class VehicleController():
 
         gv.model_list.append(newModel)
 
-    def create_vehicle(self, vehicle_id,
+    def create_vehicle(self,
+                       vehicle_id,
                        model_id,
                        year,
                        color,
-                       fuel_index,
+                       fuel_type,
                        is_available,
                        km,
                        plate,
                        price,
                        image = None ):
-        if not all([vehicle_id,model_id,year,color,fuel_index,km,plate,price]):
+        if not all([vehicle_id,model_id,year,color,fuel_type,km,plate,price]):
             messagebox.showwarning(
                 "Campi vuoti",
                 "Riempi tutti i campi!")
@@ -71,12 +72,13 @@ class VehicleController():
         print(f"il model id è porca {model_id}")
         for model in gv.model_list:
             if model.model_id == model_id:
-                print(model.brand, model.name)
+                tmpModel = model
 
-        #new_vehicle = Vehicle(tmpModel, year, color, fuel_index, vehicle_id, is_available, km, plate, price, image = None)
-        #gv.vehicle_list.append(new_vehicle)
-        #for v in gv.vehicle_list:
-            #print(v.Model.brand, v.Model.name)
+
+        new_vehicle = Vehicle(tmpModel, year, color, fuel_type, vehicle_id, is_available, km, plate, price, image = None)
+        gv.vehicle_list.append(new_vehicle)
+        for v in gv.vehicle_list:
+            print(v.model.brand, v.model.name, v.model.displacement, v.model.hp, v.model.model_id, v.vehicle_id)
 
         #funzione che scrive su csv
 
