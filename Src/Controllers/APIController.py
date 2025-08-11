@@ -3,6 +3,8 @@ import os
 import Src.GlobalVariables.GlobalVariables as gv
 from Src.Class.Client import Client
 from Src.Class.User import User
+from Src.Class.Vehicle import Model
+
 
 class APIController:
     def __init__(self):
@@ -22,6 +24,12 @@ class APIController:
         if os.path.exists(gv.Brand_file_path):
             self.df = pd.read_csv(gv.Brand_file_path)
             self.refresh_brand_list()
+        else:
+            self.df = pd.DataFrame()
+
+        if os.path.exists(gv.Model_file_path):
+            self.df = pd.read_csv(gv.Model_file_path)
+            self.refresh_model_list()
         else:
             self.df = pd.DataFrame()
 
@@ -119,3 +127,35 @@ class APIController:
         df = pd.DataFrame(data)
         df.to_csv(gv.Brand_file_path, index = False)
         APIController.refresh_brand_list()
+
+
+    @staticmethod
+    def refresh_model_list():
+        if os.path.exists(gv.Model_file_path):
+            df = pd.read_csv(gv.Model_file_path)
+            gv.model_list.clear()
+            for _, row in df.iterrows():
+                gv.model_list.append(
+                    Model(
+                        model_id=int(row["Model_ID"]),
+                        brand=str(row["Brand"]),
+                        name=str(row["Model"]),
+                        displacement=float(row["Displacement"]),
+                        hp=int(row["HP"])
+                    )
+                )
+
+    @staticmethod
+    def write_model_on_csv():
+        data = []
+        for model in gv.model_list:
+            data.append({
+                "Model_ID": model.model_id,
+                "Brand": model.brand,
+                "Model": model.name,
+                "Displacement": model.displacement,
+                "HP": model.hp
+            })
+        df = pd.DataFrame(data)
+        df.to_csv(gv.Model_file_path,index=False)
+        APIController.refresh_model_list()

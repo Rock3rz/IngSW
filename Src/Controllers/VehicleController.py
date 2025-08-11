@@ -4,6 +4,7 @@ from tkinter import messagebox, simpledialog
 import Src.GlobalVariables.GlobalVariables as gv
 from Src.Controllers.APIController import APIController
 from Src.Class.Vehicle import Model, Vehicle
+from typing import Optional
 
 class VehicleController():
     def __init__(self):
@@ -50,6 +51,34 @@ class VehicleController():
                              hp, next_id)
 
         gv.model_list.append(newModel)
+
+    def create_vehicle(self, vehicle_id,
+                       model_id,
+                       year,
+                       color,
+                       fuel_index,
+                       is_available,
+                       km,
+                       plate,
+                       price,
+                       image = None ):
+        if not all([vehicle_id,model_id,year,color,fuel_index,km,plate,price]):
+            messagebox.showwarning(
+                "Campi vuoti",
+                "Riempi tutti i campi!")
+            return
+
+        print(f"il model id è porca {model_id}")
+        for model in gv.model_list:
+            if model.model_id == model_id:
+                print(model.brand, model.name)
+
+        #new_vehicle = Vehicle(tmpModel, year, color, fuel_index, vehicle_id, is_available, km, plate, price, image = None)
+        #gv.vehicle_list.append(new_vehicle)
+        #for v in gv.vehicle_list:
+            #print(v.Model.brand, v.Model.name)
+
+        #funzione che scrive su csv
 
 
 

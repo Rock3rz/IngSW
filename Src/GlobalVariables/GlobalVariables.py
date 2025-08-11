@@ -1,6 +1,5 @@
-import pandas as pd
 import os
-from tkinter import PhotoImage
+
 
 # Stato applicativo
 isAdminUser = False
@@ -12,16 +11,20 @@ CurrentUser = None
 User_file_path = "DB/user.csv"
 Clients_file_path = "DB/clients.csv"
 Brand_file_path = "DB/brand.csv"
+Model_file_path = "DB/model.csv"
 
 # Collezioni condivise in memoria
 user_list = []
 client_list = []
 brand_list = []
 model_list = []
+vehicle_list = []
 
 # Entità correnti selezionate nella GUI
 CurrentClient = None
 CurrentBrand = None
+CurrentModel = None
+
 
 # Controller centralizzati (inizializzati pigramente)
 account_controller = None
@@ -44,6 +47,7 @@ def init_controllers():
     os.makedirs(os.path.dirname(User_file_path), exist_ok=True)
     os.makedirs(os.path.dirname(Clients_file_path), exist_ok=True)
     os.makedirs(os.path.dirname(Brand_file_path), exist_ok=True)
+    os.makedirs(os.path.dirname(Model_file_path), exist_ok=True)
 
     # Import locali per evitare cicli
     from Src.Controllers.AccountController import AccountController

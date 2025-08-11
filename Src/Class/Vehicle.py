@@ -47,14 +47,13 @@ class Vehicle:
         registration_year: int,
         color: str,
         fuel_type: FuelType,
-        vehicle_id: int,
-        image: Optional[str],  # URL o path locale?
+        vehicle_id: int,  # URL o path locale?
         is_available: bool,
         km: float,
         number_plate : str,
-        price: float
+        price: float,
+        image: Optional[str] = None
     ):
-        self.number_plate = number_plate
         #self.brand = brand
         self.registration_year = registration_year
         self.color = color
@@ -64,4 +63,5 @@ class Vehicle:
         self.is_available = is_available
         self.km = km
         self.model = model
+        self.number_plate = number_plate
         self.price = price

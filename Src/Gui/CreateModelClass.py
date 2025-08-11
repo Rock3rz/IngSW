@@ -1,11 +1,7 @@
 import tkinter as tk
-
-from pygame.sprite import collide_mask
-
 import Src.GlobalVariables.GlobalVariables as gv
-from Src.Controllers.VehicleController import  VehicleController
-from Src.GlobalVariables.GlobalVariables import model_list
-
+from Src.GlobalVariables.GlobalVariables import model_list, api_controller
+from Src.Controllers.APIController import APIController
 
 class CreateModel(tk.Frame):
     def __init__(self, parent, controller):
@@ -36,6 +32,7 @@ class CreateModel(tk.Frame):
 
         tk.Button(self, text="Salva",command= lambda: self.saveModel()).grid(column=2, row=6)
         tk.Button(self, text="Back", command = lambda: self.back_function()).grid(column=3, row=6)
+        #tk.Button(self, text="Carica", command = lambda: self.loadModel()).grid(column=1, row=6)
 
     def clearFields(self):
         self.brand.delete(0, tk.END)
@@ -53,9 +50,11 @@ class CreateModel(tk.Frame):
         )
         for models in model_list:
             print(models.brand, models.name, models.displacement, models.hp, models.model_id)
-
+        APIController.write_model_on_csv()
+        self.controller.frames["CreateVehicle"].fill_model_listbox()
         self.clearFields()
         self.controller.mostra_frame("CreateVehicle")
+
 
     def loadModel(self):
         if gv.model_list:

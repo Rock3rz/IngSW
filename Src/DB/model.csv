@@ -1,0 +1,53 @@
+Model_ID,Brand,Model,Displacement,HP
+1,Audi,A3,2000.0,180
+2,Volkswagen,Golf V,1900.0,140
+3,Fiat,Punto,1400.0,105
+4,Seat,Ibiza,1600.0,130
+5,Toyota,Corolla,1800.0,140
+6,Lexus,IS 300,3000.0,258
+7,Opel,Astra,1600.0,136
+8,Daihatsu,Sirion,1300.0,95
+9,Volkswagen,Passat,2000.0,190
+10,Audi,A4,2000.0,204
+11,Porsche,911 Carrera,3800.0,400
+12,Škoda,Octavia,1600.0,116
+13,SEAT,Leon,2000.0,190
+14,Fiat,500X,1400.0,150
+15,Peugeot,308,1600.0,156
+16,Jeep,Renegade,2000.0,180
+17,Alfa Romeo,Giulia,2000.0,280
+18,Lancia,Ypsilon,1300.0,95
+19,Maserati,Ghibli,3000.0,430
+20,Chevrolet,Malibu,2000.0,250
+21,Cadillac,CTS,3600.0,335
+22,GMC,Terrain,2000.0,252
+23,Buick,Encore,1400.0,155
+24,Hyundai,i30,1600.0,136
+25,Kia,Ceed,1600.0,136
+26,Genesis,G70,2500.0,304
+27,Fiat,Panda,1200.0,85
+28,Seat,Ateca,1500.0,150
+29,Toyota,Yaris,1500.0,125
+30,Lexus,RX 450h,3500.0,313
+31,Opel,Corsa,1400.0,100
+32,Daihatsu,Terios,1500.0,105
+33,Volkswagen,Tiguan,2000.0,200
+34,Audi,Q5,2000.0,249
+35,Porsche,Cayenne,3000.0,360
+36,Škoda,Superb,2000.0,220
+37,SEAT,Arona,1000.0,115
+38,Fiat,Tipo,1600.0,120
+39,Peugeot,208,1200.0,110
+40,Jeep,Compass,2400.0,180
+41,Alfa Romeo,Stelvio,2000.0,280
+42,Lancia,Delta,1600.0,120
+43,Maserati,Levante,3000.0,430
+44,Chevrolet,Equinox,1500.0,180
+45,Cadillac,XT5,3600.0,310
+46,GMC,Yukon,5300.0,365
+47,Buick,Enclave,3600.0,310
+48,Hyundai,Tucson,1600.0,180
+49,Kia,Sportage,1600.0,180
+50,Genesis,G80,3800.0,311
+51,Opel,Mokka,1500.0,130
+52,Volkswagen,Scirocco,1500,130
