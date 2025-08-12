@@ -3,7 +3,7 @@ import os
 import Src.GlobalVariables.GlobalVariables as gv
 from Src.Class.Client import Client
 from Src.Class.User import User
-from Src.Class.Vehicle import Model
+from Src.Class.Vehicle import Model, Vehicle
 
 
 class APIController:
@@ -30,6 +30,12 @@ class APIController:
         if os.path.exists(gv.Model_file_path):
             self.df = pd.read_csv(gv.Model_file_path)
             self.refresh_model_list()
+        else:
+            self.df = pd.DataFrame()
+
+        if os.path.exists(gv.Vehicle_file_path):
+            self.df = pd.read_csv(gv.Vehicle_file_path)
+            self.refresh_vehicle_list()
         else:
             self.df = pd.DataFrame()
 
@@ -159,3 +165,44 @@ class APIController:
         df = pd.DataFrame(data)
         df.to_csv(gv.Model_file_path,index=False)
         APIController.refresh_model_list()
+
+
+    @staticmethod
+    def refresh_vehicle_list():
+        if os.path.exists(gv.Vehicle_file_path):
+            df = pd.read_csv(gv.Vehicle_file_path)
+            gv.vehicle_list.clear()
+            for _, row in df.iterrows():
+                gv.vehicle_list.append(
+                    Vehicle(
+                        model=gv.model_recovery(int(row["Model ID"])),
+                        registration_year=int(row["Year"]),
+                        color=str(row["Color"]),
+                        fuel_type=str(row["Fuel Type"]),
+                        vehicle_id=int(row["Vehicle ID"]),
+                        is_available=bool(row["Is Available"]),
+                        km= float(row["Km"]),
+                        number_plate=str(row["Number Plate"]),
+                        price=float(row["Price"])
+                    )
+                )
+
+    @staticmethod
+    def write_vehicle_on_csv():
+        data = []
+        for vehicle in gv.vehicle_list:
+            data.append({
+                "Vehicle ID": vehicle.vehicle_id,
+                "Model ID": vehicle.model.model_id,
+                "Year": vehicle.registration_year,
+                "Color": vehicle.color,
+                "Fuel Type": vehicle.fuel_type,
+                "Is Available": vehicle.is_available,
+                "Km": vehicle.km,
+                "Number Plate": vehicle.number_plate,
+                "Price": vehicle.price
+            })
+        df = pd.DataFrame(data)
+        df.to_csv(gv.Vehicle_file_path, index = False)
+        APIController.refresh_vehicle_list()
+

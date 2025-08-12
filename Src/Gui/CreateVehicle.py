@@ -181,6 +181,55 @@ class CreateVehicle(tk.Frame):
             self.NumberPlate.get(),
             self.Price.get()
         )
+        messagebox.showinfo("Successo", "Veicolo creato correttamente!")
+        self.clear_fields()
+        self.controller.frames["VehicleSection"].fill_vehicle_listbox()
+
+    def clear_fields(self):
+        #sblocco i campi
+        self.brand_listBox.set("")
+        self.model_listBox.set("")
+        self.fuelTypeCompoBox.set("")
+
+        self.Vehicle_ID.configure(state="normal")
+        self.Model.configure(state="normal")
+        self.Brand.configure(state="normal")
+        self.Kilometers.configure(state="normal")
+        self.Year.configure(state="normal")
+        self.Color.configure(state="normal")
+        self.NumberPlate.configure(state="normal")
+        self.Price.configure(state="normal")
+        self.Displacement.configure(state="normal")
+        self.HP.configure(state="normal")
+        self.isAvailableCheckBox.configure(state="normal")
+
+        #svuoto i campi
+        self.Vehicle_ID.delete(0, tk.END)
+        self.Brand.delete(0, tk.END)
+        self.Model.delete(0, tk.END)
+        self.Year.delete(0, tk.END)
+        self.Color.delete(0, tk.END)
+        self.Kilometers.delete(0, tk.END)
+        self.NumberPlate.delete(0, tk.END)
+        self.Price.delete(0, tk.END)
+        self.Displacement.delete(0, tk.END)
+        self.HP.delete(0, tk.END)
+        self.isAvailableTick.set(False)
+
+        #riblocco i campi
+        self.Vehicle_ID.configure(state="readonly")
+        self.Model.configure(state="readonly")
+        self.Brand.configure(state="readonly")
+        self.Kilometers.configure(state="readonly")
+        self.Year.configure(state="readonly")
+        self.Color.configure(state="readonly")
+        self.NumberPlate.configure(state="readonly")
+        self.Price.configure(state="readonly")
+        self.HP.configure(state="readonly")
+        self.Displacement.configure(state="readonly")
+        self.isAvailableCheckBox.configure(state="disabled")
+        self.fuelTypeCompoBox.configure(state="disabled")
+
 
 
     # Conditional Checkers
@@ -192,11 +241,6 @@ class CreateVehicle(tk.Frame):
         self.controller.mostra_frame("CreateModel")
         for model in gv.model_list:
             print(model.brand, model.name)
-
-
-    def check_model_selected(self):
-        print("Seleziona un modello")
-
 
 
     # eventi On_pressed

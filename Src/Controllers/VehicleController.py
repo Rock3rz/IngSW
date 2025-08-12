@@ -1,5 +1,6 @@
 import tkinter as tk
 import os
+from logging import exception
 from tkinter import messagebox, simpledialog
 import Src.GlobalVariables.GlobalVariables as gv
 from Src.Controllers.APIController import APIController
@@ -69,18 +70,45 @@ class VehicleController():
                 "Riempi tutti i campi!")
             return
 
-        print(f"il model id è porca {model_id}")
+        '''
         for model in gv.model_list:
             if model.model_id == model_id:
                 tmpModel = model
+        '''
+        tmp_model = gv.model_recovery(model_id)
 
-
-        new_vehicle = Vehicle(tmpModel, year, color, fuel_type, vehicle_id, is_available, km, plate, price, image = None)
+        new_vehicle = Vehicle(tmp_model, year, color, fuel_type, vehicle_id, is_available, km, plate, price, image = None)
         gv.vehicle_list.append(new_vehicle)
-        for v in gv.vehicle_list:
-            print(v.model.brand, v.model.name, v.model.displacement, v.model.hp, v.model.model_id, v.vehicle_id)
+        APIController.write_vehicle_on_csv()
 
-        #funzione che scrive su csv
+    def delete_vehicle(self):
+        # 1) Verifica che un veicolo sia selezionato
+        current = gv.CurrentVehicle
+        if current is None:
+            messagebox.showwarning("Errore", "Selezionare un veicolo")
+            return
+
+        try:
+            index = gv.vehicle_list.index(current)
+        except ValueError:
+            # Il veicolo selezionato non è più presente nella lista
+            messagebox.showwarning("Errore", "Veicolo non trovato")
+            gv.CurrentVehicle = None
+            return
+
+        if index is None:
+            messagebox.showwarning("Errore", "Selezionare un veicolo")
+            return
+        answer = messagebox.askyesno("Conferma", "Vuoi eliminare il veicolo?")
+
+        if answer:
+
+            print(index)
+            gv.vehicle_list.pop(index)
+            APIController.write_vehicle_on_csv()
+            gv.CurrentVehicle = None
+        else:
+            return
 
 
 

@@ -255,7 +255,7 @@ class ClientSection(tk.Frame):
 
         if self.selected_client:
             self.selected_client = self.selected_client[0]
-            value = self.list_client.get( self.selected_client)  # Testo della riga selezionata
+            value = self.list_client.get(self.selected_client)  # Testo della riga selezionata
             print(f"Indice selezionato: { self.selected_client}, Valore: {value}")
 
 

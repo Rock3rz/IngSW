@@ -1,4 +1,5 @@
 import os
+from Src.Class.Vehicle import Model
 
 
 # Stato applicativo
@@ -12,6 +13,7 @@ User_file_path = "DB/user.csv"
 Clients_file_path = "DB/clients.csv"
 Brand_file_path = "DB/brand.csv"
 Model_file_path = "DB/model.csv"
+Vehicle_file_path = "DB/vehicle.csv"
 
 # Collezioni condivise in memoria
 user_list = []
@@ -20,10 +22,12 @@ brand_list = []
 model_list = []
 vehicle_list = []
 
+
 # Entità correnti selezionate nella GUI
 CurrentClient = None
 CurrentBrand = None
 CurrentModel = None
+CurrentVehicle = None
 
 
 # Controller centralizzati (inizializzati pigramente)
@@ -48,6 +52,7 @@ def init_controllers():
     os.makedirs(os.path.dirname(Clients_file_path), exist_ok=True)
     os.makedirs(os.path.dirname(Brand_file_path), exist_ok=True)
     os.makedirs(os.path.dirname(Model_file_path), exist_ok=True)
+    os.makedirs(os.path.dirname(Vehicle_file_path), exist_ok=True)
 
     # Import locali per evitare cicli
     from Src.Controllers.AccountController import AccountController
@@ -62,4 +67,12 @@ def init_controllers():
     account_controller = AccountController()
     client_controller = ClientController()
     vehicle_controller = VehicleController()
+
+@staticmethod
+def model_recovery(model_id:int)->Model:
+    for model in model_list:
+        if int(model.model_id) == int(model_id):
+            return model
+
+
 

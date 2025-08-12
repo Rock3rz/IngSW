@@ -53,3 +53,4 @@ ID,Name,LastName,Email,UserName,Password,IsAdmin
 54,Diego,Mariani,diego.mariani@example.com,diego.mariani,pass054,False
 55,Silvia,Ruggeri,silvia.ruggeri@example.com,silvia.ruggeri,pass055,False
 56,Prova,GUI,Prova@Gui.com,P.Gui,Gui,False
+57,Nicola,LoScazzato,a@b,q,q,True
