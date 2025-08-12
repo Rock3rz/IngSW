@@ -1,64 +1,317 @@
 import tkinter as tk
 import Src.GlobalVariables.GlobalVariables as gv
+import os
+from tkinter import PhotoImage
+import customtkinter as ctk
+from PIL import Image
 
 class VehicleView(tk.Frame):
     def __init__(self, parent, controller):
-        super().__init__(parent)
+        super().__init__(parent, bg="#dee4e9")
 
-        tk.Label(self, text="VehicleView").grid(row=0, column=0)
+        base_path = os.path.dirname(__file__)
+        icon_dir = os.path.join(base_path, "..", "Images", "Icone")
+        logout_icon = PhotoImage(file=os.path.join(icon_dir, "Logout.png"))
+
+        no_image_dir = os.path.join(base_path, "..", "Images", "Cars")
+
+        header_frame = tk.Frame(self, bg="#000534", height=50)
+        header_frame.pack(side="top", fill="x")
+        header_frame.pack_propagate(False)
+
+        back_btn = ctk.CTkButton(header_frame,
+                                 text="Back",
+                                 font=("Calisto MT", 18, "bold"),
+                                 image=logout_icon,
+                                 compound="left",
+                                 width=150,
+                                 corner_radius=10,
+                                 fg_color="white",
+                                 border_color="#000534",
+                                 border_width=2,
+                                 text_color="#000534",
+                                 command=lambda: controller.mostra_frame("VehicleSection"))
+        back_btn.pack(side="left", padx=(20, 0))
+
+        title_frame = tk.Frame(self, bg="#cfd7dc", height=40)
+        title_frame.pack(side="top", fill="x")
+        title_frame.pack_propagate(False)
+
+        label_title = tk.Label(title_frame,
+                               text="Scheda Veicolo",
+                               font=("Calisto MT", 20, "bold"),
+                               bg="#cfd7dc",
+                               fg="#000534")
+
+        label_title.pack(side="left", padx=(10, 0))
+        label_title.pack_propagate(False)
+
+        header_border = tk.Frame(self, bg="#bfc9cf", height=2)
+        header_border.pack(side="top", fill="x")
+        header_border.pack_propagate(False)
+
+        btw_border = tk.Frame(self, bg="#dee4e9", height=30)
+        btw_border.pack(side="top", fill="x")
+        btw_border.pack_propagate(False)
 
         self.isAvailableVar = tk.BooleanVar()
 
-        tk.Label(self, text="Brand").grid(row=1, column=0)
-        self.brand = tk.Entry(self)
-        self.brand.grid(row=1, column=1)
+        '''
+        info_frame = tk.Frame(self, bg="#cfd7dc", height=670, width=1800)
+        info_frame.pack(anchor="center")
+        info_frame.pack_propagate(False)
 
-        tk.Label(self, text="Modello").grid(row=2, column=0)
-        self.model = tk.Entry(self)
-        self.model.grid(row=2, column=1)
-
-        tk.Label(self, text="Cilindrata").grid(row=3, column=0)
-        self.displacement = tk.Entry(self)
-        self.displacement.grid(row=3, column=1)
-
-        tk.Label(self, text="Cavalli").grid(row=4, column=0)
-        self.hp = tk.Entry(self)
-        self.hp.grid(row=4, column=1)
-
-        tk.Label(self, text="Targa").grid(row=5, column=0)
-        self.number_plate = tk.Entry(self)
-        self.number_plate.grid(row=5, column=1)
-
-        tk.Label(self, text="Colore").grid(row=6, column=0)
-        self.color = tk.Entry(self)
-        self.color.grid(row=6, column=1)
-
-        tk.Label(self, text="Anno Registrazione").grid(row=7, column=0)
-        self.year = tk.Entry(self)
-        self.year.grid(row=7, column=1)
-
-        tk.Label(self, text="Prezzo").grid(row=8, column=0)
-        self.price = tk.Entry(self)
-        self.price.grid(row=8, column=1)
-
-        tk.Label(self, text="Km").grid(row=9, column=0)
-        self.kilometers = tk.Entry(self)
-        self.kilometers.grid(row=9, column=1)
-
-        tk.Label(self, text="ID").grid(row=10, column=0)
-        self.vehicle_id = tk.Entry(self)
-        self.vehicle_id.grid(row=10, column=1)
-
-        tk.Label(self, text="Tipo Carburante").grid(row=11, column=0)
-        self.fuel_type = tk.Entry(self)
-        self.fuel_type.grid(row=11, column=1)
-
-        self.isAvailableTickBox = tk.Checkbutton(
-            self, text="Disponibile", variable=self.isAvailableVar
+        no_image_icon = ctk.CTkImage(
+            light_image=Image.open(os.path.join(no_image_dir, "NoImage.png")),
+            size=(150, 150)
         )
-        self.isAvailableTickBox.grid(row=12, column=1)
 
-        tk.Button(self, text="Back", command=lambda: controller.mostra_frame("VehicleSection")).grid(row=12, column=0)
+        label = ctk.CTkLabel(info_frame, image=no_image_icon, text="")
+        label.grid(row=2, column=0, columnspan=2, padx=(10, 0), pady=(10, 0))
+
+        BrandLabel = tk.Label(info_frame,
+                              text="Brand",
+                              font=("Calisto MT", 15, "bold"),
+                              bg="#cfd7dc",
+                              fg="#000534")
+        BrandLabel.grid(row=1, column=1, padx=(70, 50), pady=(30, 0))
+        self.brand = ctk.CTkEntry(info_frame, font=("Calisto MT", 15), width=200, corner_radius=10,
+                                 fg_color="white", text_color="#000534", border_color="#000534", border_width=2)
+        self.brand.grid(row=2, column=1, padx=(70, 50), pady=5)
+
+        ModelLabel = tk.Label(info_frame,
+                              text="Modello",
+                              font=("Calisto MT", 15, "bold"),
+                              bg="#cfd7dc",
+                              fg="#000534")
+        ModelLabel.grid(row=1, column=3,padx=(70, 50), pady=(30, 0) )
+        self.model = ctk.CTkEntry(info_frame, font=("Calisto MT", 15), width=200, corner_radius=10,
+                                 fg_color="white", text_color="#000534", border_color="#000534", border_width=2)
+        self.model.grid(row=2, column=3, padx=(70, 50), pady=5)
+
+        DisplacementLabel = tk.Label(info_frame,
+                                      text="Cilindrata",
+                                      font=("Calisto MT", 15, "bold"),
+                                      bg="#cfd7dc",
+                                      fg="#000534")
+
+        DisplacementLabel.grid(row=3, column=1, padx=(70, 50), pady=(30, 0))
+        self.displacement = ctk.CTkEntry(info_frame, font=("Calisto MT", 15), width=200, corner_radius=10,
+                                 fg_color="white", text_color="#000534", border_color="#000534", border_width=2)
+        self.displacement.grid(row=4, column=1, padx=(70, 50), pady=5)
+
+        HP_Label = tk.Label(info_frame,
+                            text="Cavalli",
+                            font=("Calisto MT", 15, "bold"),
+                            bg="#cfd7dc",
+                            fg="#000534")
+        HP_Label.grid(row = 3, column=3, padx=(70, 50), pady=(30, 0))
+        self.hp = ctk.CTkEntry(info_frame, font=("Calisto MT", 15), width=200, corner_radius=10,
+                                 fg_color="white", text_color="#000534", border_color="#000534", border_width=2)
+        self.hp.grid(row=4, column=3)
+
+        plateLabel = tk.Label(info_frame,
+                              text="Targa",
+                              font=("Calisto MT", 15, "bold"),
+                              bg="#cfd7dc",
+                              fg="#000534")
+        plateLabel.grid(row=5, column=1, padx=(70, 50), pady=(30, 0))
+        self.number_plate = ctk.CTkEntry(info_frame, font=("Calisto MT", 15), width=200, corner_radius=10,
+                                 fg_color="white", text_color="#000534", border_color="#000534", border_width=2)
+        self.number_plate.grid(row=6, column=1, padx=(70, 50), pady=5)
+
+        ColorLabel = tk.Label(info_frame,
+                              text="Colore",
+                              font=("Calisto MT", 15, "bold"),
+                              bg="#cfd7dc",
+                              fg="#000534")
+        ColorLabel.grid(row=9, column=1, padx=(70, 50), pady=(30, 0))
+        self.color = ctk.CTkEntry(info_frame, font=("Calisto MT", 15), width=200, corner_radius=10,
+                                 fg_color="white", text_color="#000534", border_color="#000534", border_width=2)
+        self.color.grid(row=10, column=1, padx=(70, 50), pady=5)
+
+        YearLabel = tk.Label(info_frame,
+                             text="Anno Registrazione",
+                             font=("Calisto MT", 15, "bold"),
+                             bg="#cfd7dc",
+                             fg="#000534")
+        YearLabel.grid(row=5, column=3, padx=(70, 50), pady=(30, 0))
+        self.year = ctk.CTkEntry(info_frame, font=("Calisto MT", 15), width=200, corner_radius=10,
+                                 fg_color="white", text_color="#000534", border_color="#000534", border_width=2)
+        self.year.grid(row=6, column=3, padx=(70, 50), pady=5)
+
+        price_Label = tk.Label(info_frame,
+                               text="Prezzo",
+                               font=("Calisto MT", 15, "bold"),
+                               bg="#cfd7dc",
+                               fg="#000534")
+        price_Label.grid(row=11, column=1, padx=(70, 50), pady=(30, 0))
+        self.price = ctk.CTkEntry(info_frame, font=("Calisto MT", 15), width=200, corner_radius=10,
+                                 fg_color="white", text_color="#000534", border_color="#000534", border_width=2)
+        self.price.grid(row=12, column=1, padx=(70, 50), pady=5)
+
+        KM_Label = tk.Label(info_frame,
+                            text="Km",
+                            font=("Calisto MT", 15, "bold"),
+                            bg="#cfd7dc",
+                            fg="#000534")
+        KM_Label.grid(row=7, column=3, padx=(70, 50), pady=(30, 0))
+        self.kilometers = ctk.CTkEntry(info_frame, font=("Calisto MT", 15), width=200, corner_radius=10,
+                                 fg_color="white", text_color="#000534", border_color="#000534", border_width=2)
+        self.kilometers.grid(row=8, column=3, padx=(70, 50), pady=5)
+
+        ID_Label = tk.Label(info_frame,
+                            text="ID",
+                            font=("Calisto MT", 15, "bold"),
+                            bg="#cfd7dc",
+                            fg="#000534")
+        ID_Label.grid(row=9, column=3, padx=(70, 50), pady=(30, 0))
+        self.vehicle_id = ctk.CTkEntry(info_frame, font=("Calisto MT", 15), width=200, corner_radius=10,
+                                 fg_color="white", text_color="#000534", border_color="#000534", border_width=2)
+        self.vehicle_id.grid(row=10, column=3, padx=(70, 50), pady=5)
+
+        fueltypeLabel = tk.Label(info_frame,
+                 text="Tipo Carburante",
+                 font= ("Calisto MT", 15, "bold"),
+                 bg = "#cfd7dc",
+                 fg = "#000534")
+        fueltypeLabel.grid(row=7, column=1, padx=(70, 50), pady=(30, 0))
+        self.fuel_type = ctk.CTkEntry(info_frame, font=("Calisto MT", 15), width=200, corner_radius=10,
+                                 fg_color="white", text_color="#000534", border_color="#000534", border_width=2)
+        self.fuel_type.grid(row=8, column=1, padx=(70, 50), pady=5)
+
+        self.isAvailableTickBox = ctk.CTkCheckBox(info_frame,
+                                                  text="Disponibile",
+                                                  font=("Calisto MT", 18, "bold"),
+                                                  width=150,
+                                                  corner_radius=10,
+                                                  fg_color="#000534",
+                                                  border_color="#000534",
+                                                  border_width=2,
+                                                  text_color="#000534",
+                                                  variable=self.isAvailableVar
+        )
+        self.isAvailableTickBox.grid(row=11, column=3, columnspan=2, padx=(70, 50), pady=5)'''
+
+        content_frame = tk.Frame(self, bg="#cfd7dc")
+        content_frame.pack(anchor="center", pady=20, padx=20)
+
+        image_frame = tk.Frame(content_frame, bg="#000534", width=270, height=270)
+        image_frame.pack(side="left", anchor="n", padx=(100, 30), pady=(20, 50))
+        image_frame.pack_propagate(False)
+
+        no_image_icon = ctk.CTkImage(
+            light_image=Image.open(os.path.join(no_image_dir, "NoImage.png")),
+            size=(250, 250)
+        )
+        image_label = ctk.CTkLabel(image_frame, image=no_image_icon, text="")
+        image_label.pack(padx=10, pady=10)
+
+
+        info_frame = tk.Frame(content_frame, bg="#cfd7dc")
+        info_frame.pack(side="left", fill="both", expand=True)
+        info_frame.pack_propagate(False)
+
+        BrandLabel = tk.Label(info_frame, text="Brand", font=("Calisto MT", 15, "bold"),
+                              bg="#cfd7dc", fg="#000534")
+        BrandLabel.grid(row=0, column=0, padx=(70, 50), pady=(30, 0))
+        self.brand = ctk.CTkEntry(info_frame, font=("Calisto MT", 15), width=200,
+                                  corner_radius=10, fg_color="white", text_color="#000534",
+                                  border_color="#000534", border_width=2)
+        self.brand.grid(row=1, column=0, padx=(70, 50), pady=5)
+
+        ModelLabel = tk.Label(info_frame, text="Modello", font=("Calisto MT", 15, "bold"),
+                              bg="#cfd7dc", fg="#000534")
+        ModelLabel.grid(row=0, column=1, padx=(70, 50), pady=(30, 0))
+        self.model = ctk.CTkEntry(info_frame, font=("Calisto MT", 15), width=200,
+                                  corner_radius=10, fg_color="white", text_color="#000534",
+                                  border_color="#000534", border_width=2)
+        self.model.grid(row=1, column=1, padx=(70, 50), pady=5)
+
+        DisplacementLabel = tk.Label(info_frame, text="Cilindrata", font=("Calisto MT", 15, "bold"),
+                                     bg="#cfd7dc", fg="#000534")
+        DisplacementLabel.grid(row=2, column=0, padx=(70, 50), pady=(30, 0))
+        self.displacement = ctk.CTkEntry(info_frame, font=("Calisto MT", 15), width=200,
+                                         corner_radius=10, fg_color="white", text_color="#000534",
+                                         border_color="#000534", border_width=2)
+        self.displacement.grid(row=3, column=0, padx=(70, 50), pady=5)
+
+        HP_Label = tk.Label(info_frame, text="Cavalli", font=("Calisto MT", 15, "bold"),
+                            bg="#cfd7dc", fg="#000534")
+        HP_Label.grid(row=2, column=1, padx=(70, 50), pady=(30, 0))
+        self.hp = ctk.CTkEntry(info_frame, font=("Calisto MT", 15), width=200,
+                               corner_radius=10, fg_color="white", text_color="#000534",
+                               border_color="#000534", border_width=2)
+        self.hp.grid(row=3, column=1, padx=(70, 50), pady=5)
+
+        plateLabel = tk.Label(info_frame, text="Targa", font=("Calisto MT", 15, "bold"),
+                              bg="#cfd7dc", fg="#000534")
+        plateLabel.grid(row=4, column=0, padx=(70, 50), pady=(30, 0))
+        self.number_plate = ctk.CTkEntry(info_frame, font=("Calisto MT", 15), width=200,
+                                         corner_radius=10, fg_color="white", text_color="#000534",
+                                         border_color="#000534", border_width=2)
+        self.number_plate.grid(row=5, column=0, padx=(70, 50), pady=5)
+
+        YearLabel = tk.Label(info_frame, text="Anno Registrazione", font=("Calisto MT", 15, "bold"),
+                             bg="#cfd7dc", fg="#000534")
+        YearLabel.grid(row=4, column=1, padx=(70, 50), pady=(30, 0))
+        self.year = ctk.CTkEntry(info_frame, font=("Calisto MT", 15), width=200,
+                                 corner_radius=10, fg_color="white", text_color="#000534",
+                                 border_color="#000534", border_width=2)
+        self.year.grid(row=5, column=1, padx=(70, 50), pady=5)
+
+        fueltypeLabel = tk.Label(info_frame, text="Tipo Carburante", font=("Calisto MT", 15, "bold"),
+                                 bg="#cfd7dc", fg="#000534")
+        fueltypeLabel.grid(row=6, column=0, padx=(70, 50), pady=(30, 0))
+        self.fuel_type = ctk.CTkEntry(info_frame, font=("Calisto MT", 15), width=200,
+                                      corner_radius=10, fg_color="white", text_color="#000534",
+                                      border_color="#000534", border_width=2)
+        self.fuel_type.grid(row=7, column=0, padx=(70, 50), pady=5)
+
+        KM_Label = tk.Label(info_frame, text="Km", font=("Calisto MT", 15, "bold"),
+                            bg="#cfd7dc", fg="#000534")
+        KM_Label.grid(row=6, column=1, padx=(70, 50), pady=(30, 0))
+        self.kilometers = ctk.CTkEntry(info_frame, font=("Calisto MT", 15), width=200,
+                                       corner_radius=10, fg_color="white", text_color="#000534",
+                                       border_color="#000534", border_width=2)
+        self.kilometers.grid(row=7, column=1, padx=(70, 50), pady=5)
+
+        ColorLabel = tk.Label(info_frame, text="Colore", font=("Calisto MT", 15, "bold"),
+                              bg="#cfd7dc", fg="#000534")
+        ColorLabel.grid(row=8, column=0, padx=(70, 50), pady=(30, 0))
+        self.color = ctk.CTkEntry(info_frame, font=("Calisto MT", 15), width=200,
+                                  corner_radius=10, fg_color="white", text_color="#000534",
+                                  border_color="#000534", border_width=2)
+        self.color.grid(row=9, column=0, padx=(70, 50), pady=5)
+
+        ID_Label = tk.Label(info_frame, text="ID", font=("Calisto MT", 15, "bold"),
+                            bg="#cfd7dc", fg="#000534")
+        ID_Label.grid(row=8, column=1, padx=(70, 50), pady=(30, 0))
+        self.vehicle_id = ctk.CTkEntry(info_frame, font=("Calisto MT", 15), width=200,
+                                       corner_radius=10, fg_color="white", text_color="#000534",
+                                       border_color="#000534", border_width=2)
+        self.vehicle_id.grid(row=9, column=1, padx=(70, 50), pady=5)
+
+        price_Label = tk.Label(info_frame, text="Prezzo", font=("Calisto MT", 15, "bold"),
+                               bg="#cfd7dc", fg="#000534")
+        price_Label.grid(row=10, column=0, padx=(70, 50), pady=(30, 0))
+        self.price = ctk.CTkEntry(info_frame, font=("Calisto MT", 15), width=200,
+                                  corner_radius=10, fg_color="white", text_color="#000534",
+                                  border_color="#000534", border_width=2)
+        self.price.grid(row=11, column=0, padx=(70, 50), pady=5)
+
+        self.isAvailableTickBox = ctk.CTkCheckBox(info_frame,
+                                                  text="Disponibile",
+                                                  font=("Calisto MT", 18, "bold"),
+                                                  width=150, corner_radius=10,
+                                                  fg_color="#000534", border_color="#000534",
+                                                  border_width=2, text_color="#000534",
+                                                  variable=self.isAvailableVar)
+        self.isAvailableTickBox.grid(row=10, column=1, columnspan=2, padx=(70, 50), pady=(30,0))
+
+        content_frame.pack(anchor="center", pady=20, padx=20)
+
+
 
     def load_model_infos(self):
         if gv.CurrentVehicle is not None:
