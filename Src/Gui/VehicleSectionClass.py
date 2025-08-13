@@ -13,6 +13,7 @@ class VehicleSection(tk.Frame):
         self.vc = gv.vehicle_controller
         self.controller = controller
         self.supportList = []
+        self.selected_vehicle = None
         tk.Label(self, text="VehicleSection").grid(row=1, column=0)
 
 
@@ -22,11 +23,11 @@ class VehicleSection(tk.Frame):
 
         tk.Button(self, text="Back", command=lambda: controller.mostra_frame("MainMenu")).grid(row=3, column=0)
         tk.Button(self, text="Crea Veicolo", command = lambda: controller.mostra_frame("CreateVehicle")).grid(row=3, column=3, padx = 10)
-        tk.Button(self, text="Visualizza", command = lambda: controller.mostra_frame("VehicleView")).grid(row=3, column=4, padx = 10)
+        tk.Button(self, text="Visualizza", command = lambda: self.can_view_vehicle()).grid(row=3, column=4, padx = 10)
         tk.Button(self, text="Elimina", command = lambda: self.check_delete()).grid(row=3, column=5, padx = 10)
 
 
-        self.vehicle_listBox.bind("<<ListboxSelect>>", self.on_select)
+        #self.vehicle_listBox.bind("<<ListboxSelect>>", self.on_select)
         self.fill_vehicle_listbox()
 
     def fill_vehicle_listbox(self):
@@ -35,7 +36,23 @@ class VehicleSection(tk.Frame):
         for vehicle in self.supportList:
             self.vehicle_listBox.insert(tk.END, f"{vehicle.vehicle_id} {vehicle.model.brand} {vehicle.model.name} {vehicle.color} {vehicle.number_plate} {vehicle.price}")
 
+    def can_view_vehicle(self):
+        selection = self.vehicle_listBox.curselection()
+        if not selection:
+            messagebox.showwarning("Errore", "Nessun veicolo selezionato!")
+            return
 
+        index = selection[0]
+        value = self.vehicle_listBox.get(index).split()[0]
+
+        for vehicle in gv.vehicle_list:
+            if int(vehicle.vehicle_id) == int(value):
+                gv.CurrentVehicle = vehicle
+
+        self.controller.frames["VehicleView"].load_model_infos()
+        self.controller.mostra_frame("VehicleView")
+
+    '''
     def on_select(self, event=None):
         if event:
             widget = event.widget
@@ -50,6 +67,8 @@ class VehicleSection(tk.Frame):
                 if int(vehicle.vehicle_id) == int(value):
                     gv.CurrentVehicle = vehicle
             self.controller.frames["VehicleView"].load_model_infos()
+    '''
+
 
     def check_delete(self):
         self.vc.delete_vehicle()
