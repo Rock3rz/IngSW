@@ -110,5 +110,46 @@ class VehicleController():
         else:
             return
 
+    def search_vehicle(self, brand_bool_list, selected_model_ids=None, colors=None, fuels=None, price_min=None, price_max=None):
+        """
+        Filtra i veicoli in base a:
+        - brand selezionati (brand_bool_list: lista di bool parallela a gv.brand_list)
+        - modelli selezionati (selected_model_ids: lista di interi - Model.model_id)
+        - colori selezionati (colors: lista di stringhe colore)
+        - alimentazioni selezionate (fuels: lista di stringhe)
+        - range di prezzo (price_min, price_max: float o None)
+        La logica è combinata (AND) tra categorie diverse; all'interno di una categoria (es. più colori) vale l'OR.
+        """
+        if selected_model_ids is None:
+            selected_model_ids = []
+        if colors is None:
+            colors = []
+        if fuels is None:
+            fuels = []
+
+        selected_brands = [gv.brand_list[i] for i, b in enumerate(brand_bool_list) if b]
+
+        # Se nessun filtro attivo restituisci tutto
+        nothing_selected = (not selected_brands and not selected_model_ids and not colors and not fuels and price_min is None and price_max is None)
+        if nothing_selected:
+            return gv.vehicle_list
+
+        filtered = []
+        for vehicle in gv.vehicle_list:
+            brand_ok = True if not selected_brands else vehicle.model.brand in selected_brands
+            model_ok = True if not selected_model_ids else vehicle.model.model_id in selected_model_ids
+            color_ok = True if not colors else str(vehicle.color) in colors
+            fuel_ok = True if not fuels else str(vehicle.fuel_type) in fuels
+            price_ok = True
+            if price_min is not None and vehicle.price < price_min:
+                price_ok = False
+            if price_max is not None and vehicle.price > price_max:
+                price_ok = False
+
+            if brand_ok and model_ok and color_ok and fuel_ok and price_ok:
+                filtered.append(vehicle)
+        return filtered
+
+
 
 

@@ -37,7 +37,9 @@ class CreateVehicle(tk.Frame):
                                  border_color="#000534",
                                  border_width=2,
                                  text_color="#000534",
-                                 command=lambda: controller.mostra_frame("VehicleSection"))
+                                 command=lambda: (self.controller.mostra_frame("VehicleSection"),
+                                                 self.controller.frames["VehicleSection"].refresh_brand_checkboxes(),
+                                                 self.controller.frames["VehicleSection"].refresh_model_checkboxes()))
         back_btn.pack(side="left", padx=(20, 0))
 
         title_frame = tk.Frame(self, bg="#cfd7dc", height=40)
@@ -393,7 +395,7 @@ class CreateVehicle(tk.Frame):
         )
         messagebox.showinfo("Successo", "Veicolo creato correttamente!")
         self.clear_fields()
-        self.controller.frames["VehicleSection"].fill_vehicle_listbox()
+        self.controller.frames["VehicleSection"].fill_vehicle_listbox(gv.vehicle_list)
 
     def clear_fields(self):
         #sblocco i campi
