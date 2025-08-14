@@ -77,7 +77,7 @@ class VehicleController():
         '''
         tmp_model = gv.model_recovery(model_id)
 
-        new_vehicle = Vehicle(tmp_model, year, color, fuel_type, vehicle_id, is_available, km, plate, price, image = None)
+        new_vehicle = Vehicle(tmp_model, year, color, fuel_type, vehicle_id, is_available, km, plate, price, image=image)
         gv.vehicle_list.append(new_vehicle)
         APIController.write_vehicle_on_csv()
 

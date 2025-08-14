@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import messagebox, simpledialog
-from tkinter import ttk
+from tkinter import ttk, filedialog
 from Src.Controllers.VehicleController import VehicleController
 import Src.GlobalVariables.GlobalVariables as gv
 from Src.GlobalVariables.GlobalVariables import vehicle_list
@@ -17,6 +17,7 @@ class CreateVehicle(tk.Frame):
         self.vc = gv.vehicle_controller
         self.controller = controller
         self.current_fuel_type = None
+        self.selected_image_path = None
 
         base_path = os.path.dirname(__file__)
         icon_dir = os.path.join(base_path, "..", "Images", "Icone")
@@ -66,121 +67,31 @@ class CreateVehicle(tk.Frame):
         content_frame = tk.Frame(self, bg="#cfd7dc")
         content_frame.pack(anchor="center", pady=20, padx=20)
 
-        CB_frame = tk.Frame(content_frame, bg="#000534", width=270, height=270)
+        CB_frame = tk.Frame(content_frame, bg="#cfd7dc", width=520, height=500)
         CB_frame.pack(side="left", anchor="n", padx=(100, 30), pady=(20, 50))
         CB_frame.pack_propagate(False)
 
+        # Area immagine in alto
+        self.cars_image_dir = os.path.join(base_path, "..", "Images", "Cars")
+        try:
+            default_img_path = os.path.join(self.cars_image_dir, "NoImage.png")
+            self.no_image_icon = ctk.CTkImage(light_image=Image.open(default_img_path), size=(250, 250))
+        except Exception:
+            # In rari casi, se l'immagine non è disponibile, crea un placeholder vuoto
+            self.no_image_icon = None
+        image_holder = tk.Frame(CB_frame, bg="#000534", width=270, height=270)
+        image_holder.grid(row=0, column=0, columnspan=3, padx=(10, 10), pady=(10, 5), sticky="n")
+        image_holder.grid_propagate(False)
+        self.image_label = ctk.CTkLabel(image_holder, image=self.no_image_icon, text="")
+        self.image_label.pack(padx=10, pady=10)
+        self._current_ctk_image = self.no_image_icon
 
-        self.brand_listBox = ctk.CTkComboBox(
-            CB_frame,
-            font=("Calisto MT", 15),
-            width=200,
-            corner_radius=10,
-            fg_color="white",
-            text_color="#000534",
-            border_color="#000534",
-            border_width=2,
-            dropdown_fg_color="white",
-            dropdown_text_color="#000534",
-            values=[],
-            command=self.on_select_brand
-        )
-        #self.brand_listBox = ttk.Combobox(CB_frame, state="readonly")
-        self.brand_listBox.grid(row=2, column=0, sticky=tk.NSEW)
+        CB_frame.grid_columnconfigure(0, weight=0)
+        CB_frame.grid_columnconfigure(1, weight=1, minsize=200)
+        CB_frame.grid_columnconfigure(2, weight=0)
+        CB_frame.grid_rowconfigure(0, weight=0, minsize=0)
+        CB_frame.grid_rowconfigure(4, weight=0, minsize=0)
 
-
-        #self.model_listBox = ttk.Combobox(CB_frame, state="readonly")
-        self.model_listBox = ctk.CTkComboBox(
-            CB_frame,
-            font=("Calisto MT", 15),
-            width=200,
-            corner_radius=10,
-            fg_color="white",
-            text_color="#000534",
-            border_color="#000534",
-            border_width=2,
-            dropdown_fg_color="white",
-            dropdown_text_color="#000534",
-            values=[],
-            command = self.on_selected_model
-        )
-        self.model_listBox.grid(row=2, column=1, sticky=tk.NSEW)
-        self.model_listBox.set("")
-
-
-
-        '''        
-        self.brand_listBox = ttk.Combobox(CB_frame, state="readonly")
-        self.brand_listBox.grid(row=2, column=0, sticky=tk.NSEW)
-
-
-        self.model_listBox = ttk.Combobox(CB_frame, state="readonly")
-        self.model_listBox.grid(row=2, column=1, sticky=tk.NSEW)
-        
-        #Campi di fill per creazione veicolo
-        tk.Label(self, text="ID").grid(row=1, column=3, sticky=tk.NSEW)
-        self.Vehicle_ID = tk.Entry(self)
-        self.Vehicle_ID.grid(row=1, column=4, sticky=tk.NSEW)
-        self.Vehicle_ID.configure(state="readonly")
-
-        tk.Label(self, text="Brand").grid(row=2, column=3, sticky=tk.NSEW)
-        self.Brand = tk.Entry(self)
-        self.Brand.grid(row=2, column=4, sticky=tk.NSEW)
-        self.Brand.configure(state="readonly")
-
-        tk.Label(self, text="Modello").grid(row=3, column=3, sticky=tk.NSEW)
-        self.Model = tk.Entry(self)
-        self.Model.grid(row=3, column=4, sticky=tk.NSEW)
-        self.Model.configure(state="readonly")
-
-        tk.Label(self, text="Anno Registrazione").grid(row=4, column=3, sticky=tk.NSEW)
-        self.Year = tk.Entry(self)
-        self.Year.grid(row=4, column=4, sticky=tk.NSEW)
-        self.Year.configure(state="readonly")
-
-        tk.Label(self, text="Colore").grid(row=5, column=3, sticky=tk.NSEW)
-        self.Color = tk.Entry(self)
-        self.Color.grid(row=5, column=4, sticky=tk.NSEW)
-        self.Color.configure(state="readonly")
-
-
-
-        fuel_names = [fuel.name for fuel in FuelType]
-        self.fuelTypeCompoBox = ttk.Combobox(self,values = fuel_names, state="disabled")
-        self.fuelTypeCompoBox.grid(row=6, column=4, sticky=tk.NSEW)
-
-
-
-        tk.Label(self, text="KM").grid(row=7, column=3, sticky=tk.NSEW)
-        self.Kilometers = tk.Entry(self)
-        self.Kilometers.grid(row=7, column=4, sticky=tk.NSEW)
-        self.Kilometers.configure(state="readonly")
-
-        tk.Label(self, text="Cilindrata").grid(row=8, column=3, sticky=tk.NSEW)
-        self.Displacement = tk.Entry(self)
-        self.Displacement.grid(row=8, column=4, sticky=tk.NSEW)
-        self.Displacement.configure(state="readonly")
-
-        tk.Label(self, text="Cavalli").grid(row=9, column=3, sticky=tk.NSEW)
-        self.HP = tk.Entry(self)
-        self.HP.grid(row=9, column=4, sticky=tk.NSEW)
-        self.HP.configure(state="readonly")
-
-        tk.Label(self, text="Targa").grid(row=10, column=3, sticky=tk.NSEW)
-        self.NumberPlate = tk.Entry(self)
-        self.NumberPlate.grid(row=10, column=4, sticky=tk.NSEW)
-        self.NumberPlate.configure(state="readonly")
-
-        tk.Label(self, text="Prezzo").grid(row=11, column = 3, sticky=tk.NSEW)
-        self.Price = tk.Entry(self)
-        self.Price.grid(row=11, column = 4, sticky=tk.NSEW)
-        self.Price.configure(state="readonly")
-
-
-        self.isAvailableTick = tk.BooleanVar()
-        self.isAvailableCheckBox = tk.Checkbutton(self, text="Disponibile", variable=self.isAvailableTick)
-        self.isAvailableCheckBox.grid(row=12, column=4, sticky=tk.NSEW)
-        '''
 
         info_frame = tk.Frame(content_frame, bg="#cfd7dc")
         info_frame.pack(side="left", fill="both", expand=True)
@@ -238,7 +149,6 @@ class CreateVehicle(tk.Frame):
                                  bg="#cfd7dc", fg="#000534")
         fueltypeLabel.grid(row=6, column=0, padx=(70, 50), pady=(30, 0))
         fuel_names = [fuel.name for fuel in FuelType]
-        #self.fuelTypeComboBox = ttk.Combobox(info_frame, values=fuel_names, state="disabled")
         self.fuelTypeComboBox = ctk.CTkComboBox(
             info_frame,
             values=fuel_names,
@@ -256,7 +166,6 @@ class CreateVehicle(tk.Frame):
         )
         self.fuelTypeComboBox.grid(row=7, column=0, padx=(70, 50), pady=5)
         self.fuelTypeComboBox.set("")
-
 
         KM_Label = tk.Label(info_frame, text="Km", font=("Calisto MT", 15, "bold"),
                             bg="#cfd7dc", fg="#000534")
@@ -288,7 +197,7 @@ class CreateVehicle(tk.Frame):
         self.Price = ctk.CTkEntry(info_frame, font=("Calisto MT", 15), width=200,
                                   corner_radius=10, fg_color="white", text_color="#000534",
                                   border_color="#000534", border_width=2)
-        self.Price.grid(row=11, column=0, padx=(70, 50), pady=5)
+        self.Price.grid(row=11, column=0, padx=(70, 50), pady=(5, 20))
 
         self.isAvailableTick = tk.BooleanVar()
         self.isAvailableTickBox = ctk.CTkCheckBox(info_frame,
@@ -300,11 +209,102 @@ class CreateVehicle(tk.Frame):
                                                   variable=self.isAvailableTick)
         self.isAvailableTickBox.grid(row=10, column=1, columnspan=2, padx=(70, 50), pady=(30, 0))
 
+        create_brand_Label = tk.Label(CB_frame, text="Seleziona Brand", font=("Calisto MT", 15, "bold"),
+                               bg="#cfd7dc", fg="#000534")
+        create_brand_Label.grid(row=3, column=0, padx=(10, 10), pady=(10, 5), sticky="w")
 
-        #tk.Button(self, text="Back", command=lambda: controller.mostra_frame("VehicleSection")).grid(row=3, column=0)
-        tk.Button(CB_frame, text="Crea Brand", command=lambda: (self.vc.create_brand(), self.fill_brand_listbox())).grid(row=3, column=1, padx=10)
-        tk.Button(CB_frame, text="Crea Model", command=lambda: self.check_brand_selected()).grid(row=3, column=2, padx=10)
-        tk.Button(CB_frame, text="Salva", command = lambda: self.save_vehicle()).grid(row=20, column=3, padx=10)
+        self.brand_listBox = ctk.CTkComboBox(
+            CB_frame,
+            font=("Calisto MT", 15),
+            width=200,
+            corner_radius=10,
+            fg_color="white",
+            text_color="#000534",
+            border_color="#000534",
+            border_width=2,
+            dropdown_fg_color="white",
+            dropdown_text_color="#000534",
+            values=[],
+            command=self.on_select_brand
+        )
+        self.brand_listBox.grid(row=3, column=1, sticky="ew", padx=(10, 20), pady=(10, 5))
+
+        create_brand_btn = ctk.CTkButton(CB_frame,
+                                 text="Aggiungi Brand",
+                                 font=("Calisto MT", 18),
+                                 width=170,
+                                 height=36,
+                                 corner_radius=10,
+                                 fg_color="white",
+                                 border_color="#000534",
+                                 border_width=2,
+                                 text_color="#000534",
+                                 command=lambda: (self.vc.create_brand(), self.fill_brand_listbox()))
+        create_brand_btn.grid(row=3, column=2, padx=(10, 10), pady=(10, 5), sticky="w")
+
+
+        create_model_Label = tk.Label(CB_frame, text="Seleziona Modello", font=("Calisto MT", 15, "bold"),
+                               bg="#cfd7dc", fg="#000534")
+        create_model_Label.grid(row=4, column=0, padx=(10, 10), pady=(10, 5), sticky="w")
+
+        self.model_listBox = ctk.CTkComboBox(
+            CB_frame,
+            font=("Calisto MT", 15),
+            width=200,
+            corner_radius=10,
+            fg_color="white",
+            text_color="#000534",
+            border_color="#000534",
+            border_width=2,
+            dropdown_fg_color="white",
+            dropdown_text_color="#000534",
+            values=[],
+            command = self.on_selected_model
+        )
+        self.model_listBox.grid(row=4, column=1, sticky="ew", padx=(10, 20), pady=(10, 5))
+        self.model_listBox.set("")
+
+        create_model_btn = ctk.CTkButton(CB_frame,
+                                 text="Aggiungi Modello",
+                                 font=("Calisto MT", 18),
+                                 width=170,
+                                 height=36,
+                                 corner_radius=10,
+                                 fg_color="white",
+                                 border_color="#000534",
+                                 border_width=2,
+                                 text_color="#000534",
+                                 command=lambda: self.check_brand_selected())
+        create_model_btn.grid(row=4, column=2, padx=(10, 10), pady=(10, 5), sticky="w")
+
+        # Selettore immagine
+        self.image_label_text = tk.StringVar(value="Nessuna immagine selezionata")
+        select_img_btn = ctk.CTkButton(CB_frame,
+                                 text="Seleziona Immagine",
+                                 font=("Calisto MT", 16),
+                                 width=170,
+                                 height=36,
+                                 corner_radius=10,
+                                 fg_color="white",
+                                 border_color="#000534",
+                                 border_width=2,
+                                 text_color="#000534",
+                                 command=self.select_image)
+        select_img_btn.grid(row=1, column=0, columnspan=3, padx=(10,10), pady=(5,5), sticky="n")
+        selected_img_lbl = tk.Label(CB_frame, textvariable=self.image_label_text, font=("Calisto MT", 12), bg="#cfd7dc", fg="#000534")
+        selected_img_lbl.grid(row=2, column=0, columnspan=3, padx=(10,10), pady=(0,10), sticky="n")
+
+        save_btn = ctk.CTkButton(CB_frame,
+                                 text="Salva",
+                                 font=("Calisto MT", 18, "bold"),
+                                 width=200,
+                                 corner_radius=10,
+                                 fg_color="white",
+                                 border_color="#000534",
+                                 border_width=2,
+                                 text_color="#000534",
+                                 command=lambda: self.save_vehicle())
+        save_btn.grid(row=6, column=0, columnspan=3, sticky="s", pady=(20, 10))
 
         ##aggiorniamo le tabelle
         self.fill_brand_listbox()
@@ -391,7 +391,8 @@ class CreateVehicle(tk.Frame):
             self.isAvailableTick.get(),
             self.Kilometers.get(),
             self.NumberPlate.get(),
-            self.Price.get()
+            self.Price.get(),
+            image=self.selected_image_path
         )
         messagebox.showinfo("Successo", "Veicolo creato correttamente!")
         self.clear_fields()
@@ -441,6 +442,13 @@ class CreateVehicle(tk.Frame):
         self.Displacement.configure(state="readonly")
         self.isAvailableTickBox.configure(state="disabled")
         self.fuelTypeComboBox.configure(state="disabled")
+        self.selected_image_path = None
+        if hasattr(self, 'image_label_text') and self.image_label_text is not None:
+            self.image_label_text.set("Nessuna immagine selezionata")
+        # reset anteprima immagine
+        if hasattr(self, 'image_label') and self.image_label is not None:
+            self.image_label.configure(image=self.no_image_icon)
+        self._current_ctk_image = self.no_image_icon
 
 
 
@@ -482,6 +490,43 @@ class CreateVehicle(tk.Frame):
         if value:
             self.current_fuel_type = value
             print(f"Fuel type selected: {value}")
+
+    def select_image(self):
+        filetypes = [
+            ("Image files", "*.png;*.jpg;*.jpeg;*.gif;*.bmp"),
+            ("All files", "*.*")
+        ]
+        initial_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "Images", "Cars"))
+        try:
+            os.makedirs(initial_dir, exist_ok=True)
+        except Exception:
+            pass
+        path = filedialog.askopenfilename(title="Seleziona immagine veicolo", initialdir=initial_dir, filetypes=filetypes)
+        if path:
+            self.selected_image_path = path
+            # show only filename for brevity
+            try:
+                filename = os.path.basename(path)
+            except Exception:
+                filename = path
+            self.image_label_text.set(f"Selezionata: {filename}")
+            # update preview
+            try:
+                self._current_ctk_image = ctk.CTkImage(light_image=Image.open(path), size=(250, 250))
+                if hasattr(self, 'image_label') and self.image_label is not None:
+                    self.image_label.configure(image=self._current_ctk_image)
+            except Exception:
+                # fallback
+                self._current_ctk_image = self.no_image_icon
+                if hasattr(self, 'image_label') and self.image_label is not None:
+                    self.image_label.configure(image=self.no_image_icon)
+        else:
+            self.selected_image_path = None
+            self.image_label_text.set("Nessuna immagine selezionata")
+            # reset preview to default
+            self._current_ctk_image = self.no_image_icon
+            if hasattr(self, 'image_label') and self.image_label is not None:
+                self.image_label.configure(image=self.no_image_icon)
 
 
 

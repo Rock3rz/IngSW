@@ -63,12 +63,14 @@ class VehicleView(tk.Frame):
         image_frame.pack(side="left", anchor="n", padx=(100, 30), pady=(20, 50))
         image_frame.pack_propagate(False)
 
-        no_image_icon = ctk.CTkImage(
-            light_image=Image.open(os.path.join(no_image_dir, "NoImage.png")),
+        self.cars_image_dir = os.path.join(base_path, "..", "Images", "Cars")
+        self.no_image_icon = ctk.CTkImage(
+            light_image=Image.open(os.path.join(self.cars_image_dir, "NoImage.png")),
             size=(250, 250)
         )
-        image_label = ctk.CTkLabel(image_frame, image=no_image_icon, text="")
-        image_label.pack(padx=10, pady=10)
+        self.image_label = ctk.CTkLabel(image_frame, image=self.no_image_icon, text="")
+        self.image_label.pack(padx=10, pady=10)
+        self._current_ctk_image = self.no_image_icon
 
 
         info_frame = tk.Frame(content_frame, bg="#cfd7dc")
@@ -180,6 +182,26 @@ class VehicleView(tk.Frame):
         if gv.CurrentVehicle is not None:
             self.unlock_fields()
             self.clear_fields()
+            # Update image
+            img_path = gv.CurrentVehicle.image
+            to_use = None
+            if isinstance(img_path, str) and img_path.strip():
+                candidate = img_path.strip()
+                if not os.path.isabs(candidate):
+                    # if relative, make it relative to project root
+                    candidate = os.path.abspath(candidate)
+                if os.path.exists(candidate):
+                    to_use = candidate
+            if to_use is None:
+                to_use = os.path.join(self.cars_image_dir, "NoImage.png")
+            try:
+                self._current_ctk_image = ctk.CTkImage(light_image=Image.open(to_use), size=(250, 250))
+                self.image_label.configure(image=self._current_ctk_image)
+            except Exception:
+                # fallback hard
+                self.image_label.configure(image=self.no_image_icon)
+                self._current_ctk_image = self.no_image_icon
+
             self.brand.insert(0, gv.CurrentVehicle.model.brand)
             self.model.insert(0, gv.CurrentVehicle.model.name)
             self.displacement.insert(0, gv.CurrentVehicle.model.displacement)

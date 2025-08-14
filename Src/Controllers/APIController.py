@@ -173,6 +173,14 @@ class APIController:
             df = pd.read_csv(gv.Vehicle_file_path)
             gv.vehicle_list.clear()
             for _, row in df.iterrows():
+                image_path = None
+                if "Image" in df.columns:
+                    try:
+                        val = row["Image"]
+                        if isinstance(val, str) and val.strip():
+                            image_path = val.strip()
+                    except Exception:
+                        image_path = None
                 gv.vehicle_list.append(
                     Vehicle(
                         model=gv.model_recovery(int(row["Model ID"])),
@@ -181,9 +189,10 @@ class APIController:
                         fuel_type=str(row["Fuel Type"]),
                         vehicle_id=int(row["Vehicle ID"]),
                         is_available=bool(row["Is Available"]),
-                        km= float(row["Km"]),
+                        km=float(row["Km"]),
                         number_plate=str(row["Number Plate"]),
-                        price=float(row["Price"])
+                        price=float(row["Price"]),
+                        image=image_path
                     )
                 )
 
@@ -200,7 +209,8 @@ class APIController:
                 "Is Available": vehicle.is_available,
                 "Km": vehicle.km,
                 "Number Plate": vehicle.number_plate,
-                "Price": vehicle.price
+                "Price": vehicle.price,
+                "Image": vehicle.image if vehicle.image else ""
             })
         df = pd.DataFrame(data)
         df.to_csv(gv.Vehicle_file_path, index = False)
