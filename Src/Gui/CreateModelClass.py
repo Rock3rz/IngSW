@@ -193,9 +193,13 @@ class CreateModel(tk.Frame):
         self.model_ID.configure(state="readonly")
 
     def back_function(self):
-        self.controller.mostra_frame("VehicleSection")
+        self.controller.mostra_frame("CreateVehicle")
         gv.CurrentBrand = None
-        self.controller.frames["CreateVehicle"].brand_listBox.selection_clear(0, tk.END)
+        self.controller.frames["CreateVehicle"].clear_combo_boxes()
+
+
+
+
 
 
 

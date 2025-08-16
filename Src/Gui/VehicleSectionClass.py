@@ -78,26 +78,53 @@ class VehicleSection(tk.Frame):
         self.colorSection.grid(row=1, column=2, sticky=tk.NSEW)
         self.fuelSection = tk.Frame(self.right_frame)
         self.fuelSection.grid(row=1, column=3, sticky=tk.NSEW)
+        self.searchSection = tk.Frame(self.right_frame)
+        self.searchSection.grid(row=3, column=3, sticky=tk.NSEW)
+
+        self.mainFrame = tk.Frame(self.right_frame)
+        self.mainFrame.grid(row = 1, column = 4, sticky = tk.NSEW)
+
+
+        self.filter_tick_var = tk.BooleanVar()
+        self.filter_tick = tk.Checkbutton(self.mainFrame, text="Filtra", variable=self.filter_tick_var, command = lambda: self.active_filter())
+        self.filter_tick.grid(row = 0, column = 0, sticky = tk.NSEW)
+        self.filter_tick_var.set(True)
+
+        self.search_tick_var = tk.BooleanVar()
+        self.search_tick = tk.Checkbutton(self.mainFrame, text="Ricerca", variable=self.search_tick_var, command = lambda: self.active_search())
+        self.search_tick.grid(row = 0, column = 1, sticky = tk.NSEW)
+        self.search_tick_var.set(False)
+
+
+
+        self.searchBox = tk.Entry(self.searchSection)
+        self.searchBox.grid(row=0, column=0, sticky=tk.EW, padx=5, pady=5)
+        self.searchButton = tk.Button(self.searchSection, text="Search").grid(row = 0, column = 1, sticky=tk.EW, padx=5, pady=5)
+
 
         # Sezione prezzo (riga successiva)
         price_frame = tk.Frame(self.right_frame)
         price_frame.grid(row=2, column=0, columnspan=4, sticky=tk.EW, padx=5, pady=5)
         tk.Label(price_frame, text="Prezzo min").grid(row=0, column=0, sticky=tk.W)
-        min_entry = tk.Entry(price_frame, textvariable=self.price_min_var, width=10)
-        min_entry.grid(row=0, column=1, sticky=tk.W, padx=(2, 10))
+        self.min_entry = tk.Entry(price_frame, textvariable=self.price_min_var, width=10)
+        self.min_entry.grid(row=0, column=1, sticky=tk.W, padx=(2, 10))
         tk.Label(price_frame, text="Prezzo max").grid(row=0, column=2, sticky=tk.W)
-        max_entry = tk.Entry(price_frame, textvariable=self.price_max_var, width=10)
-        max_entry.grid(row=0, column=3, sticky=tk.W, padx=(2, 10))
+        self.max_entry = tk.Entry(price_frame, textvariable=self.price_max_var, width=10)
+        self.max_entry.grid(row=0, column=3, sticky=tk.W, padx=(2, 10))
+
         # Applica filtro alla pressione di Invio o all'uscita dal campo
-        min_entry.bind("<Return>", lambda e: self.apply_filter())
-        max_entry.bind("<Return>", lambda e: self.apply_filter())
-        min_entry.bind("<FocusOut>", lambda e: self.apply_filter())
-        max_entry.bind("<FocusOut>", lambda e: self.apply_filter())
+        self.min_entry.bind("<Return>", lambda e: self.apply_filter())
+        self.max_entry.bind("<Return>", lambda e: self.apply_filter())
+        self.min_entry.bind("<FocusOut>", lambda e: self.apply_filter())
+        self.max_entry.bind("<FocusOut>", lambda e: self.apply_filter())
+        self.searchBox.bind("<KeyRelease>", lambda e: self.on_search_triggered())
 
         self.refresh_brand_checkboxes()
         self.refresh_model_checkboxes()  # inizialmente vuota (nessun brand selezionato)
         self.refresh_color_checkboxes()
         self.refresh_fuel_checkboxes()
+
+        self.active_filter()
 
     def refresh_brand_checkboxes(self):
         # Pulisci precedenti
@@ -237,7 +264,7 @@ class VehicleSection(tk.Frame):
         price_max = parse_price(self.price_max_var.get())
 
         # Applica filtraggio combinato brand+modelli+colori+alimentazione+prezzo
-        filtered = self.vc.search_vehicle(
+        filtered = self.vc.filter_vehicle(
             brand_bools,
             selected_model_ids,
             colors=selected_colors,
@@ -246,6 +273,68 @@ class VehicleSection(tk.Frame):
             price_max=price_max,
         )
         self.fill_vehicle_listbox(filtered)
+
+    def active_search(self):
+        self.fill_vehicle_listbox(gv.vehicle_list)
+        self.search_tick_var.set(True)
+        self.filter_tick_var.set(False)
+
+        # Reset e disabilita brand
+        for var, cb in zip(self.brandTickValues.values(), self.brandTicks.values()):
+            var.set(False)
+            cb.config(state=tk.DISABLED)
+
+        # Reset e disabilita modelli
+        for var, cb in zip(self.modelTickValues.values(), self.modelTicks.values()):
+            var.set(False)
+            cb.config(state=tk.DISABLED)
+
+        # Reset e disabilita colori
+        for var, cb in zip(self.colorTickValues.values(), self.colorTicks.values()):
+            var.set(False)
+            cb.config(state=tk.DISABLED)
+
+        # Reset e disabilita fuel
+        for var, cb in zip(self.fuelTickValues.values(), self.fuelTicks.values()):
+            var.set(False)
+            cb.config(state=tk.DISABLED)
+
+        # Reset campi prezzo
+        self.price_min_var.set("")
+        self.price_max_var.set("")
+        self.min_entry.config(state="disabled")
+        self.max_entry.config(state="disabled")
+
+        # Abilita la searchbox
+        self.searchBox.config(state="normal")
+
+    def active_filter(self):
+        self.fill_vehicle_listbox(gv.vehicle_list)
+        self.search_tick_var.set(False)
+        self.filter_tick_var.set(True)
+        for brand in self.brandTicks.values():
+            brand.config(state=tk.NORMAL)
+        for model in self.modelTicks.values():
+            model.config(state=tk.NORMAL)
+        for color in self.colorTicks.values():
+            color.config(state=tk.NORMAL)
+        for fuel in self.fuelTicks.values():
+            fuel.config(state=tk.NORMAL)
+        self.min_entry.delete(0, tk.END)
+        self.max_entry.delete(0, tk.END)
+        self.min_entry.config(state="normal")
+        self.max_entry.config(state="normal")
+        self.searchBox.delete(0, tk.END)
+        self.searchBox.config(state="disabled")
+
+    def on_search_triggered(self):
+        self.fill_vehicle_listbox(self.vc.search_vehicle(self.searchBox.get()))
+
+
+
+
+
+
 
 
 

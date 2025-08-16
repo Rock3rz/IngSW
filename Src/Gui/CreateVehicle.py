@@ -528,5 +528,9 @@ class CreateVehicle(tk.Frame):
             if hasattr(self, 'image_label') and self.image_label is not None:
                 self.image_label.configure(image=self.no_image_icon)
 
+    def clear_combo_boxes(self):
+        self.brand_listBox.set("")
+        self.model_listBox.set("")
+
 
 

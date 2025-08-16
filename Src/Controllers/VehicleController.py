@@ -110,7 +110,7 @@ class VehicleController():
         else:
             return
 
-    def search_vehicle(self, brand_bool_list, selected_model_ids=None, colors=None, fuels=None, price_min=None, price_max=None):
+    def filter_vehicle(self, brand_bool_list, selected_model_ids=None, colors=None, fuels=None, price_min=None, price_max=None):
         """
         Filtra i veicoli in base a:
         - brand selezionati (brand_bool_list: lista di bool parallela a gv.brand_list)
@@ -149,6 +149,18 @@ class VehicleController():
             if brand_ok and model_ok and color_ok and fuel_ok and price_ok:
                 filtered.append(vehicle)
         return filtered
+
+    def search_vehicle(self, search_string):
+        tmp_vehicle_list = []
+        for vehicle in gv.vehicle_list:
+            if (search_string.lower() in vehicle.model.brand.lower() or
+                search_string.lower() in vehicle.model.name.lower() or
+                search_string.lower() in vehicle.color.lower() or
+                search_string.lower() in vehicle.number_plate.lower() or
+                search_string.lower() in str(vehicle.price)):
+                tmp_vehicle_list.append(vehicle)
+        return tmp_vehicle_list
+
 
 
 
