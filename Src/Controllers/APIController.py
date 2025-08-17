@@ -4,6 +4,10 @@ import Src.GlobalVariables.GlobalVariables as gv
 from Src.Class.Client import Client
 from Src.Class.User import User
 from Src.Class.Vehicle import Model, Vehicle
+from Src.Class.Appointment import Appointment
+from datetime import datetime
+from Src.Class.User import User
+from Src.GlobalVariables.GlobalVariables import api_controller, appointment_list
 
 
 class APIController:
@@ -36,6 +40,11 @@ class APIController:
         if os.path.exists(gv.Vehicle_file_path):
             self.df = pd.read_csv(gv.Vehicle_file_path)
             self.refresh_vehicle_list()
+        else:
+            self.df = pd.DataFrame()
+        if os.path.exists(gv.Appointment_file_path):
+            self.df = pd.read_csv(gv.Appointment_file_path)
+            self.refresh_appointment_list()
         else:
             self.df = pd.DataFrame()
 
@@ -215,4 +224,34 @@ class APIController:
         df = pd.DataFrame(data)
         df.to_csv(gv.Vehicle_file_path, index = False)
         APIController.refresh_vehicle_list()
+
+
+    @staticmethod
+    def refresh_appointment_list():
+        if os.path.exists(gv.Appointment_file_path):
+            df = pd.read_csv(gv.Appointment_file_path)
+            gv.appointment_list.clear()
+            for _, row in df.iterrows():
+                date_time_str = row["DateTime"]  # esempio: '2025-08-15 08:00:00'
+                gv.appointment_list.append(
+                    Appointment(description=str(row["Description"]),
+                                date_time = datetime.strptime(date_time_str, '%Y-%m-%d %H:%M:%S'),
+                                user = gv.user_recovery(int(row["User ID"]))
+                    )
+                )
+
+
+
+    @staticmethod
+    def write_appointment_on_csv():
+        data = []
+        for appointment in gv.appointment_list:
+            data.append({
+                "DateTime": appointment.date_time,
+                "User ID": appointment.user.user_id,
+                "Description": appointment.description
+            })
+        df = pd.DataFrame(data)
+        df.to_csv(gv.Appointment_file_path, index=False)
+        APIController.refresh_appointment_list()
 
