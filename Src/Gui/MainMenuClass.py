@@ -129,7 +129,7 @@ class MainMenu(tk.Frame):
                                      border_color="#000534",
                                      border_width=2,
                                      text_color="#b2a29f",
-                                     command=lambda: controller.mostra_frame("AppointmentSection"))
+                                     command=lambda: (controller.mostra_frame("AppointmentSection"), controller.frames["AppointmentSection"].create_event_on_calendar()))
         apt_sect_btn.grid(row=3, column=2, padx=80, pady=100)
 
         create_us_btn = ctk.CTkButton(content,

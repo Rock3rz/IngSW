@@ -5,7 +5,7 @@ from Src.Class.Client import Client
 from Src.Class.User import User
 from Src.Class.Vehicle import Model, Vehicle
 from Src.Class.Appointment import Appointment
-from datetime import datetime
+from datetime import datetime,date
 from Src.Class.User import User
 from Src.GlobalVariables.GlobalVariables import api_controller, appointment_list
 
@@ -226,21 +226,54 @@ class APIController:
         APIController.refresh_vehicle_list()
 
 
+    '''@staticmethod
+    def refresh_appointment_list():
+        if os.path.exists(gv.Appointment_file_path):
+            df = pd.read_csv(gv.Appointment_file_path)
+            gv.appointment_list.clear()
+            for _, row in df.iterrows():
+
+
+
+                date_time_str = row["DateTime"]  # esempio: '2025-08-15 08:00:00
+                gv.appointment_list.append(
+                    Appointment(description=str(row["Description"]),
+                                date_time = datetime.strptime(date_time_str, '%Y-%m-%d %H:%M:%S'),
+                                user = gv.user_recovery(int(row["User ID"]))
+                    )
+                )'''
+
     @staticmethod
     def refresh_appointment_list():
         if os.path.exists(gv.Appointment_file_path):
             df = pd.read_csv(gv.Appointment_file_path)
             gv.appointment_list.clear()
             for _, row in df.iterrows():
-                date_time_str = row["DateTime"]  # esempio: '2025-08-15 08:00:00'
+                date_time_str = str(row["DateTime"]).strip()
+
+                dt = None
+                for fmt in ('%Y-%m-%d %H:%M:%S', '%Y-%m-%d %H:%M'):
+                    try:
+                        dt = datetime.strptime(date_time_str, fmt)
+                        break
+                    except ValueError:
+                        pass
+                if dt is None:
+                    try:
+                        t = datetime.strptime(date_time_str, '%H:%M').time()
+                        base_date = getattr(gv, "CurrentDate", None) or date.today()
+
+                        dt = datetime.combine(base_date, t)
+                    except ValueError:
+                        raise ValueError(f"Formato DateTime non valido nel CSV: {date_time_str!r}")
+
                 gv.appointment_list.append(
-                    Appointment(description=str(row["Description"]),
-                                date_time = datetime.strptime(date_time_str, '%Y-%m-%d %H:%M:%S'),
-                                user = gv.user_recovery(int(row["User ID"]))
+                    Appointment(
+                        description=str(row["Description"]),
+                        date_time=dt,
+                        user=gv.user_recovery(int(row["User ID"]))
                     )
                 )
-
-
 
     @staticmethod
     def write_appointment_on_csv():
