@@ -36,10 +36,10 @@ class AppointmentSection(tk.Frame):
 
         tk.Label(self.leftFrame, text="AppointmentSection").grid(row=1, column=1)
         tk.Button(self.buttonFrame, text="Back", command=lambda: controller.mostra_frame("MainMenu")).grid(row=0, column=0)
-        self.create = tk.Button(self.buttonFrame, text="Create", command=lambda: self.create_event_func(self.description.get()))
+        self.create = tk.Button(self.buttonFrame, text="Crea", command=lambda: self.create_event_func(self.description.get()))
         self.create.grid(row=1, column=0, pady=(10, 0))
         tk.Button(self.buttonFrame, text = "Modifica", command= lambda: self.open_popup()).grid(row = 4, column = 0, pady = (10, 0))
-
+        tk.Button(self.buttonFrame, text="Elimina", command=lambda: self.delete_func()).grid(row=5, column=0, pady=(10, 0))
 
         tk.Label(self.buttonFrame, text="Descrizione").grid(row=2, column=0)
         self.description = (tk.Entry(self.buttonFrame, width=50))
@@ -48,6 +48,10 @@ class AppointmentSection(tk.Frame):
         # Map of time string -> parent node iid
         self.time_nodes = {}
         self.fill_schedule()
+
+        #Verifico che tutti gli appuntamenti non siano scaduti
+        self.validate_date()
+
         # self.create_event_on_calendar()
         self.cal.bind("<<CalendarSelected>>", self.on_date_selected)
         self.schedule.bind("<<TreeviewSelect>>", self.on_hour_selected)
@@ -72,7 +76,7 @@ class AppointmentSection(tk.Frame):
         gv.CurrentDate = datetime.strptime(selected_date, "%d/%m/%Y").date()
         self.create_event_on_timeTable(gv.CurrentDate)
 
-    #callback per la seleizone dell'orario
+    #callback per la selezione dell'orario
     def on_hour_selected(self, event):
         tree = event.widget
         selected = tree.selection()
@@ -145,6 +149,7 @@ class AppointmentSection(tk.Frame):
         self.ac.create_appointment(description)
         self.create_event_on_timeTable(gv.CurrentDate)
         self.create_event_on_calendar()
+        self.description.delete(0, tk.END)
 
 
     def open_popup(self):
@@ -181,6 +186,11 @@ class AppointmentSection(tk.Frame):
             self.create_event_on_timeTable(gv.CurrentDate)
             self.create_event_on_calendar()
             self.popup.destroy()
+
+    def delete_func(self):
+        self.ac.delete_appointment()
+        self.create_event_on_calendar()
+        self.create_event_on_timeTable(gv.CurrentDate)
 
 
 

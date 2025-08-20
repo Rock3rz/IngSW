@@ -1,6 +1,6 @@
-from Client import Client
-from Vehicle import Vehicle
-from User import User
+from Src.Class.Client import Client
+from Src.Class.Vehicle import Vehicle
+from Src.Class.User import User
 from datetime import date
 
 class Quote:
@@ -12,7 +12,8 @@ class Quote:
         quote_id: int,
         start_date: date,
         user: User,
-        vehicle: Vehicle
+        vehicle: Vehicle,
+        price: float
     ):
         self.Client = client
         self.Confirmed = confirmed
@@ -20,4 +21,5 @@ class Quote:
         self.id = quote_id
         self.StarDate = start_date
         self.User = user
-        self.Vehicle =vehicle
+        self.Vehicle = vehicle
+        self.Price = price

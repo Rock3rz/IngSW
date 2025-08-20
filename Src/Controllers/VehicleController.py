@@ -111,15 +111,7 @@ class VehicleController():
             return
 
     def filter_vehicle(self, brand_bool_list, selected_model_ids=None, colors=None, fuels=None, price_min=None, price_max=None):
-        """
-        Filtra i veicoli in base a:
-        - brand selezionati (brand_bool_list: lista di bool parallela a gv.brand_list)
-        - modelli selezionati (selected_model_ids: lista di interi - Model.model_id)
-        - colori selezionati (colors: lista di stringhe colore)
-        - alimentazioni selezionate (fuels: lista di stringhe)
-        - range di prezzo (price_min, price_max: float o None)
-        La logica è combinata (AND) tra categorie diverse; all'interno di una categoria (es. più colori) vale l'OR.
-        """
+
         if selected_model_ids is None:
             selected_model_ids = []
         if colors is None:

@@ -1,3 +1,4 @@
+from tkinter.messagebox import askyesno
 import Src.GlobalVariables.GlobalVariables as gv
 from tkinter import messagebox
 from datetime import datetime
@@ -50,6 +51,19 @@ class AppointmentController:
         gv.appointment_list[index].description = new_description
         APIController.write_appointment_on_csv()
 
+    def delete_appointment(self):
 
+        answer = askyesno("Cancellazione", "Sei sicuro di voler cancellare l'appuntamento?")
+        if answer:
+            index = self.find_appointment()
+            gv.appointment_list.pop(index)
+            if gv.appointment_list:
+                APIController.write_appointment_on_csv()
+                messagebox.showinfo("Successo", "Appuntamento eliminato con successo")
+            else:
+                import pandas as pd
+                df = pd.DataFrame(columns=["DateTime", "User ID", "Description"])
+                df.to_csv(gv.Appointment_file_path, index=False)
+                messagebox.showinfo("Successo", "Ultimo appuntamento eliminato, lista ora vuota")
 
 

@@ -17,6 +17,8 @@ from Src.Gui.CreateClientSectionClass import CreateClientSectionClass
 from Src.Gui.ViewClientSection import ViewClient
 from Src.Gui.CreateModelClass import CreateModel
 from Src.Gui.VehicleViewClass import VehicleView
+from Src.Gui.ViewQuoteClass import QuoteView
+from Src.Gui.CreateQuoteClass import QuoteCreate
 
 class Gui:
 
@@ -47,7 +49,9 @@ class Gui:
             ViewClient,
             CreateModel,
             CreateVehicle,
-            VehicleView
+            VehicleView,
+            QuoteView,
+            QuoteCreate
             ):
             frame = F(self.container, self)
             self.frames[F.__name__] = frame

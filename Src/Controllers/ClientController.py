@@ -73,6 +73,15 @@ class ClientController:
                 risultati.append(client)
         return risultati
 
+    def search_client_by_string(self, search_string):
+        tmp_client_list = []
+        for client in gv.client_list:
+            if( search_string.lower() in client.FirstName.lower() or
+                search_string.lower() in client.LastName.lower() or
+                search_string.lower() in client.email.lower()):
+                tmp_client_list.append(client)
+        return tmp_client_list
+
 
 
 

@@ -16,6 +16,9 @@ Brand_file_path = "DB/brand.csv"
 Model_file_path = "DB/model.csv"
 Vehicle_file_path = "DB/vehicle.csv"
 Appointment_file_path = "DB/appointment.csv"
+Quote_file_path = "DB/quote.csv"
+
+
 # Collezioni condivise in memoria
 user_list = []
 client_list = []
@@ -23,6 +26,8 @@ brand_list = []
 model_list = []
 vehicle_list = []
 appointment_list = []
+quote_list = []
+
 
 # Entità correnti selezionate nella GUI
 CurrentClient = None
@@ -31,6 +36,7 @@ CurrentModel = None
 CurrentVehicle = None
 CurrentDate = None
 CurrentHour = None
+CurrentQuote = None
 
 
 
@@ -40,6 +46,7 @@ client_controller = None
 vehicle_controller = None
 api_controller = None
 appointment_controller = None
+quote_controller = None
 
 
 def init_controllers():
@@ -47,9 +54,9 @@ def init_controllers():
     #Inizializza e centralizza le istanze dei controller.
 
 
-    global account_controller, client_controller, vehicle_controller, api_controller, appointment_controller
+    global account_controller, client_controller, vehicle_controller, api_controller, appointment_controller, quote_controller
 
-    if all([account_controller, client_controller, vehicle_controller, api_controller, appointment_controller]):
+    if all([account_controller, client_controller, vehicle_controller, api_controller, appointment_controller, quote_controller]):
         return
 
     # Creazione directory DB se mancante
@@ -59,6 +66,7 @@ def init_controllers():
     os.makedirs(os.path.dirname(Model_file_path), exist_ok=True)
     os.makedirs(os.path.dirname(Vehicle_file_path), exist_ok=True)
     os.makedirs(os.path.dirname(Appointment_file_path), exist_ok=True)
+    os.makedirs(os.path.dirname(Quote_file_path), exist_ok=True)
 
     # Import locali per evitare cicli
     from Src.Controllers.AccountController import AccountController
@@ -66,6 +74,7 @@ def init_controllers():
     from Src.Controllers.VehicleController import VehicleController
     from Src.Controllers.APIController import APIController
     from Src.Controllers.AppointmentController import AppointmentController
+    from Src.Controllers.QuoteController import QuoteController
 
     # Istanza API una volta per popolamento liste da CSV
     api_controller = APIController()
@@ -75,6 +84,7 @@ def init_controllers():
     client_controller = ClientController()
     vehicle_controller = VehicleController()
     appointment_controller = AppointmentController()
+    quote_controller = QuoteController()
 
 @staticmethod
 def model_recovery(model_id:int)->Model:
