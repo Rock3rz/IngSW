@@ -1,9 +1,9 @@
 import pandas as pd
 import tkinter as tk
-from tkinter import PhotoImage
 import os
 import Src.GlobalVariables.GlobalVariables as gv
 import customtkinter as ctk
+from PIL import Image
 from Src.Controllers.ClientController import ClientController
 
 
@@ -14,7 +14,9 @@ class CreateClientSectionClass(tk.Frame):
 
         base_path = os.path.dirname(__file__)
         icon_dir = os.path.join(base_path, "..", "Images", "Icone")
-        logout_icon = PhotoImage(file=os.path.join(icon_dir, "Logout.png"))
+        logout_img = Image.open(os.path.join(icon_dir, "Logout.png"))
+
+        logout_icon = ctk.CTkImage(light_image=logout_img, dark_image=logout_img, size=(30, 30))
 
         header_frame = tk.Frame(self, bg="#000534", height=50)
         header_frame.pack(side="top", fill="x")

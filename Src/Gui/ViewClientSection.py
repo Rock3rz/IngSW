@@ -3,7 +3,7 @@ import Src.GlobalVariables.GlobalVariables as gv
 from Src.Controllers.ClientController import ClientController
 import os
 import customtkinter as ctk
-from tkinter import PhotoImage
+from PIL import Image
 
 #Classe di gestione e visione clienti
 class ViewClient(tk.Frame):
@@ -14,7 +14,7 @@ class ViewClient(tk.Frame):
 
         base_path = os.path.dirname(__file__)
         icon_dir = os.path.join(base_path, "..", "Images", "Icone")
-        logout_icon = PhotoImage(file=os.path.join(icon_dir, "Logout.png"))
+        logout_icon = ctk.CTkImage(light_image=Image.open(os.path.join(icon_dir, "Logout.png")), size=(30, 30))
 
         header_frame = tk.Frame(self, bg="#000534", height=50)
         header_frame.pack(side="top", fill="x")

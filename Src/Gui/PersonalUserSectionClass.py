@@ -1,9 +1,9 @@
 import tkinter as tk
-from tkinter import PhotoImage
 from Src.Controllers.AccountController import AccountController
 import Src.GlobalVariables.GlobalVariables as gv
 import os
 import customtkinter as ctk
+from PIL import Image
 
 
 class UserSection(tk.Frame):
@@ -13,7 +13,7 @@ class UserSection(tk.Frame):
 
         base_path = os.path.dirname(__file__)
         icon_dir = os.path.join(base_path, "..", "Images", "Icone")
-        logout_icon = PhotoImage(file=os.path.join(icon_dir, "Logout.png"))
+        logout_icon = ctk.CTkImage(light_image=Image.open(os.path.join(icon_dir, "Logout.png")), size=(30, 30))
 
         header_frame = tk.Frame(self, bg="#000534", height=50)
         header_frame.pack(side= "top", fill= "x")

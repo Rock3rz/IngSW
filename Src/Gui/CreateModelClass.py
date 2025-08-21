@@ -4,7 +4,7 @@ from Src.GlobalVariables.GlobalVariables import model_list, api_controller
 from Src.Controllers.APIController import APIController
 import os
 import customtkinter as ctk
-from tkinter import PhotoImage
+from PIL import Image
 
 class CreateModel(tk.Frame):
     def __init__(self, parent, controller):
@@ -14,8 +14,10 @@ class CreateModel(tk.Frame):
 
         base_path = os.path.dirname(__file__)
         icon_dir = os.path.join(base_path, "..", "Images", "Icone")
-        logout_icon = PhotoImage(file=os.path.join(icon_dir, "Logout.png"))
+        logout_img = Image.open(os.path.join(icon_dir, "Logout.png"))
 
+        logout_icon = ctk.CTkImage(light_image=logout_img, dark_image=logout_img, size=(30, 30))
+        
         header_frame = tk.Frame(self, bg="#000534", height=50)
         header_frame.pack(side="top", fill="x")
         header_frame.pack_propagate(False)

@@ -1,12 +1,12 @@
 import tkinter as tk
 import customtkinter as ctk
-from tkinter import PhotoImage
 import os
 from Src.Controllers.AccountController import AccountController
 import pandas as pd
 import Src.GlobalVariables.GlobalVariables as gv
 from tkinter import messagebox
 from Src.Controllers.APIController import APIController
+from PIL import Image
 
 
 class CreateUserSection(tk.Frame):
@@ -18,8 +18,11 @@ class CreateUserSection(tk.Frame):
 
         base_path = os.path.dirname(__file__)
         icon_dir = os.path.join(base_path, "..", "Images", "Icone")
-        logout_icon = PhotoImage(file=os.path.join(icon_dir, "Logout.png"))
-        add_user_icon = PhotoImage(file=os.path.join(icon_dir, "CreaUtente.png"))
+        logout_img = Image.open(os.path.join(icon_dir, "Logout.png"))
+        add_user_img = Image.open(os.path.join(icon_dir, "CreaUtente.png"))
+
+        logout_icon = ctk.CTkImage(light_image=logout_img, dark_image=logout_img, size=(30, 30))
+        add_user_icon = ctk.CTkImage(light_image=add_user_img, dark_image=add_user_img, size=(30, 30))
 
         header_frame = tk.Frame(self, bg="#000534", height=50)
         header_frame.pack(side="top", fill="x")

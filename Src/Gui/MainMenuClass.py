@@ -1,8 +1,9 @@
 import tkinter as tk
-from tkinter import messagebox, PhotoImage
+from tkinter import messagebox
 import Src.GlobalVariables.GlobalVariables as gv
 from Src.Controllers.AccountController import AccountController
 import customtkinter as ctk
+from PIL import Image
 import os
 
 
@@ -15,13 +16,13 @@ class MainMenu(tk.Frame):
         base_path = os.path.dirname(__file__)
         icon_dir = os.path.join(base_path, "..", "Images", "Icone")
 
-        user_icon = PhotoImage(file=os.path.join(icon_dir, "Utente.png"))
-        calendar_icon = PhotoImage(file=os.path.join(icon_dir, "Calendario.png"))
-        car_icon = PhotoImage(file=os.path.join(icon_dir, "Auto.png"))
-        client_icon = PhotoImage(file=os.path.join(icon_dir, "Clienti.png"))
-        quote_icon = PhotoImage(file=os.path.join(icon_dir, "Preventivi.png"))
-        add_user_icon = PhotoImage(file=os.path.join(icon_dir, "CreaUtente.png"))
-        logout_icon = PhotoImage(file=os.path.join(icon_dir, "Logout.png"))
+        self.user_icon = ctk.CTkImage(light_image=Image.open(os.path.join(icon_dir, "Utente.png")), size=(30, 30))
+        self.calendar_icon = ctk.CTkImage(light_image=Image.open(os.path.join(icon_dir, "Calendario.png")), size=(30, 30))
+        self.car_icon = ctk.CTkImage(light_image=Image.open(os.path.join(icon_dir, "Auto.png")), size=(30, 30))
+        self.client_icon = ctk.CTkImage(light_image=Image.open(os.path.join(icon_dir, "Clienti.png")), size=(30, 30))
+        self.quote_icon = ctk.CTkImage(light_image=Image.open(os.path.join(icon_dir, "Preventivi.png")), size=(30, 30))
+        self.add_user_icon = ctk.CTkImage(light_image=Image.open(os.path.join(icon_dir, "CreaUtente.png")), size=(30, 30))
+        self.logout_icon = ctk.CTkImage(light_image=Image.open(os.path.join(icon_dir, "Logout.png")), size=(30, 30))
 
         header_frame = tk.Frame(self, bg="#dee4e9")
         header_frame.pack(fill="x", pady=(50, 20), padx=(60, 100))
@@ -31,7 +32,7 @@ class MainMenu(tk.Frame):
 
         logout_btn = ctk.CTkButton(header_frame,
                                    text="Logout",
-                                   image=logout_icon,
+                                   image=self.logout_icon,
                                    compound="left",
                                    font=("Calisto MT", 15, "bold"),
                                    width=150,
@@ -58,7 +59,7 @@ class MainMenu(tk.Frame):
 
         user_sect_btn = ctk.CTkButton(content,
                                       text = "Profilo Utente",
-                                      image = user_icon,
+                                      image = self.user_icon,
                                       compound = "left",
                                       font=("Calisto MT", 20, "bold"),
                                       width=250,
@@ -73,7 +74,7 @@ class MainMenu(tk.Frame):
 
         vehicle_sect_btn = ctk.CTkButton(content,
                                          text = "Parco Auto",
-                                         image=car_icon,
+                                         image=self.car_icon,
                                          compound="left",
                                          font=("Calisto MT", 20, "bold"),
                                          width=250,
@@ -89,7 +90,7 @@ class MainMenu(tk.Frame):
 
         client_sect_btn = ctk.CTkButton(content,
                                     text="Lista Clienti",
-                                    image=client_icon,
+                                    image=self.client_icon,
                                     compound="left",
                                     font=("Calisto MT", 20, "bold"),
                                     width=250,
@@ -104,7 +105,7 @@ class MainMenu(tk.Frame):
 
         quote_sect_btn = ctk.CTkButton(content,
                                 text = "Preventivi",
-                                image=quote_icon,
+                                image=self.quote_icon,
                                 compound="left",
                                 font=("Calisto MT", 20, "bold"),
                                 width=250,
@@ -120,7 +121,7 @@ class MainMenu(tk.Frame):
         apt_sect_btn = ctk.CTkButton(content,
                                      text="Calendario\nAppuntamenti",
                                      font=("Calisto MT", 20, "bold"),
-                                     image=calendar_icon,
+                                     image=self.calendar_icon,
                                      compound="left",
                                      width=250,
                                      height=220,
@@ -135,7 +136,7 @@ class MainMenu(tk.Frame):
         create_us_btn = ctk.CTkButton(content,
                                       text="Crea Utente",
                                       font=("Calisto MT", 20, "bold"),
-                                      image=add_user_icon,
+                                      image=self.add_user_icon,
                                       compound="left",
                                       width=250,
                                       height= 220,
