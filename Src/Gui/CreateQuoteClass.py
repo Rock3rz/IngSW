@@ -1,5 +1,6 @@
 import tkinter as tk
 import Src.GlobalVariables.GlobalVariables as gv
+import datetime as dt
 
 
 class QuoteCreate(tk.Frame):
@@ -97,7 +98,8 @@ class QuoteCreate(tk.Frame):
         if self.selected_vehicle:
             self.selected_vehicle = self.selected_vehicle[0]
             value = self.vehicleListBox.get(self.selected_vehicle)
-            print(value)
+            value = value.split()[0]
+            self.fill_vehicle_fields(gv.vehicle_recovery(int(value)))
 
 
     def on_client_selected(self, event = None):
@@ -110,7 +112,8 @@ class QuoteCreate(tk.Frame):
         if self.selected_client:
             self.selected_client = self.selected_client[0]
             value = self.clientListBox.get(self.selected_client)
-            print(value)
+            value = value.split()[0]
+            self.fill_client_fields(gv.client_recovery(int(value)))
 
     def search_vehicle(self,event = None):
         self.vehicleListBox.delete(0, tk.END)
@@ -121,3 +124,17 @@ class QuoteCreate(tk.Frame):
         self.clientListBox.delete(0, tk.END)
         tmp_list = self.cc.search_client_by_string(self.CsearchBar.get())
         self.fill_client_list(tmp_list)
+        
+    def fill_client_fields(self,client):
+        self.clientInfo.configure(state= "normal")
+        self.clientInfo.delete(0, tk.END)
+        self.clientInfo.insert(0, f"{client.FirstName} {client.LastName}")
+        self.clientInfo.configure(state= "readonly")
+        
+    def fill_vehicle_fields(self, vehicle):
+        self.vehicleInfo.configure(state= "normal")
+        self.vehicleInfo.delete(0, tk.END)
+        self.vehicleInfo.insert(0, f"{vehicle.model.brand} {vehicle.model.name} {vehicle.color} {vehicle.number_plate}")
+        self.vehicleInfo.configure(state= "readonly")
+
+        

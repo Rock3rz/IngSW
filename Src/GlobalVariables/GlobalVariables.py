@@ -1,6 +1,7 @@
 import os
-from Src.Class.Vehicle import Model
+from Src.Class.Vehicle import Model, Vehicle
 from Src.Class.User import User
+from Src.Class.Client import Client
 
 
 # Stato applicativo
@@ -98,6 +99,18 @@ def user_recovery(user_id:int)->User:
     for user in user_list:
         if int(user.user_id) == int(user_id):
             return user
+
+@staticmethod
+def client_recovery(client_id:int)->Client:
+    for client in client_list:
+        if int(client.ID) == int(client_id):
+            return client
+
+@staticmethod
+def vehicle_recovery(vehicle_id:int)->Vehicle:
+    for vehicle in vehicle_list:
+        if int(vehicle.vehicle_id) == int(vehicle_id):
+            return vehicle
 
 
 
