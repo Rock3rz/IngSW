@@ -19,7 +19,7 @@ class Quote:
         self.Confirmed = confirmed
         self.EndDate = end_date
         self.id = quote_id
-        self.StarDate = start_date
+        self.StartDate = start_date
         self.User = user
         self.Vehicle = vehicle
         self.Price = price

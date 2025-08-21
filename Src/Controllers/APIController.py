@@ -8,7 +8,7 @@ from Src.Class.Appointment import Appointment
 from datetime import datetime,date
 from Src.Class.User import User
 from Src.GlobalVariables.GlobalVariables import api_controller, appointment_list
-
+from Src.Class.Quote import Quote
 
 class APIController:
     def __init__(self):
@@ -42,9 +42,16 @@ class APIController:
             self.refresh_vehicle_list()
         else:
             self.df = pd.DataFrame()
+
         if os.path.exists(gv.Appointment_file_path):
             self.df = pd.read_csv(gv.Appointment_file_path)
             self.refresh_appointment_list()
+        else:
+            self.df = pd.DataFrame()
+
+        if os.path.exists(gv.Quote_file_path):
+            self.df = pd.read_csv(gv.Quote_file_path)
+            self.refresh_quote_list()
         else:
             self.df = pd.DataFrame()
 
@@ -226,23 +233,6 @@ class APIController:
         APIController.refresh_vehicle_list()
 
 
-    '''@staticmethod
-    def refresh_appointment_list():
-        if os.path.exists(gv.Appointment_file_path):
-            df = pd.read_csv(gv.Appointment_file_path)
-            gv.appointment_list.clear()
-            for _, row in df.iterrows():
-
-
-
-                date_time_str = row["DateTime"]  # esempio: '2025-08-15 08:00:00
-                gv.appointment_list.append(
-                    Appointment(description=str(row["Description"]),
-                                date_time = datetime.strptime(date_time_str, '%Y-%m-%d %H:%M:%S'),
-                                user = gv.user_recovery(int(row["User ID"]))
-                    )
-                )'''
-
     @staticmethod
     def refresh_appointment_list():
         if os.path.exists(gv.Appointment_file_path):
@@ -288,3 +278,40 @@ class APIController:
         df.to_csv(gv.Appointment_file_path, index=False)
         APIController.refresh_appointment_list()
 
+
+    @staticmethod
+    def refresh_quote_list():
+        if os.path.exists(gv.Quote_file_path):
+            df = pd.read_csv(gv.Quote_file_path)
+            gv.quote_list.clear()
+            for _, row in df.iterrows():
+                gv.quote_list.append(
+                    Quote(
+                        client = gv.client_recovery(int(row["Client"])),
+                        confirmed = row["Confirmed"],
+                        end_date = datetime.strptime(row["End Date"], "%Y-%m-%d").date(),
+                        quote_id = int(row["Quote ID"]),
+                        start_date = datetime.strptime(row["Start Date"], "%Y-%m-%d").date(),
+                        user = gv.user_recovery(int(row["User"])),
+                        vehicle = gv.vehicle_recovery(int(row["Vehicle"])),
+                        price = float(row["Price"]),
+                    ))
+
+
+    @staticmethod
+    def write_quote_on_csv():
+        data = []
+        for quote in gv.quote_list:
+            data.append({
+                "Quote ID": quote.id,
+                "Client": quote.Client.ID,
+                "Vehicle": quote.Vehicle.vehicle_id,
+                "Start Date": quote.StartDate,
+                "End Date": quote.EndDate,
+                "Confirmed": quote.Confirmed,
+                "Price": quote.Price,
+                "User": quote.User.user_id
+            })
+        df = pd.DataFrame(data)
+        df.to_csv(gv.Quote_file_path, index=False)
+        APIController.refresh_quote_list()

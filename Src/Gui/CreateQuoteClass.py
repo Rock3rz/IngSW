@@ -1,6 +1,8 @@
 import tkinter as tk
 import Src.GlobalVariables.GlobalVariables as gv
 import datetime as dt
+from dateutil.relativedelta import relativedelta
+costanteKW = 0.7355
 
 
 class QuoteCreate(tk.Frame):
@@ -24,7 +26,7 @@ class QuoteCreate(tk.Frame):
 
         back_btn = tk.Button(self, text="Back", command=lambda: controller.mostra_frame("QuoteSection"))
         back_btn.grid(row=0, column=0)
-        create_btn = tk.Button(self, text="Create")
+        create_btn = tk.Button(self, text="Create", command = lambda: self.create_quote())
         create_btn.grid(row=0, column=1)
 
         #Campi Quote
@@ -65,6 +67,8 @@ class QuoteCreate(tk.Frame):
 
 
 
+
+
         self.vehicleListBox.bind("<<ListboxSelect>>", self.on_vehicle_selected)
         self.clientListBox.bind("<<ListboxSelect>>",self.on_client_selected)
 
@@ -73,6 +77,8 @@ class QuoteCreate(tk.Frame):
 
         self.fill_vehicle_list(gv.vehicle_list)
         self.fill_client_list(gv.client_list)
+        self.fill_time_fields()
+        self.fill_id()
 
 
 
@@ -99,7 +105,9 @@ class QuoteCreate(tk.Frame):
             self.selected_vehicle = self.selected_vehicle[0]
             value = self.vehicleListBox.get(self.selected_vehicle)
             value = value.split()[0]
-            self.fill_vehicle_fields(gv.vehicle_recovery(int(value)))
+            local_vehicle = gv.vehicle_recovery(int(value))
+            self.fill_vehicle_fields(local_vehicle)
+            self.fill_price(local_vehicle)
 
 
     def on_client_selected(self, event = None):
@@ -128,13 +136,78 @@ class QuoteCreate(tk.Frame):
     def fill_client_fields(self,client):
         self.clientInfo.configure(state= "normal")
         self.clientInfo.delete(0, tk.END)
-        self.clientInfo.insert(0, f"{client.FirstName} {client.LastName}")
+        self.clientInfo.insert(0, f"{client.ID} - {client.FirstName} {client.LastName}")
         self.clientInfo.configure(state= "readonly")
         
     def fill_vehicle_fields(self, vehicle):
         self.vehicleInfo.configure(state= "normal")
         self.vehicleInfo.delete(0, tk.END)
-        self.vehicleInfo.insert(0, f"{vehicle.model.brand} {vehicle.model.name} {vehicle.color} {vehicle.number_plate}")
+        self.vehicleInfo.insert(0, f"{vehicle.vehicle_id} - {vehicle.model.brand} {vehicle.model.name} {vehicle.color} {vehicle.number_plate}")
         self.vehicleInfo.configure(state= "readonly")
+
+    def fill_time_fields(self):
+        self.startDate.configure(state= "normal")
+        self.startDate.delete(0, tk.END)
+        self.startDate.insert(0, dt.datetime.now().strftime("%d/%m/%Y"))
+        self.startDate.configure(state= "readonly")
+        self.endDate.configure(state= "normal")
+        self.endDate.delete(0, tk.END)
+        self.endDate.insert(0, (dt.datetime.now() + relativedelta(days=7)).strftime("%d/%m/%Y"))
+        self.endDate.configure(state= "readonly")
+
+    def fill_price(self, vehicle):
+        '''
+        È applicabile l’Iva al 4%, anziché al 22%, sull’acquisto di autovetture nuove o usate, aventi cilindrata fino a:
+
+            2.000 centimetri cubici, se con motore a benzina o ibrido
+            2.800 centimetri cubici, se con motore diesel o ibrido
+            di potenza non superiore a 150 kW se con motore elettrico.
+        '''
+
+        if (vehicle.model.displacement <= 2000 and (vehicle.fuel_type == 6 or vehicle.fuel_type == 4) or
+            vehicle.model.displacement <= 2800 and (vehicle.fuel_type == 6 or vehicle.fuel_type == 2) or
+            vehicle.fuel_type == 6):
+            base_price = vehicle.price + (vehicle.price * 0.04)
+
+        else:
+            base_price = vehicle.price + (vehicle.price * 0.22)
+
+        kw = vehicle.model.hp * costanteKW
+        priceToAdd = 151 + (kw - 53) * 3.51
+        finalprice = round(priceToAdd + base_price,2)
+        self.price.configure(state= "normal")
+        self.price.delete(0, tk.END)
+        self.price.insert(0, finalprice)
+        self.price.configure(state= "readonly")
+
+    def fill_id(self):
+        if gv.quote_list:
+            next_id = max(int(q.id) for q in gv.quote_list)+1
+
+        else:
+            next_id = 1
+
+        self.quoteID.configure(state="normal")
+        self.quoteID.delete(0, tk.END)
+        self.quoteID.insert(0, str(next_id))
+        self.quoteID.configure(state="readonly")
+
+    def fill_user(self):
+        self.userInfo.configure(state="normal")
+        self.userInfo.delete(0, tk.END)
+        self.userInfo.insert(0, f"{gv.CurrentUser.user_id} - {gv.CurrentUser.firstName} {gv.CurrentUser.LastName}")
+        self.userInfo.configure(state="readonly")
+
+    def create_quote(self):
+        self.qc.create_quote(self.quoteID.get(),
+                             self.clientInfo.get(),
+                             self.vehicleInfo.get(),
+                             self.startDate.get(),
+                             self.endDate.get(),
+                             self.price.get())
+        self.fill_id()
+
+
+
 
         
