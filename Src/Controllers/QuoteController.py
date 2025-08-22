@@ -95,7 +95,8 @@ class QuoteController:
         if askyesno:
             if gv.CurrentQuote:
                 gv.CurrentQuote.Confirmed = True
-                #gv.vehicle_list.remove(gv.CurrentQuote.Vehicle)
+                gv.CurrentQuote.Vehicle.sold = True
+                gv.CurrentQuote.Vehicle.is_available = False
                 APIController.write_vehicle_on_csv()
                 APIController.write_quote_on_csv()
                 messagebox.showinfo("Successo", "Preventivo confermato con successo")

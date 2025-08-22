@@ -2,6 +2,7 @@ from enum import Enum
 from typing import Optional
 
 
+
 class FuelType(Enum):
     CNG = 1
     DIESEL = 2
@@ -52,7 +53,8 @@ class Vehicle:
         km: float,
         number_plate : str,
         price: float,
-        image: Optional[str] = None
+        image: Optional[str] = None,
+        sold: bool = False,
     ):
         #self.brand = brand
         self.registration_year = registration_year
@@ -65,3 +67,6 @@ class Vehicle:
         self.model = model
         self.number_plate = number_plate
         self.price = price
+        self.sold = sold
+
+

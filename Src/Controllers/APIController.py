@@ -184,6 +184,23 @@ class APIController:
 
 
     @staticmethod
+    def _parse_bool(val) -> bool:
+        # Accepts booleans, integers 0/1, and common string representations
+        if isinstance(val, bool):
+            return val
+        if val is None or (isinstance(val, float) and pd.isna(val)):
+            return False
+        if isinstance(val, (int, float)):
+            return bool(int(val))
+        s = str(val).strip().lower()
+        if s in ("1", "true", "t", "yes", "y", "si", "s"):  # include Italian yes
+            return True
+        if s in ("0", "false", "f", "no", "n"):
+            return False
+        # Fallback: any non-empty string other than explicit false-like -> False for safety
+        return False
+
+    @staticmethod
     def refresh_vehicle_list():
         if os.path.exists(gv.Vehicle_file_path):
             df = pd.read_csv(gv.Vehicle_file_path)
@@ -204,11 +221,13 @@ class APIController:
                         color=str(row["Color"]),
                         fuel_type=str(row["Fuel Type"]),
                         vehicle_id=int(row["Vehicle ID"]),
-                        is_available=bool(row["Is Available"]),
+                        is_available=APIController._parse_bool(row.get("Is Available")),
                         km=float(row["Km"]),
                         number_plate=str(row["Number Plate"]),
                         price=float(row["Price"]),
-                        image=image_path
+                        image=image_path,
+                        sold=APIController._parse_bool(row.get("Sold"))
+
                     )
                 )
 
@@ -226,7 +245,8 @@ class APIController:
                 "Km": vehicle.km,
                 "Number Plate": vehicle.number_plate,
                 "Price": vehicle.price,
-                "Image": vehicle.image if vehicle.image else ""
+                "Image": vehicle.image if vehicle.image else "",
+                "Sold" : vehicle.sold
             })
         df = pd.DataFrame(data)
         df.to_csv(gv.Vehicle_file_path, index = False)
@@ -287,14 +307,14 @@ class APIController:
             for _, row in df.iterrows():
                 gv.quote_list.append(
                     Quote(
-                        client = gv.client_recovery(int(row["Client"])),
-                        confirmed = row["Confirmed"],
-                        end_date = datetime.strptime(row["End Date"], "%Y-%m-%d").date(),
-                        quote_id = int(row["Quote ID"]),
-                        start_date = datetime.strptime(row["Start Date"], "%Y-%m-%d").date(),
-                        user = gv.user_recovery(int(row["User"])),
-                        vehicle = gv.vehicle_recovery(int(row["Vehicle"])),
-                        price = float(row["Price"]),
+                        client=gv.client_recovery(int(row["Client"])),
+                        confirmed=APIController._parse_bool(row.get("Confirmed")),
+                        end_date=datetime.strptime(str(row["End Date"]).strip(), "%Y-%m-%d").date(),
+                        quote_id=int(row["Quote ID"]),
+                        start_date=datetime.strptime(str(row["Start Date"]).strip(), "%Y-%m-%d").date(),
+                        user=gv.user_recovery(int(row["User"])),
+                        vehicle=gv.vehicle_recovery(int(row["Vehicle"])),
+                        price=float(row["Price"]),
                     ))
 
 

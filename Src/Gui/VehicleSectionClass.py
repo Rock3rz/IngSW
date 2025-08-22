@@ -16,6 +16,7 @@ class VehicleSection(tk.Frame):
         self.supportList = []
         self.selected_vehicle = None
 
+
         base_path = os.path.dirname(__file__)
         icon_dir = os.path.join(base_path, "..", "Images", "Icone")
         logout_img = Image.open(os.path.join(icon_dir, "Logout.png"))
@@ -76,11 +77,11 @@ class VehicleSection(tk.Frame):
         self.fuelTickValues = {}
         self.fuelTicks = {}
 
-        # Variabili prezzo
+
         self.price_min_var = tk.StringVar()
         self.price_max_var = tk.StringVar()
 
-        # Layout principale: aggiungi spazi ai lati e due colonne centrali (sinistra lista veicoli ~50%, destra filtri ~50%)
+
         main_frame.grid_columnconfigure(0, weight=0, minsize=30)  # spazio sinistro
         main_frame.grid_columnconfigure(1, weight=1)              # left_frame ~ metà
         main_frame.grid_columnconfigure(2, weight=1)              # right_frame ~ metà
@@ -97,7 +98,6 @@ class VehicleSection(tk.Frame):
         self.left_frame.grid(row=0, column=1, sticky=tk.NSEW, padx=5, pady=5)
         self.right_frame.grid(row=0, column=2, sticky=tk.NSEW, padx=5, pady=5)
 
-        # Left frame
         self.left_frame.grid_columnconfigure(0, weight=1)
         self.left_frame.grid_columnconfigure(1, weight=0)
         self.left_frame.grid_rowconfigure(1, weight=1)
@@ -138,8 +138,7 @@ class VehicleSection(tk.Frame):
         # Lista iniziale
         self.fill_vehicle_listbox(gv.vehicle_list)
 
-        # Right frame: otto colonne con uno spacer a sinistra e divisori tra le 4 aree
-        # 0=spacer, 1=Brand, 2=divisore, 3=Modelli, 4=divisore, 5=Colori, 6=divisore, 7=Alimentazione
+
         self.right_frame.grid_columnconfigure(0, weight=0, minsize=12)
         for col in (1, 3, 5, 7):
             self.right_frame.grid_columnconfigure(col, weight=1)
@@ -185,12 +184,12 @@ class VehicleSection(tk.Frame):
         icon_dir = os.path.join(base_path, "..", "Images", "Icone")
         search_img = Image.open(os.path.join(icon_dir, "Ricerca.png"))
 
-        # Crea e conserva l'icona di ricerca (CTkEntry non supporta image, la mettiamo in un frame a fianco)
+
         self.search_icon = ctk.CTkImage(light_image=search_img, dark_image=search_img, size=(24, 24))
 
         self.searchSection = tk.Frame(self.right_frame, bg="#cfd7dc")
         self.searchSection.grid(row=1, column=0, columnspan=8, sticky=tk.EW, padx=5, pady=(0, 5))
-        # L'entry occupa lo spazio, l'icona resta a destra
+
         self.searchSection.grid_columnconfigure(0, weight=1)
 
         self.searchBox = ctk.CTkEntry(self.searchSection,
@@ -209,25 +208,21 @@ class VehicleSection(tk.Frame):
         icon_label.pack()
 
 
-        # Intestazioni colonne (terza riga)
-        # spacer a sinistra
         tk.Frame(self.right_frame, bg="#dee4e9", width=8).grid(row=2, column=0, sticky="ns")
         tk.Label(self.right_frame, text="Brand", font=("Calisto MT", 14, "bold"), bg="#cfd7dc", fg="#000534").grid(row=2, column=1, sticky=tk.W, padx=5)
         tk.Label(self.right_frame, text="Modelli", font=("Calisto MT", 14, "bold"), bg="#cfd7dc", fg="#000534").grid(row=2, column=3, sticky=tk.W, padx=5)
         tk.Label(self.right_frame, text="Colori", font=("Calisto MT", 14, "bold"), bg="#cfd7dc", fg="#000534").grid(row=2, column=5, sticky=tk.W, padx=5)
         tk.Label(self.right_frame, text="Alimentazione", font=("Calisto MT", 14, "bold"), bg="#cfd7dc", fg="#000534").grid(row=2, column=7, sticky=tk.W, padx=5)
 
-        # Divisori verticali sottili (stessa riga delle intestazioni)
+
         tk.Frame(self.right_frame, bg="#dee4e9", width=8).grid(row=2, column=2, sticky="ns")
         tk.Frame(self.right_frame, bg="#dee4e9", width=8).grid(row=2, column=4, sticky="ns")
         tk.Frame(self.right_frame, bg="#dee4e9", width=8).grid(row=2, column=6, sticky="ns")
 
-        # Contenitori check (quarta riga)
-        # spacer a sinistra
         tk.Frame(self.right_frame, bg="#dee4e9", width=8).grid(row=3, column=0, sticky="ns")
         self.brandSection = ctk.CTkScrollableFrame(self.right_frame, fg_color="#cfd7dc")
         self.brandSection.grid(row=3, column=1, sticky=tk.NSEW)
-        # divisori tra le colonne di check
+
         tk.Frame(self.right_frame, bg="#dee4e9", width=8).grid(row=3, column=2, sticky="ns")
         self.modelSection = ctk.CTkScrollableFrame(self.right_frame, fg_color="#cfd7dc")
         self.modelSection.grid(row=3, column=3, sticky=tk.NSEW)
@@ -238,11 +233,48 @@ class VehicleSection(tk.Frame):
         self.fuelSection = tk.Frame(self.right_frame, bg="#cfd7dc")
         self.fuelSection.grid(row=3, column=7, sticky=tk.NSEW)
 
+        # Disponibilità: filtri Prenotati/Venduti posizionati più in basso per non sovrapporsi
+        tk.Label(self.fuelSection, text="Disponibilità", font=("Calisto MT", 14, "bold"), bg="#cfd7dc",
+                 fg="#000534").grid(row=100, column=0, sticky=tk.W, pady=(20, 5), padx=5)
 
+        self.unavailable_tick_var = tk.BooleanVar()
+        self.sold_tick_var = tk.BooleanVar()
+
+        self.unavailable_tick = ctk.CTkCheckBox(
+            self.fuelSection,
+            text="Prenotati",
+            font=("Calisto MT", 15, "bold"),
+            width=100,
+            corner_radius=10,
+            fg_color="#000534",
+            border_color="#000534",
+            border_width=2,
+            text_color="#000534",
+            variable=self.unavailable_tick_var,
+            command=lambda: self.show_available_vehicle(self.unavailable_tick_var.get(), self.sold_tick_var.get())
+        )
+        self.unavailable_tick.grid(row=101, column=0, sticky=tk.W, padx=5, pady=(5, 0))
+        self.unavailable_tick_var.set(False)
+
+        self.sold_tick = ctk.CTkCheckBox(
+            self.fuelSection,
+            text="Venduti",
+            font=("Calisto MT", 15, "bold"),
+            width=100,
+            corner_radius=10,
+            fg_color="#000534",
+            border_color="#000534",
+            border_width=2,
+            text_color="#000534",
+            variable=self.sold_tick_var,
+            command=lambda: self.show_available_vehicle(self.unavailable_tick_var.get(), self.sold_tick_var.get())
+        )
+        self.sold_tick.grid(row=102, column=0, sticky=tk.W, padx=5, pady=(5, 0))
+        self.sold_tick_var.set(False)
 
         # Sezione prezzo (ultima riga)
         price_frame = tk.Frame(self.right_frame, bg="#cfd7dc")
-        price_frame.grid(row=4, column=0, columnspan=8, sticky=tk.EW, padx=5, pady=10)
+        price_frame.grid(row=13, column=0, columnspan=8, sticky=tk.EW, padx=5, pady=10)
         price_frame.grid_columnconfigure(0, weight=1)
         price_frame.grid_columnconfigure(1, weight=0)
         price_frame.grid_columnconfigure(2, weight=1)
@@ -560,6 +592,25 @@ class VehicleSection(tk.Frame):
 
     def on_search_triggered(self):
         self.fill_vehicle_listbox(self.vc.search_vehicle(self.searchBox.get()))
+
+    def show_available_vehicle(self, reserved: bool, sold: bool):
+        # Filtra stato disponibilità:
+        # - Prenotati: is_available == False e sold == False
+        # - Venduti:   is_available == False e sold == True
+        # - Entrambi:  tutti i non disponibili
+        # - Nessuno:   tutti i veicoli
+        if reserved and not sold:
+            result = [v for v in gv.vehicle_list if (not v.is_available) and (not bool(getattr(v, 'sold', False)))]
+        elif (not reserved) and sold:
+            result = [v for v in gv.vehicle_list if (not v.is_available) and bool(getattr(v, 'sold', False))]
+        elif reserved and sold:
+            result = [v for v in gv.vehicle_list if (not v.is_available)]
+        else:
+            result = list(gv.vehicle_list)
+        self.fill_vehicle_listbox(result)
+
+
+
 
 
 
