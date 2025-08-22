@@ -64,48 +64,103 @@ class AppointmentSection(tk.Frame):
         main_frame = tk.Frame(self, bg="#dee4e9")
         main_frame.pack(side="top", fill="both", expand=True)
 
+        main_frame.grid_rowconfigure(0, weight=1)
+        main_frame.grid_rowconfigure(1, weight=0)
+        main_frame.grid_rowconfigure(2, weight=0)
+        main_frame.grid_columnconfigure(0, weight=1)
+        main_frame.grid_columnconfigure(1, weight=1)
+
         self.leftFrame = tk.Frame(main_frame, bg="#dee4e9")
-        self.leftFrame.pack(side="left", anchor="nw")
-
-        self.rightFrame = tk.Frame(main_frame, bg="#dee4e9")
-        self.rightFrame.pack(side="right", anchor="ne", padx=70)
-        self.rightFrame.pack_propagate(False)
-
-        self.buttonFrame = tk.Frame(main_frame, bg="#dee4e9")
-        self.buttonFrame.pack(side="bottom", anchor="center")
-        self.buttonFrame.pack_propagate(False)
+        self.leftFrame.grid(row=0, column=0, sticky="nsew")
+        self.leftFrame.grid_rowconfigure(0, weight=2)
+        self.leftFrame.grid_columnconfigure(0, weight=2)
 
         self.cal = Calendar(
             self.leftFrame,
             selectmode="day",
             date_pattern="dd/mm/yyyy",
-            font=("Calisto MT", 24),
+            font=("Calisto MT", 22),
             weekendbackground="#dee4e9",
             weekendforeground="#641c34",
             headersbackground="#dee4e9",
-            selectbackground="#b2a29f",  # sfondo del giorno selezionato
-            selectforeground="#dee4e9"
+            selectbackground="#b2a29f",
+            selectforeground="#000534",
         )
-        self.cal.grid(row=0, column=0, sticky="nswe", padx=10, pady=10)
+        self.cal.grid(row=0, column=0, sticky="nswe", padx=(80,0), pady=(7,30))
 
-        # forza il frame ad avere più spazio
-        self.leftFrame.grid_rowconfigure(0, weight=2)
-        self.leftFrame.grid_columnconfigure(0, weight=2)
 
-        # Treeview: time slots as parent nodes (tree column text), children show Appuntamento/Utente
+        self.rightFrame = tk.Frame(main_frame, bg="#dee4e9")
+        self.rightFrame.grid(row=0, column=1, rowspan=2, sticky="nsew", padx=70)
+        self.rightFrame.grid_rowconfigure(0, weight=2)
+        self.rightFrame.grid_columnconfigure(0, weight=2)
+        self.rightFrame.grid_rowconfigure(1, weight=1)
+
+        border_frame = tk.Frame(self.leftFrame, bg="#000534", height=3, width=710)
+        border_frame.grid(row=1, column=0, columnspan=2, sticky="w", pady=(10, 0), padx=(60, 0))
+
+        self.buttonFrame = tk.Frame(self.leftFrame, bg="#dee4e9", height=500)
+        self.buttonFrame.grid(row=2, column=0, sticky="ew", padx=(140, 0), pady=(0, 170))
+
+
+        tk.Label(self.buttonFrame, text="Descrizione", font=("Calisto MT", 20, "bold"), fg="#000534", bg="#dee4e9").grid(row=0, column=0, sticky="nswe", pady=(20,10))
+        self.description = ctk.CTkEntry(self.buttonFrame, font=("Calisto MT", 15), width=400, corner_radius=10,
+                                     fg_color="white", text_color="#000534", border_color="#000534", border_width=2)
+        self.description.grid(row=1, column=0, sticky="new")
+
+        create_btn = ctk.CTkButton(self.buttonFrame,
+                      text="Inserisci in Agenda",
+                      font=("Calisto MT", 18, "bold"),
+                      width=100,
+                      corner_radius=10,
+                      fg_color="white",
+                      border_color="#000534",
+                      border_width=2,
+                      text_color="#000534",
+                      command=lambda: self.create_event_func(self.description.get()))
+        create_btn.grid(row=1, column=1, pady=0, padx=(20, 0))
+
+
+        ##Layout destra
         self.schedule = ttk.Treeview(self.rightFrame, columns=("Appuntamento", "Utente"), show="tree headings")
-        self.schedule.grid(row=3, column=0, sticky="nswe")
+        self.schedule.grid(row=0, column=0, sticky="nswe", pady=(7,0))
+        self.schedule.heading("#0", text="Orario")
         self.schedule.heading("Appuntamento", text="Appuntamento")
         self.schedule.heading("Utente", text="Utente")
 
-        self.create = tk.Button(self.buttonFrame, text="Crea", command=lambda: self.create_event_func(self.description.get()))
-        self.create.grid(row=1, column=0, pady=(10, 0))
-        tk.Button(self.buttonFrame, text = "Modifica", command= lambda: self.open_popup()).grid(row = 4, column = 0, pady = (10, 0))
-        tk.Button(self.buttonFrame, text="Elimina", command=lambda: self.delete_func()).grid(row=5, column=0, pady=(10, 0))
+        # Scrollbar verticale
+        scrollbar = ttk.Scrollbar(self.rightFrame, orient="vertical", command=self.schedule.yview)
+        self.schedule.configure(yscrollcommand=scrollbar.set)
+        scrollbar.grid(row=0, column=1, sticky="ns", pady=(7,0))
 
-        tk.Label(self.buttonFrame, text="Descrizione").grid(row=2, column=0)
-        self.description = (tk.Entry(self.buttonFrame, width=50))
-        self.description.grid(row=3, column=0, pady=(10, 0))
+
+        # Frame pulsanti (sotto al tree)
+        right_buttons = tk.Frame(self.rightFrame, bg="#dee4e9")
+        right_buttons.grid(row=1, column=0, columnspan=2, sticky="ew")
+
+
+        edit_btn = ctk.CTkButton(right_buttons,
+                                 text="Modifica",
+                                 font=("Calisto MT", 18, "bold"),
+                                 width=140,
+                                 corner_radius=10,
+                                 fg_color="white",
+                                 border_color="#000534",
+                                 border_width=2,
+                                 text_color="#000534",
+                                 command=lambda: self.open_popup())
+        edit_btn.grid(row=0, column=0, padx=(150, 10))
+
+        delete_btn = ctk.CTkButton(right_buttons,
+                                   text="Elimina",
+                                   font=("Calisto MT", 18, "bold"),
+                                   width=140,
+                                   corner_radius=10,
+                                   fg_color="white",
+                                   border_color="#000534",
+                                   border_width=2,
+                                   text_color="#000534",
+                                   command=lambda: self.delete_func())
+        delete_btn.grid(row=0, column=1, padx=(50, 0))
 
         self.time_nodes = {}
         self.fill_schedule()
@@ -152,7 +207,7 @@ class AppointmentSection(tk.Frame):
         except Exception:
             pass
 
-    #cancella gli appuntamento che sono scaduti
+    #cancella gli appuntamenti che sono scaduti
     def validate_date(self):
         for appointment in gv.appointment_list:
             if appointment.date_time > appointment.date_time + relativedelta(months=1):
@@ -172,9 +227,40 @@ class AppointmentSection(tk.Frame):
                     self.cal.calevent_create(onlyDate, "Appuntamento", "appointment")
                     self.cal.tag_config("appointment", background="#641c34", foreground="white")
 
+    def create_event_on_timeTable(self, date):
+        # Svuoto
+        for time_iid in self.time_nodes.values():
+            for child in self.schedule.get_children(time_iid):
+                self.schedule.delete(child)
+            self.schedule.item(time_iid, values=("", ""))
+
+        appointments_per_time = {}
+
+        for app in gv.appointment_list:
+            if app.date_time.date() == date:
+                row_time_str = app.date_time.strftime("%H:%M")
+                row_iid = self.time_nodes.get(row_time_str)
+                if not row_iid:
+                    continue
+
+                if not (gv.CurrentUser.isAdmin or app.user.user_id == gv.CurrentUser.user_id):
+                    continue
+
+                display_user = f"{app.user.firstName} {app.user.LastName}"
+                display_desc = app.description
+
+                if row_time_str not in appointments_per_time:
+                    # Primo appuntamento: inserito nella riga principale
+                    self.schedule.item(row_iid, values=(display_desc, display_user))
+                    appointments_per_time[row_time_str] = 1
+                else:
+                    # Appuntamenti successivi: inseriti come figli
+                    self.schedule.insert(row_iid, "end", text="", values=(display_desc, display_user))
+                    appointments_per_time[row_time_str] += 1
+
+    '''
     #Funzione che crea un evento sulla TimeTable
     def create_event_on_timeTable(self, date):
-        # Clear children under each time node
         for time_iid in self.time_nodes.values():
             for child in self.schedule.get_children(time_iid):
                 self.schedule.delete(child)
@@ -202,7 +288,7 @@ class AppointmentSection(tk.Frame):
 
                 if show_this:
                     # Insert a child entry under the time slot
-                    self.schedule.insert(parent_iid, "end", text="", values=(display_desc, display_user))
+                    self.schedule.insert(parent_iid, "end", text="", values=(display_desc, display_user))'''
 
 
 
