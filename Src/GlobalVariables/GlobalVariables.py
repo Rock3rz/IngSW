@@ -2,7 +2,7 @@ import os
 from Src.Class.Vehicle import Model, Vehicle
 from Src.Class.User import User
 from Src.Class.Client import Client
-
+from Src.Class.Quote import Quote
 
 # Stato applicativo
 isAdminUser = False
@@ -111,6 +111,12 @@ def vehicle_recovery(vehicle_id:int)->Vehicle:
     for vehicle in vehicle_list:
         if int(vehicle.vehicle_id) == int(vehicle_id):
             return vehicle
+
+@staticmethod
+def quote_recovery(quote_id:int)->Quote:
+    for quote in quote_list:
+        if int(quote.id) == int(quote_id):
+            return quote
 
 
 

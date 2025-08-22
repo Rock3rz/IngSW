@@ -1,5 +1,4 @@
 Vehicle ID,Model ID,Year,Color,Fuel Type,Is Available,Km,Number Plate,Price,Image
-1,1,2018,Bianco,GASOLINE,True,52000.0,AB123CD,18900.0,
 2,1,2020,Grigio Metallo,DIESEL,True,34000.0,CD456EF,21500.0,
 3,1,2015,Nero,GASOLINE,True,87000.0,EF789GH,14200.0,
 4,2,2017,Blu Marino,DIESEL,True,61000.0,GH012IJ,16500.0,
@@ -96,4 +95,4 @@ Vehicle ID,Model ID,Year,Color,Fuel Type,Is Available,Km,Number Plate,Price,Imag
 95,32,2018,Blu Marino,GASOLINE,True,42000.0,GH925IJ,9600.0,
 96,32,2019,Argento,GASOLINE,True,35000.0,IJ036KL,10500.0,
 97,33,2019,Grigio Scuro,DIESEL,True,37000.0,KL147MN,22500.0,
-98,1,2018,Bianco,GASOLINE,True,98000,AH205OP,32000,C:/Users/pavon/PycharmProjects/IngSW/Src/Images/Cars/AudiA3W.png
+98,1,2018,Bianco,GASOLINE,True,98000.0,AH205OP,32000.0,C:/Users/pavon/PycharmProjects/IngSW/Src/Images/Cars/AudiA3W.png

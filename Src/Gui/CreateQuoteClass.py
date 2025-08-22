@@ -9,6 +9,7 @@ class QuoteCreate(tk.Frame):
     def __init__(self, parent, controller):
         super().__init__(parent, bg="#dee4e9")
 
+        self.controller = controller
         self.qc = gv.quote_controller
         self.vc = gv.vehicle_controller
         self.cc = gv.client_controller
@@ -24,7 +25,7 @@ class QuoteCreate(tk.Frame):
         self.clientListBox = tk.Listbox(self)
         self.clientListBox.grid(row=2, column=3, columnspan=2)
 
-        back_btn = tk.Button(self, text="Back", command=lambda: controller.mostra_frame("QuoteSection"))
+        back_btn = tk.Button(self, text="Back", command=lambda: self.back_func())
         back_btn.grid(row=0, column=0)
         create_btn = tk.Button(self, text="Create", command = lambda: self.create_quote())
         create_btn.grid(row=0, column=1)
@@ -206,7 +207,11 @@ class QuoteCreate(tk.Frame):
                              self.endDate.get(),
                              self.price.get())
         self.fill_id()
+        self.back_func()
 
+    def back_func(self):
+        self.controller.frames["QuoteSection"].fill_quote_listbox_not_confirmed()
+        self.controller.mostra_frame("QuoteSection")
 
 
 
