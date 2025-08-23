@@ -234,7 +234,7 @@ class ClientSection(tk.Frame):
         self.list_client.delete(0, tk.END)
         self.support_list = []
         for client in gv.client_list:
-            self.list_client.insert(tk.END, f"{client.ID} {client.FirstName} {client.LastName}")
+            self.list_client.insert(tk.END, f"{client.ID} | {client.FirstName} {client.LastName}")
             self.support_list.append(client)
 
 
