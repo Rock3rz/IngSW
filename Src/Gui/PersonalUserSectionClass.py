@@ -1,5 +1,4 @@
 import tkinter as tk
-from Src.Controllers.AccountController import AccountController
 import Src.GlobalVariables.GlobalVariables as gv
 import os
 import customtkinter as ctk

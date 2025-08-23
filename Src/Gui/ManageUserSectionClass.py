@@ -1,8 +1,6 @@
 import tkinter as tk
 import customtkinter as ctk
 import os
-from Src.Controllers.AccountController import AccountController
-import pandas as pd
 import Src.GlobalVariables.GlobalVariables as gv
 from tkinter import messagebox
 from Src.Controllers.APIController import APIController

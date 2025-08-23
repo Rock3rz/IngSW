@@ -1,6 +1,6 @@
 import tkinter as tk
 import Src.GlobalVariables.GlobalVariables as gv
-from Src.GlobalVariables.GlobalVariables import model_list, api_controller
+from Src.GlobalVariables.GlobalVariables import model_list
 from Src.Controllers.APIController import APIController
 import os
 import customtkinter as ctk

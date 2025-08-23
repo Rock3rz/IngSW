@@ -2,12 +2,10 @@ import pandas as pd
 import os
 import Src.GlobalVariables.GlobalVariables as gv
 from Src.Class.Client import Client
-from Src.Class.User import User
 from Src.Class.Vehicle import Model, Vehicle
 from Src.Class.Appointment import Appointment
 from datetime import datetime,date
 from Src.Class.User import User
-from Src.GlobalVariables.GlobalVariables import api_controller, appointment_list
 from Src.Class.Quote import Quote
 
 class APIController:
@@ -185,7 +183,7 @@ class APIController:
 
     @staticmethod
     def _parse_bool(val) -> bool:
-        # Accepts booleans, integers 0/1, and common string representations
+
         if isinstance(val, bool):
             return val
         if val is None or (isinstance(val, float) and pd.isna(val)):
@@ -193,11 +191,10 @@ class APIController:
         if isinstance(val, (int, float)):
             return bool(int(val))
         s = str(val).strip().lower()
-        if s in ("1", "true", "t", "yes", "y", "si", "s"):  # include Italian yes
+        if s in ("1", "true", "t", "yes", "y", "si", "s"):
             return True
         if s in ("0", "false", "f", "no", "n"):
             return False
-        # Fallback: any non-empty string other than explicit false-like -> False for safety
         return False
 
     @staticmethod

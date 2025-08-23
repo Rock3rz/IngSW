@@ -1,8 +1,4 @@
 import tkinter as tk
-from tkinter import messagebox
-import pandas as pd
-from Src.Controllers.AccountController import AccountController
-import Src.GlobalVariables.GlobalVariables as gv
 from Src.Gui.CreateVehicle import CreateVehicle
 
 from Src.Gui.VehicleSectionClass import VehicleSection

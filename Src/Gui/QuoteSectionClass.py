@@ -136,7 +136,7 @@ class QuoteSection(tk.Frame):
 
 
             if quote.Confirmed:
-                self.quoteList.insert(tk.END, f"{quote.id} {quote.Client.FirstName} {quote.Client.LastName} - {quote.Vehicle.model.brand} {quote.Vehicle.model.name}")
+                self.quoteList.insert(tk.END, f"{quote.id} | {quote.Client.FirstName} {quote.Client.LastName} - {quote.Vehicle.model.brand} {quote.Vehicle.model.name}")
 
     def fill_quote_listbox_not_confirmed(self):
         self.quoteList.delete(0, tk.END)

@@ -2,9 +2,6 @@ import tkinter as tk
 import Src.GlobalVariables.GlobalVariables as gv
 from tkinter import messagebox
 
-from Src.Controllers.APIController import APIController
-from Src.Controllers.QuoteController import QuoteController
-
 
 class QuoteView(tk.Frame):
     def __init__(self, parent, controller):
@@ -56,13 +53,21 @@ class QuoteView(tk.Frame):
         back_btn = (tk.Button(self, text="Back", command=lambda: self.back_func()))
         back_btn.grid(row = 0, column = 0)
 
-        confirm_btn = tk.Button(self, text="Conferma", command = lambda: self.confirm_func()).grid(row= 0, column= 1)
-        delete_btn = tk.Button(self, text="Elimina", command = lambda: self.delete_func()).grid(row = 0, column= 2)
+        self.confirm_btn = (tk.Button(self, text="Conferma", command = lambda: self.confirm_func()))
+        self.confirm_btn.grid(row= 0, column= 1)
+        self.delete_btn = (tk.Button(self, text="Elimina", command = lambda: self.delete_func()))
+        self.delete_btn.grid(row = 0, column= 2)
 
     def fill_quote_info(self):
         if gv.CurrentQuote is  None:
             messagebox.showwarning("Errore", "Selezionare un preventivo per visualizzarlo")
             return
+
+        #disabilita lo stato del tasto se confermato
+        if gv.CurrentQuote.Confirmed:
+            self.disable_confirm_btn(False)
+        else:
+            self.disable_confirm_btn(True)
 
         self.clientInfo.configure(state= "normal")
         self.clientInfo.delete(0, tk.END)
@@ -110,6 +115,7 @@ class QuoteView(tk.Frame):
     def back_func(self):
         self.controller.mostra_frame("QuoteSection")
         self.set_CurrentQuote_None()
+        self.disable_confirm_btn(True)
 
     def delete_func(self):
                 self.qc.delete_quote()
@@ -118,7 +124,20 @@ class QuoteView(tk.Frame):
 
     def confirm_func(self):
         self.qc.confirm_quote()
-        self.controller.frames["QuoteSection"].fill_quote_listbox_confirmed()
+        if self.controller.frames["QuoteSection"].switch_btn_var.get():
+            self.controller.frames["QuoteSection"].fill_quote_listbox_confirmed()
+        else:
+            self.controller.frames["QuoteSection"].fill_quote_listbox_not_confirmed()
         self.controller.frames["VehicleSection"].fill_vehicle_listbox(gv.vehicle_list)
+        self.confirmed_tick.configure(state="normal")
+        self.confirmed_var.set(True)
+        self.confirmed_tick.configure(state="disabled")
+
+    def disable_confirm_btn(self, value: bool):
+        if value:
+            self.confirm_btn.configure(state="normal")
+        else:
+            self.confirm_btn.configure(state="disabled")
+
 
 

@@ -1,6 +1,4 @@
 import tkinter as tk
-import customtkinter as ctk
-from Src.Controllers.VehicleController import VehicleController
 import Src.GlobalVariables.GlobalVariables as gv
 from tkinter import messagebox
 import os
@@ -77,15 +75,14 @@ class VehicleSection(tk.Frame):
         self.fuelTickValues = {}
         self.fuelTicks = {}
 
-
         self.price_min_var = tk.StringVar()
         self.price_max_var = tk.StringVar()
 
 
-        main_frame.grid_columnconfigure(0, weight=0, minsize=30)  # spazio sinistro
-        main_frame.grid_columnconfigure(1, weight=1)              # left_frame ~ metà
-        main_frame.grid_columnconfigure(2, weight=1)              # right_frame ~ metà
-        main_frame.grid_columnconfigure(3, weight=0, minsize=30)  # spazio destro
+        main_frame.grid_columnconfigure(0, weight=0, minsize=30)
+        main_frame.grid_columnconfigure(1, weight=1)
+        main_frame.grid_columnconfigure(2, weight=1)
+        main_frame.grid_columnconfigure(3, weight=0, minsize=30)
         main_frame.grid_rowconfigure(0, weight=1)
 
         # Spazi laterali
@@ -233,12 +230,12 @@ class VehicleSection(tk.Frame):
         self.fuelSection = tk.Frame(self.right_frame, bg="#cfd7dc")
         self.fuelSection.grid(row=3, column=7, sticky=tk.NSEW)
 
-        # Disponibilità: filtri Prenotati/Venduti posizionati più in basso per non sovrapporsi
         tk.Label(self.fuelSection, text="Disponibilità", font=("Calisto MT", 14, "bold"), bg="#cfd7dc",
                  fg="#000534").grid(row=100, column=0, sticky=tk.W, pady=(20, 5), padx=5)
 
         self.unavailable_tick_var = tk.BooleanVar()
         self.sold_tick_var = tk.BooleanVar()
+        self.available_tick_var = tk.BooleanVar()
 
         self.unavailable_tick = ctk.CTkCheckBox(
             self.fuelSection,
@@ -251,7 +248,7 @@ class VehicleSection(tk.Frame):
             border_width=2,
             text_color="#000534",
             variable=self.unavailable_tick_var,
-            command=lambda: self.show_available_vehicle(self.unavailable_tick_var.get(), self.sold_tick_var.get())
+            command=lambda: self.show_available_vehicle(self.unavailable_tick_var.get(), self.sold_tick_var.get(), self.available_tick_var.get())
         )
         self.unavailable_tick.grid(row=101, column=0, sticky=tk.W, padx=5, pady=(5, 0))
         self.unavailable_tick_var.set(False)
@@ -267,12 +264,25 @@ class VehicleSection(tk.Frame):
             border_width=2,
             text_color="#000534",
             variable=self.sold_tick_var,
-            command=lambda: self.show_available_vehicle(self.unavailable_tick_var.get(), self.sold_tick_var.get())
+            command=lambda: self.show_available_vehicle(self.unavailable_tick_var.get(), self.sold_tick_var.get(), self.available_tick_var.get())
         )
         self.sold_tick.grid(row=102, column=0, sticky=tk.W, padx=5, pady=(5, 0))
         self.sold_tick_var.set(False)
 
-        # Sezione prezzo (ultima riga)
+        self.available_tick = ctk.CTkCheckBox(self.fuelSection,
+                                              text="Disponibili",
+                                              font=("Calisto MT", 15, "bold"),
+                                              width=100,
+                                              corner_radius=10,
+                                              fg_color="#000534",
+                                              border_color="#000534",
+                                              border_width=2,
+                                              text_color="#000534",
+                                              variable=self.available_tick_var,
+                                              command=lambda: self.show_available_vehicle(self.unavailable_tick_var.get(), self.sold_tick_var.get(), self.available_tick_var.get()))
+        self.available_tick.grid(row=103, column=0, sticky=tk.W, padx=5, pady=(5, 0))
+        self.available_tick_var.set(False)
+
         price_frame = tk.Frame(self.right_frame, bg="#cfd7dc")
         price_frame.grid(row=13, column=0, columnspan=8, sticky=tk.EW, padx=5, pady=10)
         price_frame.grid_columnconfigure(0, weight=1)
@@ -286,16 +296,15 @@ class VehicleSection(tk.Frame):
                                fg="#000534")
         price_label.grid(row=0, column=1, pady=(0, 5))
 
-        # calcolo range prezzi
+
         prices = [v.price for v in gv.vehicle_list] if gv.vehicle_list else []
         self.min_price = int(min(prices)) if prices else 0
         self.max_price = int(max(prices)) if prices else 100000
 
-        # valori correnti selezionati (inizialmente tutto il range)
+
         self.sel_min_price = tk.IntVar(value=self.min_price)
         self.sel_max_price = tk.IntVar(value=self.max_price)
 
-        # Prova a usare CTkRangeSlider se disponibile, altrimenti fallback a due slider
 
         slider_wrap = tk.Frame(price_frame, bg="#cfd7dc")
         slider_wrap.grid(row=1, column=0, columnspan=3, sticky=tk.EW, padx=40)
@@ -311,7 +320,6 @@ class VehicleSection(tk.Frame):
         self.max_slider.set(self.max_price)
         self._range_slider_fallback = True
 
-        # etichette valori correnti
         self.price_min_lbl = tk.Label(price_frame, text=f"{self.sel_min_price.get()} €", font=("Calisto MT", 10, "bold"),
                                bg="#cfd7dc",
                                fg="#000534")
@@ -321,7 +329,7 @@ class VehicleSection(tk.Frame):
                                fg="#000534")
         self.price_max_lbl.grid(row=2, column=2, sticky=tk.E, padx=10, pady=(5, 0))
 
-        # Ricerca on typing
+
         self.searchBox.bind("<KeyRelease>", lambda e: self.on_search_triggered())
 
         self.refresh_brand_checkboxes()
@@ -517,27 +525,27 @@ class VehicleSection(tk.Frame):
         self.search_tick_var.set(True)
         self.filter_tick_var.set(False)
 
-        # Reset e disabilita brand
+
         for var, cb in zip(self.brandTickValues.values(), self.brandTicks.values()):
             var.set(False)
             cb.configure(state=tk.DISABLED)
 
-        # Reset e disabilita modelli
+
         for var, cb in zip(self.modelTickValues.values(), self.modelTicks.values()):
             var.set(False)
             cb.configure(state=tk.DISABLED)
 
-        # Reset e disabilita colori
+
         for var, cb in zip(self.colorTickValues.values(), self.colorTicks.values()):
             var.set(False)
             cb.configure(state=tk.DISABLED)
 
-        # Reset e disabilita fuel
+
         for var, cb in zip(self.fuelTickValues.values(), self.fuelTicks.values()):
             var.set(False)
             cb.configure(state=tk.DISABLED)
 
-        # Disabilita controllo prezzo
+
         if hasattr(self, "_range_slider_fallback") and not self._range_slider_fallback:
             try:
                 self.price_slider.configure(state="disabled")
@@ -550,7 +558,7 @@ class VehicleSection(tk.Frame):
             except Exception:
                 pass
 
-        # Abilita la searchbox
+
         self.searchBox.configure(state="normal")
 
     def active_filter(self):
@@ -565,7 +573,7 @@ class VehicleSection(tk.Frame):
             color.configure(state=tk.NORMAL)
         for fuel in self.fuelTicks.values():
             fuel.configure(state=tk.NORMAL)
-        # Abilita/Reset controllo prezzo
+
         if hasattr(self, "_range_slider_fallback") and not self._range_slider_fallback:
             try:
                 self.price_slider.configure(state="normal")
@@ -582,7 +590,7 @@ class VehicleSection(tk.Frame):
                 self.max_slider.set(self.max_price)
             except Exception:
                 pass
-        # aggiorna etichette
+
         if hasattr(self, "price_min_lbl") and hasattr(self, "price_max_lbl"):
             self.price_min_lbl.config(text=f"{self.min_price} €")
             self.price_max_lbl.config(text=f"{self.max_price} €")
@@ -593,18 +601,21 @@ class VehicleSection(tk.Frame):
     def on_search_triggered(self):
         self.fill_vehicle_listbox(self.vc.search_vehicle(self.searchBox.get()))
 
-    def show_available_vehicle(self, reserved: bool, sold: bool):
+    def show_available_vehicle(self, reserved: bool, sold: bool, available: bool):
         # Filtra stato disponibilità:
         # - Prenotati: is_available == False e sold == False
-        # - Venduti:   is_available == False e sold == True
+        # - Venduti: sold == True
+        # - Disponibili: is_available == True e sold == False
         # - Entrambi:  tutti i non disponibili
         # - Nessuno:   tutti i veicoli
         if reserved and not sold:
             result = [v for v in gv.vehicle_list if (not v.is_available) and (not bool(getattr(v, 'sold', False)))]
-        elif (not reserved) and sold:
-            result = [v for v in gv.vehicle_list if (not v.is_available) and bool(getattr(v, 'sold', False))]
+        elif sold:
+            result = [v for v in gv.vehicle_list if bool(getattr(v, 'sold', False))]
         elif reserved and sold:
             result = [v for v in gv.vehicle_list if (not v.is_available)]
+        elif available and not reserved and not sold:
+            result = [v for v in gv.vehicle_list if v.is_available and (not bool(getattr(v, "sold", False)))]
         else:
             result = list(gv.vehicle_list)
         self.fill_vehicle_listbox(result)

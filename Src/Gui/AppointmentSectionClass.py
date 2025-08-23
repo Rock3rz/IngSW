@@ -70,6 +70,7 @@ class AppointmentSection(tk.Frame):
         main_frame.grid_columnconfigure(0, weight=1)
         main_frame.grid_columnconfigure(1, weight=1)
 
+        ##Layout sinistra
         self.leftFrame = tk.Frame(main_frame, bg="#dee4e9")
         self.leftFrame.grid(row=0, column=0, sticky="nsew")
         self.leftFrame.grid_rowconfigure(0, weight=2)
@@ -127,13 +128,12 @@ class AppointmentSection(tk.Frame):
         self.schedule.heading("Appuntamento", text="Appuntamento")
         self.schedule.heading("Utente", text="Utente")
 
-        # Scrollbar verticale
         scrollbar = ttk.Scrollbar(self.rightFrame, orient="vertical", command=self.schedule.yview)
         self.schedule.configure(yscrollcommand=scrollbar.set)
         scrollbar.grid(row=0, column=1, sticky="ns", pady=(7,0))
 
 
-        # Frame pulsanti (sotto al tree)
+        # Frame pulsanti
         right_buttons = tk.Frame(self.rightFrame, bg="#dee4e9")
         right_buttons.grid(row=1, column=0, columnspan=2, sticky="ew")
 
@@ -175,7 +175,7 @@ class AppointmentSection(tk.Frame):
 
     #riempie il calendario del giorno con i vari orari
     def fill_schedule(self):
-        # Clear any existing nodes
+
         for item in self.schedule.get_children():
             self.schedule.delete(item)
         self.time_nodes.clear()
@@ -199,7 +199,7 @@ class AppointmentSection(tk.Frame):
         if not selected:
             return
         item = selected[0]
-        # If a child is selected, get its parent to read the time text
+
         parent = tree.parent(item) if tree.parent(item) else item
         time_text = tree.item(parent, "text")
         try:
@@ -250,46 +250,11 @@ class AppointmentSection(tk.Frame):
                 display_desc = app.description
 
                 if row_time_str not in appointments_per_time:
-                    # Primo appuntamento: inserito nella riga principale
                     self.schedule.item(row_iid, values=(display_desc, display_user))
                     appointments_per_time[row_time_str] = 1
                 else:
-                    # Appuntamenti successivi: inseriti come figli
                     self.schedule.insert(row_iid, "end", text="", values=(display_desc, display_user))
                     appointments_per_time[row_time_str] += 1
-
-    '''
-    #Funzione che crea un evento sulla TimeTable
-    def create_event_on_timeTable(self, date):
-        for time_iid in self.time_nodes.values():
-            for child in self.schedule.get_children(time_iid):
-                self.schedule.delete(child)
-
-        #Inserisci gli appuntamenti del giorno selezionato
-        for app in gv.appointment_list:
-            if app.date_time.date() == date:
-                row_time_str = app.date_time.strftime("%H:%M")
-                parent_iid = self.time_nodes.get(row_time_str)
-                if not parent_iid:
-                    continue
-
-                show_this = False
-                display_user = ""
-                display_desc = ""
-                if gv.CurrentUser.isAdmin:
-                    show_this = True
-                    display_user = f"{app.user.firstName} {app.user.LastName}"
-                    display_desc = app.description
-                else:
-                    if app.user.user_id == gv.CurrentUser.user_id:
-                        show_this = True
-                        display_user = f"{app.user.firstName} {app.user.LastName}"
-                        display_desc = app.description
-
-                if show_this:
-                    # Insert a child entry under the time slot
-                    self.schedule.insert(parent_iid, "end", text="", values=(display_desc, display_user))'''
-
 
 
     def create_event_func(self, description):

@@ -1,8 +1,6 @@
 import tkinter as tk
 import Src.GlobalVariables.GlobalVariables as gv
-from Src.Controllers.ClientController import ClientController
-from Src.Class.Client import Client
-from tkinter import messagebox, PhotoImage
+from tkinter import messagebox
 import os
 import customtkinter as ctk
 from PIL import Image

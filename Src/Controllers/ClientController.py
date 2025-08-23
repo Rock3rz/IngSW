@@ -1,7 +1,6 @@
-import pandas as pd
 import Src.GlobalVariables.GlobalVariables as gv
 import os
-from tkinter import messagebox, simpledialog
+from tkinter import messagebox
 from Src.Controllers.APIController import APIController
 from Src.Class.Client import  Client
 

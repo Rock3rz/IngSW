@@ -1,10 +1,9 @@
-import pandas as pd
 import tkinter as tk
 import os
 import Src.GlobalVariables.GlobalVariables as gv
 import customtkinter as ctk
 from PIL import Image
-from Src.Controllers.ClientController import ClientController
+
 
 
 class CreateClientSectionClass(tk.Frame):

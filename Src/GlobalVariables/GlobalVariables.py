@@ -54,7 +54,6 @@ def init_controllers():
 
     #Inizializza e centralizza le istanze dei controller.
 
-
     global account_controller, client_controller, vehicle_controller, api_controller, appointment_controller, quote_controller
 
     if all([account_controller, client_controller, vehicle_controller, api_controller, appointment_controller, quote_controller]):

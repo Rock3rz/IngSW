@@ -1,6 +1,5 @@
 import tkinter as tk
 import Src.GlobalVariables.GlobalVariables as gv
-from Src.Controllers.ClientController import ClientController
 import os
 import customtkinter as ctk
 from PIL import Image

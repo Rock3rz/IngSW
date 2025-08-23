@@ -1,10 +1,8 @@
 import tkinter as tk
-from tkinter import messagebox, simpledialog
-from tkinter import ttk, filedialog
-from Src.Controllers.VehicleController import VehicleController
+from tkinter import messagebox
+from tkinter import filedialog
 import Src.GlobalVariables.GlobalVariables as gv
-from Src.GlobalVariables.GlobalVariables import vehicle_list
-from Src.Class.Vehicle import Vehicle, FuelType
+from Src.Class.Vehicle import FuelType
 import os
 import customtkinter as ctk
 from PIL import Image
@@ -72,13 +70,12 @@ class CreateVehicle(tk.Frame):
         CB_frame.pack(side="left", anchor="n", padx=(100, 30), pady=(20, 50))
         CB_frame.pack_propagate(False)
 
-        # Area immagine in alto
+
         self.cars_image_dir = os.path.join(base_path, "..", "Images", "Cars")
         try:
             default_img_path = os.path.join(self.cars_image_dir, "NoImage.png")
             self.no_image_icon = ctk.CTkImage(light_image=Image.open(default_img_path), size=(250, 250))
         except Exception:
-            # In rari casi, se l'immagine non è disponibile, crea un placeholder vuoto
             self.no_image_icon = None
         image_holder = tk.Frame(CB_frame, bg="#000534", width=270, height=270)
         image_holder.grid(row=0, column=0, columnspan=3, padx=(10, 10), pady=(10, 5), sticky="n")

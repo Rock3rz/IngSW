@@ -1,11 +1,9 @@
-import tkinter as tk
 import os
-from logging import exception
 from tkinter import messagebox, simpledialog
 import Src.GlobalVariables.GlobalVariables as gv
 from Src.Controllers.APIController import APIController
 from Src.Class.Vehicle import Model, Vehicle
-from typing import Optional
+
 
 class VehicleController():
     def __init__(self):

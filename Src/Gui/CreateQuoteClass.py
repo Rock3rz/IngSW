@@ -66,10 +66,6 @@ class QuoteCreate(tk.Frame):
         self.userInfo = tk.Entry(self)
         self.userInfo.grid(row = 13, column= 5, padx=(15, 90), pady=5)
 
-
-
-
-
         self.vehicleListBox.bind("<<ListboxSelect>>", self.on_vehicle_selected)
         self.clientListBox.bind("<<ListboxSelect>>",self.on_client_selected)
 
@@ -210,7 +206,10 @@ class QuoteCreate(tk.Frame):
         self.back_func()
 
     def back_func(self):
-        self.controller.frames["QuoteSection"].fill_quote_listbox_not_confirmed()
+        if self.controller.frames["QuoteSection"].switch_btn_var.get():
+            self.controller.frames["QuoteSection"].fill_quote_listbox_confirmed()
+        else:
+            self.controller.frames["QuoteSection"].fill_quote_listbox_not_confirmed()
         self.controller.mostra_frame("QuoteSection")
 
 

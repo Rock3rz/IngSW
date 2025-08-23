@@ -1,7 +1,6 @@
 import tkinter as tk
 from tkinter import messagebox
 import Src.GlobalVariables.GlobalVariables as gv
-from Src.Controllers.AccountController import AccountController
 import customtkinter as ctk
 from PIL import Image
 import os
