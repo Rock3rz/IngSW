@@ -2,6 +2,9 @@ import tkinter as tk
 import Src.GlobalVariables.GlobalVariables as gv
 import datetime as dt
 from dateutil.relativedelta import relativedelta
+import customtkinter as ctk
+import os
+from PIL import Image
 costanteKW = 0.7355
 
 
@@ -14,57 +17,189 @@ class QuoteCreate(tk.Frame):
         self.vc = gv.vehicle_controller
         self.cc = gv.client_controller
 
-        self.VsearchBar = tk.Entry(self)
-        self.VsearchBar.grid(row=1, column=1, padx=(15,90))
+        base_path = os.path.dirname(__file__)
+        icon_dir = os.path.join(base_path, "..", "Images", "Icone")
+        logout_icon = ctk.CTkImage(light_image=Image.open(os.path.join(icon_dir, "Logout.png")), size=(30, 30))
+        search_img = Image.open(os.path.join(icon_dir, "Ricerca.png"))
 
-        self.vehicleListBox = tk.Listbox(self)
-        self.vehicleListBox.grid(row=2, column=1, columnspan=2, padx=(15, 90))
+        self.search_icon = ctk.CTkImage(light_image=search_img, dark_image=search_img, size=(24, 24))
 
-        self.CsearchBar = tk.Entry(self)
-        self.CsearchBar.grid(row=1, column=3)
-        self.clientListBox = tk.Listbox(self)
-        self.clientListBox.grid(row=2, column=3, columnspan=2)
+        header_frame = tk.Frame(self, bg="#000534", height=50)
+        header_frame.pack(side="top", fill="x")
+        header_frame.pack_propagate(False)
 
-        back_btn = tk.Button(self, text="Back", command=lambda: self.back_func())
-        back_btn.grid(row=0, column=0)
-        create_btn = tk.Button(self, text="Create", command = lambda: self.create_quote())
-        create_btn.grid(row=0, column=1)
+        back_btn = ctk.CTkButton(header_frame,
+                                 text="Back",
+                                 font=("Calisto MT", 18, "bold"),
+                                 image=logout_icon,
+                                 compound="left",
+                                 width=150,
+                                 corner_radius=10,
+                                 fg_color="white",
+                                 border_color="#000534",
+                                 border_width=2,
+                                 text_color="#000534",
+                                 command=lambda: self.back_func())
+        back_btn.pack(side="left", padx=(20, 0))
 
-        #Campi Quote
-        self.clientLabel = tk.Label(self, text="Cliente")
-        self.clientLabel.grid(row = 0, column = 5, padx=(15, 90),pady=5)
-        self.clientInfo = tk.Entry(self)
-        self.clientInfo.grid(row= 1, column= 5, padx=(15, 90), pady=5)
+        title_frame = tk.Frame(self, bg="#cfd7dc", height=40)
+        title_frame.pack(side="top", fill="x")
+        title_frame.pack_propagate(False)
 
-        self.vehicleLabel = tk.Label(self, text="Auto")
-        self.vehicleLabel.grid(row = 2, column = 5, padx=(15, 90))
-        self.vehicleInfo = tk.Entry(self)
-        self.vehicleInfo.grid(row = 3, column = 5, padx=(15, 90), pady=5)
+        label_title = tk.Label(title_frame,
+                               text="Crea Preventivo",
+                               font=("Calisto MT", 20, "bold"),
+                               bg="#cfd7dc",
+                               fg="#000534")
+        label_title.pack(side="left", padx=(10, 0))
 
-        self.startDataLabel = tk.Label(self, text="Data inizio")
-        self.startDataLabel.grid(row = 4, column = 5, padx=(15, 90))
-        self.startDate = tk.Entry(self)
-        self.startDate.grid(row= 5, column = 5, padx=(15, 90), pady=5)
+        header_border = tk.Frame(self, bg="#bfc9cf", height=2)
+        header_border.pack(side="top", fill="x")
 
-        self.endDateLabel = tk.Label(self, text="Data fine")
-        self.endDateLabel.grid(row = 6, column = 5, padx=(15, 90))
-        self.endDate = tk.Entry(self)
-        self.endDate.grid(row = 7, column= 5, padx=(15, 90), pady=5)
+        btw_border = tk.Frame(self, bg="#dee4e9", height=30)
+        btw_border.pack(side="top", fill="x")
 
-        self.priceLabel = tk.Label(self,text = "Prezzo")
-        self.priceLabel.grid(row = 8, column = 5, padx=(15,90))
-        self.price = tk.Entry(self)
-        self.price.grid(row = 9, column = 5, padx=(15, 90), pady=5)
+        info_frame = tk.Frame(self, bg="#cfd7dc")
+        info_frame.pack(fill="both", padx=50, pady=(20, 50), expand=True)
+        info_frame.pack_propagate(False)
 
-        self.quoteID_Label = tk.Label(self, text="ID")
-        self.quoteID_Label.grid(row = 10, column = 5, padx=(15, 90))
-        self.quoteID = tk.Entry(self)
-        self.quoteID.grid(row = 11, column = 5, padx=(15, 90), pady=5)
+        info_frame.grid_rowconfigure(0, weight=1)
+        info_frame.grid_columnconfigure(0, weight=1)
+        info_frame.grid_columnconfigure(1, weight=1)
+        info_frame.grid_columnconfigure(2, weight=1)
+        info_frame.grid_columnconfigure(3, weight=1)
 
-        self.userInfoLabel = tk.Label(self, text="Utente")
-        self.userInfoLabel.grid(row=12, column = 5, padx=(15,90))
-        self.userInfo = tk.Entry(self)
-        self.userInfo.grid(row = 13, column= 5, padx=(15, 90), pady=5)
+        ##Sinistra
+        left_frame = tk.Frame(info_frame, bg="#cfd7dc")
+        left_frame.grid(row=0, column=0, sticky="n", padx=20, pady=80)
+        left_frame.grid_rowconfigure(2, weight=1)
+        left_frame.grid_columnconfigure(0, weight=1)
+
+        left_frame_label = tk.Label(left_frame, text="Seleziona un auto", font=("Calisto MT", 15, "bold"), bg="#cfd7dc", fg="#000534")
+        left_frame_label.grid(row=0, column=0, padx=(10, 0), pady=(0, 10), sticky="ew")
+
+        icon_holder = tk.Frame(left_frame, bg="#cfd7dc")
+        icon_holder.grid(row=1, column=1, sticky="e", padx=(2, 5))
+        icon_label = ctk.CTkLabel(icon_holder, image=self.search_icon, text="")
+        icon_label.pack()
+
+        self.VsearchBar = ctk.CTkEntry(left_frame, font=("Calisto MT", 15), width=200, corner_radius=10,
+                                    fg_color="white", text_color="#000534", border_color="#000534", border_width=2)
+        self.VsearchBar.grid(row=1, column=0, sticky = "ew", pady=(0, 5),padx=(10,0))
+
+        self.vehicleListBox = tk.Listbox(left_frame,
+                                         font=("Calibri", 12),
+                                         width=60,
+                                         height=25,
+                                         bg="#dee4e9"
+                                         )
+        self.vehicleListBox.grid(row=2, column=0, padx=(10,0), sticky = "nsew")
+
+        scrollbar = tk.Scrollbar(left_frame,
+                                 orient="vertical",
+                                 command=self.vehicleListBox.yview)
+        self.vehicleListBox.configure(yscrollcommand=scrollbar.set)
+        scrollbar.grid(row = 2, column = 1, sticky = "ns", padx=(0, 5))
+
+        ##Colonna 2
+        second_frame = tk.Frame(info_frame, bg="#cfd7dc")
+        second_frame.grid(row=0, column=1, sticky="n", padx=(20, 0), pady=80)
+        second_frame.grid_rowconfigure(2, weight=1)
+        second_frame.grid_columnconfigure(0, weight=1)
+
+        second_frame_label = tk.Label(second_frame, text="Seleziona un cliente", font=("Calisto MT", 15, "bold"), bg="#cfd7dc", fg="#000534")
+        second_frame_label.grid(row=0, column=0, padx=(10, 0), pady=(0, 10), sticky="ew")
+
+        icon_holder = tk.Frame(second_frame, bg="#cfd7dc")
+        icon_holder.grid(row=1, column=1, sticky="e", padx=(2, 0))
+        icon_label = ctk.CTkLabel(icon_holder, image=self.search_icon, text="")
+        icon_label.pack()
+
+        self.CsearchBar = ctk.CTkEntry(second_frame, font=("Calisto MT", 15), width=200, corner_radius=10,
+                                       fg_color="white", text_color="#000534", border_color="#000534", border_width=2)
+        self.CsearchBar.grid(row=1, column=0, sticky="ew", pady=(0, 5), padx=(10,0))
+
+        self.clientListBox = tk.Listbox(second_frame,
+                                        font=("Calibri", 12),
+                                         width=60,
+                                         height=25,
+                                         bg="#dee4e9")
+        self.clientListBox.grid(row=2, column=0, padx=(10,0), sticky = "nsew")
+
+        scrollbar = tk.Scrollbar(second_frame,
+                                 orient="vertical",
+                                 command=self.clientListBox.yview)
+        self.clientListBox.configure(yscrollcommand=scrollbar.set)
+        scrollbar.grid(row=2, column=1, padx=(0,5), sticky = "ns")
+
+        ##Colonna 3
+        third_frame = tk.Frame(info_frame, bg="#cfd7dc")
+        third_frame.grid(row=0, column=2, sticky="n", padx=20, pady=80)
+
+        self.clientLabel = tk.Label(third_frame, text="Cliente", font=("Calisto MT", 15, "bold"), bg="#cfd7dc",
+                                     fg="#000534")
+        self.clientLabel.grid(row = 0, column = 0, padx=(15, 90),pady=(15,0))
+        self.clientInfo = ctk.CTkEntry(third_frame, font=("Calisto MT", 15), width=200, corner_radius=10,
+                                       fg_color="white", text_color="#000534", border_color="#000534", border_width=2)
+        self.clientInfo.grid(row= 1, column= 0, padx=(15, 90), pady=(3,15))
+
+        self.vehicleLabel = tk.Label(third_frame, text="Auto", font=("Calisto MT", 15, "bold"), bg="#cfd7dc",
+                                     fg="#000534")
+        self.vehicleLabel.grid(row = 2, column = 0, padx=(15, 90))
+        self.vehicleInfo = ctk.CTkEntry(third_frame, font=("Calisto MT", 15), width=200, corner_radius=10,
+                                       fg_color="white", text_color="#000534", border_color="#000534", border_width=2)
+        self.vehicleInfo.grid(row = 3, column = 0, padx=(15, 90), pady=(3,15))
+
+        self.startDataLabel = tk.Label(third_frame, text="Data inizio", font=("Calisto MT", 15, "bold"), bg="#cfd7dc",
+                                     fg="#000534")
+        self.startDataLabel.grid(row = 4, column = 0, padx=(15, 90))
+        self.startDate = ctk.CTkEntry(third_frame, font=("Calisto MT", 15), width=200, corner_radius=10,
+                                       fg_color="white", text_color="#000534", border_color="#000534", border_width=2)
+        self.startDate.grid(row= 5, column = 0, padx=(15, 90), pady=(3,15))
+
+        self.endDateLabel = tk.Label(third_frame, text="Data fine", font=("Calisto MT", 15, "bold"), bg="#cfd7dc",
+                                     fg="#000534")
+        self.endDateLabel.grid(row = 6, column = 0, padx=(15, 90))
+        self.endDate = ctk.CTkEntry(third_frame, font=("Calisto MT", 15), width=200, corner_radius=10,
+                                       fg_color="white", text_color="#000534", border_color="#000534", border_width=2)
+        self.endDate.grid(row = 7, column= 0, padx=(15, 90), pady=(3,15))
+
+        ##colonna 4
+        fourth_frame = tk.Frame(info_frame, bg="#cfd7dc")
+        fourth_frame.grid(row=0, column=3, sticky="n", padx=20, pady=80)
+
+        self.priceLabel = tk.Label(fourth_frame,text = "Prezzo", font=("Calisto MT", 15, "bold"), bg="#cfd7dc",
+                                     fg="#000534")
+        self.priceLabel.grid(row = 0, column = 0, padx=(15,90), pady=(15,0))
+        self.price = ctk.CTkEntry(fourth_frame, font=("Calisto MT", 15), width=200, corner_radius=10,
+                                       fg_color="white", text_color="#000534", border_color="#000534", border_width=2)
+        self.price.grid(row = 1, column = 0, padx=(15, 90), pady=(3,15))
+
+        self.quoteID_Label = tk.Label(fourth_frame, text="ID", font=("Calisto MT", 15, "bold"), bg="#cfd7dc",
+                                     fg="#000534")
+        self.quoteID_Label.grid(row = 2, column = 0, padx=(15, 90))
+        self.quoteID = ctk.CTkEntry(fourth_frame, font=("Calisto MT", 15), width=200, corner_radius=10,
+                                       fg_color="white", text_color="#000534", border_color="#000534", border_width=2)
+        self.quoteID.grid(row = 3, column = 0, padx=(15, 90), pady=(3,15))
+
+        self.userInfoLabel = tk.Label(fourth_frame, text="Utente", font=("Calisto MT", 15, "bold"), bg="#cfd7dc",
+                                     fg="#000534")
+        self.userInfoLabel.grid(row=4, column = 0, padx=(15,90))
+        self.userInfo = ctk.CTkEntry(fourth_frame, font=("Calisto MT", 15), width=200, corner_radius=10,
+                                       fg_color="white", text_color="#000534", border_color="#000534", border_width=2)
+        self.userInfo.grid(row = 5, column= 0, padx=(15, 90), pady=(3,15))
+
+        create_btn = ctk.CTkButton(fourth_frame,
+                                   text="Crea Preventivo",
+                                   font=("Calisto MT", 18, "bold"),
+                                   width=170,
+                                   corner_radius=10,
+                                   fg_color="white",
+                                   border_color="#000534",
+                                   border_width=2,
+                                   text_color="#000534",
+                                   command = lambda: self.create_quote())
+        create_btn.grid(row=7, column=0, padx=(18, 90), pady=(30,15))
 
         self.vehicleListBox.bind("<<ListboxSelect>>", self.on_vehicle_selected)
         self.clientListBox.bind("<<ListboxSelect>>",self.on_client_selected)
@@ -78,17 +213,16 @@ class QuoteCreate(tk.Frame):
         self.fill_id()
 
 
-
     def fill_vehicle_list(self, vehicle_list):
         self.vehicleListBox.delete(0, tk.END)
         for vehicle in vehicle_list:
-            self.vehicleListBox.insert(tk.END, f"{vehicle.vehicle_id} {vehicle.model.brand} {vehicle.model.name} {vehicle.color} {vehicle.number_plate}")
+            self.vehicleListBox.insert(tk.END, f"{vehicle.vehicle_id} | {vehicle.model.brand} {vehicle.model.name} {vehicle.color} - {vehicle.number_plate}")
             
             
     def fill_client_list(self, client_list):
         self.clientListBox.delete(0,tk.END)
         for client in client_list:
-            self.clientListBox.insert(tk.END, f"{client.ID} {client.FirstName} {client.LastName} {client.email}")
+            self.clientListBox.insert(tk.END, f"{client.ID} | {client.FirstName} {client.LastName} - {client.email}")
 
 
     def on_vehicle_selected(self, event = None):

@@ -1,6 +1,9 @@
 import tkinter as tk
 import Src.GlobalVariables.GlobalVariables as gv
 from tkinter import messagebox
+import os
+from PIL import Image
+import customtkinter as ctk
 
 
 class QuoteView(tk.Frame):
@@ -9,54 +12,160 @@ class QuoteView(tk.Frame):
         self.controller = controller
         self.qc = gv.quote_controller
 
-        #Campi Quote
-        self.clientLabel = tk.Label(self, text="Cliente")
-        self.clientLabel.grid(row = 0, column = 5, padx=(15, 90),pady=5)
-        self.clientInfo = tk.Entry(self)
-        self.clientInfo.grid(row= 1, column= 5, padx=(15, 90), pady=5)
+        base_path = os.path.dirname(__file__)
+        icon_dir = os.path.join(base_path, "..", "Images", "Icone")
+        logout_icon = ctk.CTkImage(light_image=Image.open(os.path.join(icon_dir, "Logout.png")), size=(30, 30))
 
-        self.vehicleLabel = tk.Label(self, text="Auto")
-        self.vehicleLabel.grid(row = 2, column = 5, padx=(15, 90))
-        self.vehicleInfo = tk.Entry(self)
-        self.vehicleInfo.grid(row = 3, column = 5, padx=(15, 90), pady=5)
+        header_frame = tk.Frame(self, bg="#000534", height=50)
+        header_frame.pack(side="top", fill="x")
+        header_frame.pack_propagate(False)
 
-        self.startDataLabel = tk.Label(self, text="Data inizio")
-        self.startDataLabel.grid(row = 4, column = 5, padx=(15, 90))
-        self.startDate = tk.Entry(self)
-        self.startDate.grid(row= 5, column = 5, padx=(15, 90), pady=5)
+        back_btn = ctk.CTkButton(header_frame,
+                                 text="Back",
+                                 font=("Calisto MT", 18, "bold"),
+                                 image=logout_icon,
+                                 compound="left",
+                                 width=150,
+                                 corner_radius=10,
+                                 fg_color="white",
+                                 border_color="#000534",
+                                 border_width=2,
+                                 text_color="#000534",
+                                 command=lambda: self.back_func())
+        back_btn.pack(side="left", padx=(20, 0))
 
-        self.endDateLabel = tk.Label(self, text="Data fine")
-        self.endDateLabel.grid(row = 6, column = 5, padx=(15, 90))
-        self.endDate = tk.Entry(self)
-        self.endDate.grid(row = 7, column= 5, padx=(15, 90), pady=5)
+        title_frame = tk.Frame(self, bg="#cfd7dc", height=40)
+        title_frame.pack(side="top", fill="x")
+        title_frame.pack_propagate(False)
 
-        self.priceLabel = tk.Label(self,text = "Prezzo")
-        self.priceLabel.grid(row = 8, column = 5, padx=(15,90))
-        self.price = tk.Entry(self)
-        self.price.grid(row = 9, column = 5, padx=(15, 90), pady=5)
+        label_title = tk.Label(title_frame,
+                               text="Preventivo",
+                               font=("Calisto MT", 20, "bold"),
+                               bg="#cfd7dc",
+                               fg="#000534")
+        label_title.pack(side="left", padx=(10, 0))
 
-        self.quoteID_Label = tk.Label(self, text="ID")
-        self.quoteID_Label.grid(row = 10, column = 5, padx=(15, 90))
-        self.quoteID = tk.Entry(self)
-        self.quoteID.grid(row = 11, column = 5, padx=(15, 90), pady=5)
+        header_border = tk.Frame(self, bg="#bfc9cf", height=2)
+        header_border.pack(side="top", fill="x")
 
-        self.userInfoLabel = tk.Label(self, text="Utente")
-        self.userInfoLabel.grid(row=12, column = 5, padx=(15,90))
-        self.userInfo = tk.Entry(self)
-        self.userInfo.grid(row = 13, column= 5, padx=(15, 90), pady=5)
+        btw_border = tk.Frame(self, bg="#dee4e9", height=30)
+        btw_border.pack(side="top", fill="x")
+
+        info_frame = tk.Frame(self, bg="#cfd7dc")
+        info_frame.pack(fill="both", padx=50, pady=(20, 50), expand=True)
+        info_frame.pack_propagate(False)
+
+
+        info_frame.grid_rowconfigure(0, weight=1)
+        info_frame.grid_columnconfigure(0, weight=1)
+        info_frame.grid_columnconfigure(1, weight=1)
+        info_frame.grid_columnconfigure(2, weight=1)
+
+        ##Sinistra
+        left_frame = tk.Frame(info_frame, bg="#cfd7dc")
+        left_frame.grid(row=0, column=0, sticky="n", padx=20, pady=80)
+
+        self.clientLabel = tk.Label(left_frame, text="Cliente", font=("Calisto MT", 15, "bold"), bg="#cfd7dc", fg="#000534")
+        self.clientLabel.grid(row=0, column=0, pady=(0,5))
+        self.clientInfo = ctk.CTkEntry(left_frame, font=("Calisto MT", 15), width=200, corner_radius=10,
+                                       fg_color="white", text_color="#000534", border_color="#000534", border_width=2)
+        self.clientInfo.grid(row=1, column=0, pady=(0,20))
+
+        self.clientPhoneLabel = tk.Label(left_frame, text="Numero di Telefono", font=("Calisto MT", 12), bg="#cfd7dc", fg="#000534")
+        self.clientPhoneLabel.grid(row=2, column=0, pady=(0,5))
+        self.clientPhoneInfo = ctk.CTkEntry(left_frame, font=("Calisto MT", 15), width=200, corner_radius=10,
+                                       fg_color="white", text_color="#000534", border_color="#000534", border_width=2)
+        self.clientPhoneInfo.grid(row=3, column=0, pady=(0,20))
+
+        self.clientEmailLabel = tk.Label(left_frame, text="Email", font=("Calisto MT", 12), bg="#cfd7dc", fg="#000534")
+        self.clientEmailLabel.grid(row=4, column=0, pady=(0,5))
+        self.clientEmailInfo = ctk.CTkEntry(left_frame, font=("Calisto MT", 15), width=200, corner_radius=10,
+                                       fg_color="white", text_color="#000534", border_color="#000534", border_width=2)
+        self.clientEmailInfo.grid(row=5, column=0, pady=(0,20))
+
+        self.priceLabel = tk.Label(left_frame, text="Prezzo (€)", font=("Calisto MT", 15, "bold"), bg="#cfd7dc", fg="#000534")
+        self.priceLabel.grid(row=6, column=0, pady=(0,5))
+        self.price = ctk.CTkEntry(left_frame, font=("Calisto MT", 15), width=200, corner_radius=10,
+                                  fg_color="white", text_color="#000534", border_color="#000534", border_width=2)
+        self.price.grid(row=7, column=0, pady=(0,20))
+
+        self.userInfoLabel = tk.Label(left_frame, text="Venditore di riferimento", font=("Calisto MT", 15, "bold"), bg="#cfd7dc", fg="#000534")
+        self.userInfoLabel.grid(row=8, column=0, pady=(0,5))
+        self.userInfo = ctk.CTkEntry(left_frame, font=("Calisto MT", 15), width=200, corner_radius=10,
+                                     fg_color="white", text_color="#000534", border_color="#000534", border_width=2)
+        self.userInfo.grid(row=9, column=0, pady=(0,20))
+
+        self.delete_btn = ctk.CTkButton(left_frame, text="Elimina Preventivo", font=("Calisto MT", 15, "bold"),
+                                        width=200, corner_radius=10, fg_color="white", border_color="#000534",
+                                        border_width=2, text_color="#000534", command=lambda: self.delete_func())
+        self.delete_btn.grid(row=10, column=0, pady=(10,0))
+
+        ##Centro
+        vehicle_frame = tk.Frame(info_frame, bg="#cfd7dc")
+        vehicle_frame.grid(row=0, column=1, sticky="n", padx=20, pady=80)
+
+        self.vehicleLabel = tk.Label(vehicle_frame, text="Auto", font=("Calisto MT", 15, "bold"), bg="#cfd7dc", fg="#000534")
+        self.vehicleLabel.grid(row=0, column=0, pady=(0,5))
+        self.vehicleInfo = ctk.CTkEntry(vehicle_frame, font=("Calisto MT", 15), width=200, corner_radius=10,
+                                        fg_color="white", text_color="#000534", border_color="#000534", border_width=2)
+        self.vehicleInfo.grid(row=1, column=0, pady=(0,10))
+
+        self.targa = tk.Label(vehicle_frame, text="Targa", font=("Calisto MT", 12), bg="#cfd7dc", fg="#000534")
+        self.targa.grid(row=2, column=0, pady=(0,5))
+        self.vehicle_plate_info = ctk.CTkEntry(vehicle_frame, font=("Calisto MT", 15), width=200, corner_radius=10,
+                                               fg_color="white", text_color="#000534", border_color="#000534", border_width=2)
+        self.vehicle_plate_info.grid(row=3, column=0, pady=(0,10))
+
+        self.alim = tk.Label(vehicle_frame, text="Alimentazione", font=("Calisto MT", 12), bg="#cfd7dc", fg="#000534")
+        self.alim.grid(row=4, column=0, pady=(0,5))
+        self.vehicle_alim_info = ctk.CTkEntry(vehicle_frame, font=("Calisto MT", 15), width=200, corner_radius=10,
+                                              fg_color="white", text_color="#000534", border_color="#000534", border_width=2)
+        self.vehicle_alim_info.grid(row=5, column=0, pady=(0,10))
+
+        self.priceIn = tk.Label(vehicle_frame, text="Prezzo Iniziale (€)", font=("Calisto MT", 12), bg="#cfd7dc", fg="#000534")
+        self.priceIn.grid(row=6, column=0, pady=(0,5))
+        self.vehicle_price_info = ctk.CTkEntry(vehicle_frame, font=("Calisto MT", 15), width=200, corner_radius=10,
+                                               fg_color="white", text_color="#000534", border_color="#000534", border_width=2)
+        self.vehicle_price_info.grid(row=7, column=0, pady=(0,10))
+
+        self.km = tk.Label(vehicle_frame, text="Km", font=("Calisto MT", 12), bg="#cfd7dc", fg="#000534")
+        self.km.grid(row=8, column=0, pady=(0,5))
+        self.vehicle_km_info = ctk.CTkEntry(vehicle_frame, font=("Calisto MT", 15), width=200, corner_radius=10,
+                                            fg_color="white", text_color="#000534", border_color="#000534", border_width=2)
+        self.vehicle_km_info.grid(row=9, column=0, pady=(0,10))
+
+        ##Destra
+        right_frame = tk.Frame(info_frame, bg="#cfd7dc")
+        right_frame.grid(row=0, column=2, sticky="n", padx=20, pady=80)
+
+        self.quoteID_Label = tk.Label(right_frame, text="ID", font=("Calisto MT", 15, "bold"), bg="#cfd7dc", fg="#000534")
+        self.quoteID_Label.grid(row=0, column=0, padx=5, pady=(0,5))
+        self.startDataLabel = tk.Label(right_frame, text="Data inizio", font=("Calisto MT", 15, "bold"), bg="#cfd7dc", fg="#000534")
+        self.startDataLabel.grid(row=0, column=1, padx=5, pady=(0,5))
+        self.endDateLabel = tk.Label(right_frame, text="Data fine", font=("Calisto MT", 15, "bold"), bg="#cfd7dc",
+                                     fg="#000534")
+        self.endDateLabel.grid(row=0, column=2, padx=5, pady=(0, 5))
+
+        self.quoteID = ctk.CTkEntry(right_frame, font=("Calisto MT", 15), width=50, corner_radius=10,
+                                    fg_color="white", text_color="#000534", border_color="#000534", border_width=2)
+        self.quoteID.grid(row=1, column=0, padx=5, pady=(0, 10))
+        self.startDate = ctk.CTkEntry(right_frame, font=("Calisto MT", 15), width=100, corner_radius=10,
+                                      fg_color="white", text_color="#000534", border_color="#000534", border_width=2)
+        self.startDate.grid(row=1, column=1, padx=5, pady=(0, 10))
+        self.endDate = ctk.CTkEntry(right_frame, font=("Calisto MT", 15), width=100, corner_radius=10,
+                                    fg_color="white", text_color="#000534", border_color="#000534", border_width=2)
+        self.endDate.grid(row=1, column=2, padx=5, pady=(0, 10))
 
         self.confirmed_var = tk.BooleanVar()
-        self.confirmed_tick = tk.Checkbutton(self, text="Confermato", variable=self.confirmed_var)
-        self.confirmed_tick.grid(row = 14, column = 5, sticky = tk.NSEW)
-        self.confirmed_var.set(False)
+        self.confirmed_tick = ctk.CTkCheckBox(right_frame, text="Confermato", font=("Calisto MT", 15, "bold"),
+                                              width=150, corner_radius=10, fg_color="#000534", border_color="#000534",
+                                              border_width=2, text_color="#000534", variable=self.confirmed_var)
+        self.confirmed_tick.grid(row=2, column=0, columnspan=2, pady=(170, 10), sticky="w")
 
-        back_btn = (tk.Button(self, text="Back", command=lambda: self.back_func()))
-        back_btn.grid(row = 0, column = 0)
-
-        self.confirm_btn = (tk.Button(self, text="Conferma", command = lambda: self.confirm_func()))
-        self.confirm_btn.grid(row= 0, column= 1)
-        self.delete_btn = (tk.Button(self, text="Elimina", command = lambda: self.delete_func()))
-        self.delete_btn.grid(row = 0, column= 2)
+        self.confirm_btn = ctk.CTkButton(right_frame, text="Conferma Vendita", font=("Calisto MT", 14, "bold"),
+                                         width=150, corner_radius=10, fg_color="white", border_color="#000534",
+                                         border_width=2, text_color="#000534", command=lambda: self.confirm_func())
+        self.confirm_btn.grid(row=2, column=2, pady=(170, 10), sticky="e")
 
     def fill_quote_info(self):
         if gv.CurrentQuote is  None:
@@ -74,10 +183,40 @@ class QuoteView(tk.Frame):
         self.clientInfo.insert(0, f"{gv.CurrentQuote.Client.FirstName} {gv.CurrentQuote.Client.LastName}")
         self.clientInfo.configure(state= "readonly")
 
+        self.clientPhoneInfo.configure(state= "normal")
+        self.clientPhoneInfo.delete(0, tk.END)
+        self.clientPhoneInfo.insert(0, f"{gv.CurrentQuote.Client.PhoneNumber}")
+        self.clientPhoneInfo.configure(state= "readonly")
+
+        self.clientEmailInfo.configure(state= "normal")
+        self.clientEmailInfo.delete(0, tk.END)
+        self.clientEmailInfo.insert(0, f"{gv.CurrentQuote.Client.email}")
+        self.clientEmailInfo.configure(state= "readonly")
+
         self.vehicleInfo.configure(state= "normal")
         self.vehicleInfo.delete(0, tk.END)
-        self.vehicleInfo.insert(0, f"{gv.CurrentQuote.Vehicle.model.brand} {gv.CurrentQuote.Vehicle.model.name} {gv.CurrentQuote.Vehicle.color} {gv.CurrentQuote.Vehicle.number_plate} {gv.CurrentQuote.Vehicle.price}")
+        self.vehicleInfo.insert(0, f"{gv.CurrentQuote.Vehicle.model.brand} {gv.CurrentQuote.Vehicle.model.name} {gv.CurrentQuote.Vehicle.color}")
         self.vehicleInfo.configure(state= "readonly")
+
+        self.vehicle_plate_info.configure(state= "normal")
+        self.vehicle_plate_info.delete(0, tk.END)
+        self.vehicle_plate_info.insert(0, f"{gv.CurrentQuote.Vehicle.number_plate}")
+        self.vehicle_plate_info.configure(state= "readonly")
+
+        self.vehicle_alim_info.configure(state= "normal")
+        self.vehicle_alim_info.delete(0, tk.END)
+        self.vehicle_alim_info.insert(0, f"{gv.CurrentQuote.Vehicle.fuel_type}")
+        self.vehicle_alim_info.configure(state= "readonly")
+
+        self.vehicle_price_info.configure(state= "normal")
+        self.vehicle_price_info.delete(0, tk.END)
+        self.vehicle_price_info.insert(0, f"{gv.CurrentQuote.Vehicle.price}")
+        self.vehicle_price_info.configure(state= "readonly")
+
+        self.vehicle_km_info.configure(state= "normal")
+        self.vehicle_km_info.delete(0, tk.END)
+        self.vehicle_km_info.insert(0, f"{gv.CurrentQuote.Vehicle.km}")
+        self.vehicle_km_info.configure(state= "readonly")
 
         self.startDate.configure(state= "normal")
         self.startDate.delete(0, tk.END)
@@ -101,7 +240,7 @@ class QuoteView(tk.Frame):
 
         self.userInfo.configure(state= "normal")
         self.userInfo.delete(0, tk.END)
-        self.userInfo.insert(0, f"{gv.CurrentQuote.User.user_id} - {gv.CurrentQuote.User.firstName} {gv.CurrentQuote.User.LastName}")
+        self.userInfo.insert(0, f"{gv.CurrentQuote.User.user_id} | {gv.CurrentQuote.User.firstName} {gv.CurrentQuote.User.LastName}")
         self.userInfo.configure(state= "readonly")
 
         self.confirmed_tick.configure(state= "normal")
@@ -126,11 +265,11 @@ class QuoteView(tk.Frame):
         self.qc.confirm_quote()
         if self.controller.frames["QuoteSection"].switch_btn_var.get():
             self.controller.frames["QuoteSection"].fill_quote_listbox_confirmed()
+            self.confirmed_var.set(True)
         else:
             self.controller.frames["QuoteSection"].fill_quote_listbox_not_confirmed()
         self.controller.frames["VehicleSection"].fill_vehicle_listbox(gv.vehicle_list)
         self.confirmed_tick.configure(state="normal")
-        self.confirmed_var.set(True)
         self.confirmed_tick.configure(state="disabled")
 
     def disable_confirm_btn(self, value: bool):

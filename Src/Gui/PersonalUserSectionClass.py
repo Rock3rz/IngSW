@@ -86,7 +86,6 @@ class UserSection(tk.Frame):
                                   fg="#000534")
         FirstNameLabel.grid(row=0, column=0, padx=(220,50), pady=(50, 0))
 
-        #self.FirstName = tk.Entry(form_section,)
         self.FirstName = ctk.CTkEntry(form_section, font=("Calisto MT", 15), width=200, corner_radius=10, fg_color ="white", text_color="#000534", border_color= "#000534", border_width=2)
         self.FirstName.grid(row=1, column=0, padx=(170, 5), pady=5)
 

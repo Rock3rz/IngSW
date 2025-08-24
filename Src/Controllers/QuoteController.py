@@ -88,8 +88,8 @@ class QuoteController:
                     messagebox.showinfo("Successo", "Ultimo preventivo eliminato, lista ora vuota")
 
     def confirm_quote(self):
-        askyesno = messagebox.askyesno("Conferma", "Vuoi confermare il preventivo selezionato?")
-        if askyesno:
+        response = messagebox.askyesno("Conferma", "Vuoi confermare il preventivo selezionato?")
+        if response:
             if gv.CurrentQuote:
                 gv.CurrentQuote.Confirmed = True
                 gv.CurrentQuote.Vehicle.sold = True
@@ -97,4 +97,6 @@ class QuoteController:
                 APIController.write_vehicle_on_csv()
                 APIController.write_quote_on_csv()
                 messagebox.showinfo("Successo", "Preventivo confermato con successo")
+        else:
+            return
 
