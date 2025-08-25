@@ -44,7 +44,7 @@ class ClientController:
         APIController.write_client_on_csv()
 
     def edit_client_infos(self, name, last_name, email, address, cap, phone_number):
-
+        #Verifico che esista questo cliente
         index = next((i for i, client in enumerate(gv.client_list) if client.ID == gv.CurrentClient.ID), None)
         if index is None:
             messagebox.showwarning("ERRORE")
@@ -70,6 +70,9 @@ class ClientController:
                     (phone == "" or client.PhoneNumber == phone)
             ):
                 risultati.append(client)
+
+        if not risultati:
+            messagebox.showwarning("ERRORE", "Nessun cliente trovato")
         return risultati
 
     def search_client_by_string(self, search_string):

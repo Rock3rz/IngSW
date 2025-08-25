@@ -53,7 +53,6 @@ quote_controller = None
 def init_controllers():
 
     #Inizializza e centralizza le istanze dei controller.
-
     global account_controller, client_controller, vehicle_controller, api_controller, appointment_controller, quote_controller
 
     if all([account_controller, client_controller, vehicle_controller, api_controller, appointment_controller, quote_controller]):
@@ -68,7 +67,6 @@ def init_controllers():
     os.makedirs(os.path.dirname(Appointment_file_path), exist_ok=True)
     os.makedirs(os.path.dirname(Quote_file_path), exist_ok=True)
 
-    # Import locali per evitare cicli
     from Src.Controllers.AccountController import AccountController
     from Src.Controllers.ClientController import ClientController
     from Src.Controllers.VehicleController import VehicleController

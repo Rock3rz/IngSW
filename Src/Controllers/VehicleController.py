@@ -80,7 +80,6 @@ class VehicleController():
         APIController.write_vehicle_on_csv()
 
     def delete_vehicle(self):
-        # 1) Verifica che un veicolo sia selezionato
         current = gv.CurrentVehicle
         if current is None:
             messagebox.showwarning("Errore", "Selezionare un veicolo")

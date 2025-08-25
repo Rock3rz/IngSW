@@ -263,13 +263,15 @@ class QuoteView(tk.Frame):
 
     def confirm_func(self):
         self.qc.confirm_quote()
+        self.confirmed_var.set(True)
         if self.controller.frames["QuoteSection"].switch_btn_var.get():
             self.controller.frames["QuoteSection"].fill_quote_listbox_confirmed()
-            self.confirmed_var.set(True)
+
         else:
             self.controller.frames["QuoteSection"].fill_quote_listbox_not_confirmed()
         self.controller.frames["VehicleSection"].fill_vehicle_listbox(gv.vehicle_list)
         self.confirmed_tick.configure(state="normal")
+
         self.confirmed_tick.configure(state="disabled")
 
     def disable_confirm_btn(self, value: bool):

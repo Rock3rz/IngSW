@@ -108,11 +108,10 @@ class AccountController:
         nuova_pw = self.random_password(6)
 
 
-        # 3. Chiedi la mail all’utente
         email_Destinatario = simpledialog.askstring("Recupero Password", "Inserisci la tua E-mail registrata : ")
         if not email_Destinatario:
             return
-        # 4. Verifica che l’email esista nel DataFrame
+
 
         mask = next((user.email for user in gv.user_list if user.email == email_Destinatario), None)
 
@@ -128,7 +127,6 @@ class AccountController:
         gv.user_list[index].Password = nuova_pw
         APIController.write_user_on_csv()
 
-        # 7. Invia l’email con la nuova password
         self.invia_email(email_Destinatario,
                          "Recupero PW",
                          f"Questa è la tua nuova password : {nuova_pw} ",

@@ -274,7 +274,6 @@ class ClientSection(tk.Frame):
                               self.emailSrc.get(),
                               self.phone_numberSrc.get())
         if not tmplist:
-            messagebox.showwarning("ERRORE", "Nessun cliente trovato")
             return
 
         self.list_client.delete(0, tk.END)

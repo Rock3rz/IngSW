@@ -1,5 +1,3 @@
-from typing import List
-from Src.Class.Vehicle import Vehicle
 
 
 class User:
@@ -11,8 +9,7 @@ class User:
         username: str,
         is_admin: bool,
         last_name: str,
-        password:str,
-        searched_vehicles: List[Vehicle] = None,
+        password:str
     ):
 
         self.user_id: int = user_id
@@ -22,5 +19,4 @@ class User:
         self.isAdmin = is_admin
         self.LastName = last_name
         self.Password = password
-        self.SearchedVehicles = searched_vehicles
 

@@ -1,6 +1,5 @@
 import tkinter as tk
 from Src.Gui.CreateVehicle import CreateVehicle
-
 from Src.Gui.VehicleSectionClass import VehicleSection
 from Src.Gui.AppointmentSectionClass import AppointmentSection
 from Src.Gui.QuoteSectionClass import QuoteSection

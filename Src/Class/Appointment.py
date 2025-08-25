@@ -1,6 +1,5 @@
 from datetime import datetime
 from Src.Class.User import User
-#from Client import Client
 
 class Appointment:
     def __init__(

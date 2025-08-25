@@ -1,11 +1,9 @@
 import tkinter as tk
 from tkinter import ttk
 from tkcalendar import Calendar
-from datetime import datetime, date, time
+from datetime import datetime
 import Src.GlobalVariables.GlobalVariables as gv
-from Src.GlobalVariables.GlobalVariables import appointment_list
 from dateutil.relativedelta import relativedelta
-from tkinter import messagebox
 import os
 import customtkinter as ctk
 from PIL import Image

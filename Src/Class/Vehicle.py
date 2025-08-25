@@ -48,7 +48,7 @@ class Vehicle:
         registration_year: int,
         color: str,
         fuel_type: FuelType,
-        vehicle_id: int,  # URL o path locale?
+        vehicle_id: int,
         is_available: bool,
         km: float,
         number_plate : str,
