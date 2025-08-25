@@ -28,15 +28,6 @@ class TestClientController(unittest.TestCase):
         mock_write.assert_called_once()
 
 
-    '''def test_create_client_missing_field(self, mock_warning):
-        #manca uno dei campi (nome in questo esempio)
-        gv.client_list.append(Client(next_id = "1",
-                                     name = "",
-                                     last_name= "Rossi",
-                                     email = "mario@rossi.com",
-                                     address = "Milano",
-                                     cap ="20100",
-                                     phone_number = "1234567890"))'''
 
     @patch("Src.Controllers.ClientController.messagebox.showwarning")
     def test_create_client_missing_field(self, mock_warning):
@@ -44,7 +35,7 @@ class TestClientController(unittest.TestCase):
         gv.client_list = []  # assicurati lista vuota
 
         # Act: FirstName mancante
-        result = self.cc.create_client(
+        self.cc.create_client(
             "1",  # id
             "",  # FirstName mancante
             "Rossi",  # LastName
@@ -57,8 +48,7 @@ class TestClientController(unittest.TestCase):
         # Assert
         self.assertEqual(len(gv.client_list), 0)  #nessun client aggiunto
         mock_warning.assert_called_once()  #warning mostrato
-        if result is not None:  # se la funzione ritorna esito
-            self.assertFalse(result)
+
 
     @patch("Src.Controllers.ClientController.APIController.write_client_on_csv")
     @patch("Src.Controllers.ClientController.messagebox.showwarning")
@@ -73,7 +63,7 @@ class TestClientController(unittest.TestCase):
             "20100"  # CAP
             ))
 
-        result = self.cc.create_client(
+        self.cc.create_client(
             next_id="1",
             name="Mario",
             last_name="Rossi",
@@ -84,8 +74,7 @@ class TestClientController(unittest.TestCase):
         self.assertEqual(len(gv.client_list), 1)
         mock_warning.assert_called_once()
         mock_write.assert_not_called()
-        if  result is not None:
-            self.assertFalse(result)
+
 
     @patch("Src.Controllers.ClientController.messagebox.showwarning")
     def test_edit_client_info_success(self, mock_warning):
@@ -99,7 +88,7 @@ class TestClientController(unittest.TestCase):
                                      "20100"  # CAP
                                      ))
         gv.CurrentClient = gv.client_list[0]
-        result = self.cc.edit_client_infos(
+        self.cc.edit_client_infos(
             name="Mario",
             last_name="Rossi",
             email="mario@rossibello.com",
@@ -113,8 +102,7 @@ class TestClientController(unittest.TestCase):
         self.assertEqual(gv.client_list[0].email, "mario@rossibello.com")
         self.assertEqual(gv.client_list[0].city, "Roma")
         mock_warning.assert_not_called()
-        if result is not None:
-            self.assertTrue(result)
+
 
     @patch("Src.Controllers.ClientController.messagebox.showwarning")
     def test_edit_client_info_failed(self, mock_warning):
@@ -137,7 +125,7 @@ class TestClientController(unittest.TestCase):
                                      "20100"  # CAP
                                      )
 
-        result = self.cc.edit_client_infos(
+        self.cc.edit_client_infos(
             name="Mario",
             last_name="Rossi",
             email="mario@rossibello.com",
@@ -149,8 +137,7 @@ class TestClientController(unittest.TestCase):
         self.assertEqual(len(gv.client_list), 1)
 
         mock_warning.assert_called_once()
-        if result is not None:
-            self.assertTrue(result)
+
 
 
     @patch("Src.Controllers.ClientController.messagebox.showwarning")
@@ -171,12 +158,6 @@ class TestClientController(unittest.TestCase):
         mock_warning.assert_not_called()
         if len(result) > 0:
             self.assertTrue(result)
-
-
-
-
-
-
 
 
 

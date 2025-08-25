@@ -68,7 +68,7 @@ class AccountController:
                     "L'account che stai cercando di creare è già presente nel software, se non ricordi le credenziali, effettua il recupero password!")
                 return
 
-            next_id = max(u.user_id for u in gv.user_list) +1
+            next_id = max(int(u.user_id) for u in gv.user_list) +1
         else:
             next_id = 1
 

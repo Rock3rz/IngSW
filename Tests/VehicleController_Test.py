@@ -47,7 +47,8 @@ class TestVehicleController(unittest.TestCase):
         mock_warning.assert_not_called()
         mock_write.assert_called_once()
         if len(gv.vehicle_list) > 0:
-            self.assertTrue(gv.vehicle_list)
+            self.assertEqual(gv.vehicle_list[0].vehicle_id, "1")
+            self.assertEqual(gv.vehicle_list[0].model.brand, "Fiat")
 
     @patch("Src.Controllers.VehicleController.messagebox.showwarning")
     def test_create_vehicle_failed(self, mock_warning):
@@ -67,8 +68,6 @@ class TestVehicleController(unittest.TestCase):
         self.assertEqual(len(gv.vehicle_list), 0)
         mock_warning.assert_called_once()
 
-        if len(gv.vehicle_list) > 0:
-            self.assertFalse(gv.vehicle_list)
 
 
     #@patch("Src.Controllers.VehicleController.APIController.write_vehicle_on_csv")
@@ -88,8 +87,7 @@ class TestVehicleController(unittest.TestCase):
         result = self.vc.delete_vehicle()
 
         mock_warning.assert_called_once()
-        if result is not None:
-            self.assertFalse(result)
+        self.assertIsNone(result, "nessun ritorno")
 
     @patch("Src.Controllers.VehicleController.APIController.write_vehicle_on_csv")
     @patch("Src.Controllers.VehicleController.messagebox.askyesno", return_value=True)
