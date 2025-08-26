@@ -75,6 +75,7 @@ class QuoteController:
         if askyesno:
             if gv.CurrentQuote in gv.quote_list:
                 gv.CurrentQuote.Vehicle.is_available = True
+                gv.CurrentQuote.Vehicle.sold = False
                 gv.quote_list.remove(gv.CurrentQuote)
 
                 if gv.quote_list:
