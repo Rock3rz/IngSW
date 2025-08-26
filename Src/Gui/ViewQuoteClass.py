@@ -258,8 +258,7 @@ class QuoteView(tk.Frame):
 
     def delete_func(self):
                 self.qc.delete_quote()
-                if self.controller.frames["QuoteSection"].switch_btn_var.get():
-                    self.controller.frames["QuoteSection"].fill_quote_listbox_confirmed()
+                self.controller.frames["QuoteSection"].fill_quote_listbox_not_confirmed()
                 self.back_func()
 
     def confirm_func(self):

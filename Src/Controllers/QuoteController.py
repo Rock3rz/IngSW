@@ -81,6 +81,7 @@ class QuoteController:
                 if gv.quote_list:
 
                     APIController.write_quote_on_csv()
+                    APIController.write_vehicle_on_csv()
                     messagebox.showinfo("Successo", "Preventivo eliminato con successo")
                 else:
                     import pandas as pd
