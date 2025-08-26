@@ -76,12 +76,20 @@ class QuoteController:
             if gv.CurrentQuote in gv.quote_list:
                 gv.CurrentQuote.Vehicle.is_available = True
                 gv.CurrentQuote.Vehicle.sold = False
+                veh = gv.CurrentQuote.Vehicle
+                if veh:
+                    master = next((v for v in gv.vehicle_list if v.vehicle_id == veh.vehicle_id), None)
+                    if master:
+                        master.is_available = True
+                        master.sold = False
+                APIController.write_vehicle_on_csv()
                 gv.quote_list.remove(gv.CurrentQuote)
+                print("Rimosso")
 
                 if gv.quote_list:
 
                     APIController.write_quote_on_csv()
-                    APIController.write_vehicle_on_csv()
+
                     messagebox.showinfo("Successo", "Preventivo eliminato con successo")
                 else:
                     import pandas as pd
