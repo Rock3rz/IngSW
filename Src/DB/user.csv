@@ -1,7 +1,7 @@
 ID,Name,LastName,Email,UserName,Password,IsAdmin
-1,Francesco,Trapano,TP@abruzzolandia.coma,admin,admin,True
-2,ppavone,ppavone,ppavone@ihih.com,ppavone,one,True
-5,Francesco,Pavone,s1111729@studenti.univpm.it,f,436578,False
+1,Francesco,Trapano,francesco.trapano@example.com,admin,admin,True
+2,Paola,Pavone,s1111729@studenti.univpm.it,ppavone,one,True
+5,Francesco,Pavone,francesco.pavone@example.com,f,436578,False
 6,Marco,Rossi,marco.rossi@example.com,marco.rossi,pass006,False
 7,Luca,Bianchi,luca.bianchi@example.com,luca.bianchi,pass007,False
 8,Sara,Verdi,sara.verdi@example.com,sara.verdi,pass008,False

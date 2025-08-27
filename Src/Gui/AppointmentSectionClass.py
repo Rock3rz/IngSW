@@ -266,7 +266,7 @@ class AppointmentSection(tk.Frame):
         index = self.ac.find_appointment()
         if index is not None:
 
-            self.popup = tk.Toplevel(self)
+            self.popup = tk.Toplevel(self, bg="#dee4e9")
             self.popup.title("popup")
             self.popup.geometry("400x300")
 
@@ -277,16 +277,39 @@ class AppointmentSection(tk.Frame):
                     hour_list.append(time_str)
 
 
-            self.orari = ttk.Combobox(self.popup, values = hour_list)
+            self.orari = ctk.CTkComboBox(self.popup,
+                                         values = hour_list,
+                                         font=("Calisto MT", 12),
+                                         width=200,
+                                         corner_radius=10,
+                                         fg_color="white",
+                                         text_color="#000534",
+                                         border_color="#000534",
+                                         border_width=2,
+                                         dropdown_fg_color="white",
+                                         dropdown_text_color="#000534"
+                                         )
             self.orari.set(gv.appointment_list[index].date_time.strftime("%H:%M"))
-            self.orari.grid(row = 0, column = 1)
+            self.orari.grid(row = 0, column = 1, pady=(10, 0))
 
-            self.descr = tk.Entry(self.popup, width = 50)
-            self.descr.grid(row = 1, column = 1)
+            descr_label = tk.Label(self.popup, text="Descrizione", font=("Calisto MT", 18, "bold"), fg="#000534", bg="#dee4e9")
+            descr_label.grid(row = 1, column = 1, pady=(20, 5))
+            self.descr = ctk.CTkEntry(self.popup, font=("Calisto MT", 15), width=400, corner_radius=10,
+                                     fg_color="white", text_color="#000534", border_color="#000534", border_width=2)
+            self.descr.grid(row = 2, column = 1, pady=(0, 20))
             self.descr.insert(0, gv.appointment_list[index].description)
 
-            self.save = tk.Button(self.popup, text = "Save", command = lambda: save_new_data())
-            self.save.grid(row = 2, column= 1)
+            self.save = ctk.CTkButton(self.popup,
+                                      text = "Salva",
+                                      font=("Calisto MT", 18, "bold"),
+                                      width=100,
+                                      corner_radius=10,
+                                      fg_color="white",
+                                      border_color="#000534",
+                                      border_width=2,
+                                      text_color="#000534",
+                                      command = lambda: save_new_data())
+            self.save.grid(row = 3, column= 1)
 
         def save_new_data():
             new_time = self.orari.get()

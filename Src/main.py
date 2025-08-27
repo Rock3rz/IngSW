@@ -7,7 +7,7 @@ import Src.GlobalVariables.GlobalVariables as gv
 #funzione main che conterrà il main loop
 if __name__ == '__main__':
     root = tk.Tk()
-    root.title('AppDelleMacchine')
+    root.title('AutoneThor')
 
 
     #per tutto il resto
