@@ -8,8 +8,7 @@ import Src.GlobalVariables.GlobalVariables as gv
 if __name__ == '__main__':
     root = tk.Tk()
     root.title('AppDelleMacchine')
-    #se è un pc windows
-    root.state("zoomed")
+
 
     #per tutto il resto
     root.geometry('1920x1080')
