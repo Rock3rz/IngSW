@@ -7,7 +7,6 @@ from Src.Class.Vehicle import Model, Vehicle
 
 class VehicleController():
     def __init__(self):
-        #api = APIController()
         os.makedirs(os.path.dirname(gv.Brand_file_path), exist_ok=True)
 
     def create_brand(self):
@@ -68,11 +67,6 @@ class VehicleController():
                 "Riempi tutti i campi!")
             return
 
-        '''
-        for model in gv.model_list:
-            if model.model_id == model_id:
-                tmpModel = model
-        '''
         tmp_model = gv.model_recovery(model_id)
 
         new_vehicle = Vehicle(tmp_model, year, color, fuel_type, vehicle_id, is_available, km, plate, price, image=image)

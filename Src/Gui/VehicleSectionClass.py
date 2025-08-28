@@ -603,11 +603,7 @@ class VehicleSection(tk.Frame):
 
     def show_available_vehicle(self, reserved: bool, sold: bool, available: bool):
         # Filtra stato disponibilità:
-        # - Prenotati: is_available == False e sold == False
-        # - Venduti: sold == True
-        # - Disponibili: is_available == True e sold == False
-        # - Entrambi:  tutti i non disponibili
-        # - Nessuno:   tutti i veicoli
+
         if reserved and not sold:
             result = [v for v in gv.vehicle_list if (not v.is_available) and (not bool(getattr(v, 'sold', False)))]
         elif sold:

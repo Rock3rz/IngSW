@@ -1,5 +1,4 @@
 from Src.Class.User import User
-import pandas as pd
 import os
 import Src.GlobalVariables.GlobalVariables as gv
 from tkinter import messagebox, simpledialog
@@ -27,7 +26,6 @@ class AccountController:
         if gv.user_list:
 
             utente = next((u for u in gv.user_list if u.username == self.name and u.Password == self.password), None)
-            #(valore_da_restituire for variabile in collezione if condizione)
 
 
             if not utente:

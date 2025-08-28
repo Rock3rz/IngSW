@@ -75,9 +75,9 @@ class TestClientController(unittest.TestCase):
         mock_warning.assert_called_once()
         mock_write.assert_not_called()
 
-
+    @patch("Src.Controllers.ClientController.APIController.write_client_on_csv")
     @patch("Src.Controllers.ClientController.messagebox.showwarning")
-    def test_edit_client_info_success(self, mock_warning):
+    def test_edit_client_info_success(self, mock_warning, mock_write):
         gv.client_list = []
         gv.client_list.append(Client("Milano",  # city
                                      "mario@rossi.com",  # Email
@@ -102,6 +102,7 @@ class TestClientController(unittest.TestCase):
         self.assertEqual(gv.client_list[0].email, "mario@rossibello.com")
         self.assertEqual(gv.client_list[0].city, "Roma")
         mock_warning.assert_not_called()
+        mock_write.assert_called_once()
 
 
     @patch("Src.Controllers.ClientController.messagebox.showwarning")

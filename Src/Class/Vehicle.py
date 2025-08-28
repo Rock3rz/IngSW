@@ -12,24 +12,6 @@ class FuelType(Enum):
     HYBRID = 6
 
 
-'''class Brand(Enum):
-    TOYOTA = "Toyota"
-    MERCEDES_BENZ = "Mercedes-Benz"
-    BMW = "BMW"
-    TESLA = "Tesla"
-    HONDA = "Honda"
-    HYUNDAI = "Hyundai"
-    AUDI = "Audi"
-    PORSCHE = "Porsche"
-    VOLKSWAGEN = "Volkswagen"
-    FORD = "Ford"
-    NISSAN = "Nissan"
-    KIA = "Kia"
-    FIAT = "Fiat"
-    SEAT = "Seat"
-    CUPRA = "Cupra"
-    OPEL = "Opel"
-'''
 
 class Model:
     def __init__(self, brand:str ,name:str,  displacement: float, hp: int, model_id: int):
@@ -56,7 +38,6 @@ class Vehicle:
         image: Optional[str] = None,
         sold: bool = False,
     ):
-        #self.brand = brand
         self.registration_year = registration_year
         self.color = color
         self.fuel_type = fuel_type
